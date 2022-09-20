@@ -17,10 +17,10 @@
           <x-nav-link class="text-white text-base" href="{{ route('readers.index') }}" :active="request()->routeIs('reader')">
             {{ __('Readers') }}
           </x-nav-link>
-          <x-nav-link class="text-white text-base" href="#" :active="request()->routeIs('story')">
+          <x-nav-link class="text-white text-base" href="{{ route('stories.index') }}" :active="request()->routeIs('story')">
             {{ __('Stories') }}
           </x-nav-link>
-          <x-nav-link class="text-white text-base" href="#" :active="request()->routeIs('LucaUser')">
+          <x-nav-link class="text-white text-base" href="{{ route('users.index') }}" :active="request()->routeIs('LucaUser')">
             {{ __('Luca Users') }}
           </x-nav-link>
         </div>
