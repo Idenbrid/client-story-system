@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\admin\ReaderController;
+use App\Http\Controllers\admin\StoryController;
+use App\Http\Controllers\admin\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +26,8 @@ Route::group(['middleware' => ['auth']], function() {
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
 
     Route::resource('readers', ReaderController::class);
+    Route::resource('stories', StoryController::class);
+    Route::resource('users', UserController::class);
 
 });
 require __DIR__.'/auth.php';

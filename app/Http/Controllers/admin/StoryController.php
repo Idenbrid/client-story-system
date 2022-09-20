@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Story;
 class StoryController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class StoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.stories.index');
     }
 
     /**
