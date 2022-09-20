@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
       <h2 class="bg-white text-sky-500 text-4xl">
-        Edit
+        Add new
       </h2>
     </div>
     <!-- Page Heading -->
@@ -89,6 +89,16 @@
             <sup class="pl-3"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
                 <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
             &nbsp;Is Required Field
+          </div>
+        </div>
+        <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
+          <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
+          </div>
+          <div class="my-2">
+            <button class="text-sky-500 py-1 px-2 flex justify-center items-center">
+              <svg class="w-4 fill-sky-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z" /></svg>
+              Add another record</button>
           </div>
         </div>
       </div>
