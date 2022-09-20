@@ -14,7 +14,7 @@
           <x-nav-link class="text-white text-base" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             {{ __('Dashboard') }}
           </x-nav-link>
-          <x-nav-link class="text-white text-base" href="#" :active="request()->routeIs('reader')">
+          <x-nav-link class="text-white text-base" href="{{ route('readers.index') }}" :active="request()->routeIs('reader')">
             {{ __('Readers') }}
           </x-nav-link>
           <x-nav-link class="text-white text-base" href="#" :active="request()->routeIs('story')">

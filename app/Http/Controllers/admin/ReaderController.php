@@ -14,7 +14,7 @@ class ReaderController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.readers.index');
     }
 
     /**

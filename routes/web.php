@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\admin\ReaderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +21,9 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard',[HomeController::class,'index' ] )->name('dashboard');
 });
+Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
 
+    Route::resource('readers', ReaderController::class);
+
+});
 require __DIR__.'/auth.php';
