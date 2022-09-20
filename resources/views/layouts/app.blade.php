@@ -8,6 +8,45 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+  <style>
+    #dataTable_wrapper {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+    }
+
+    #dataTable_wrapper::-webkit-scrollbar {
+      display: none;
+      /* Safari and Chrome */
+    }
+
+    #dataTable_wrapper>.row:nth-child(3)>.col-sm-12:nth-child(1) {
+      display: none !important;
+    }
+
+    div.dataTables_wrapper div.dataTables_paginate {
+      float: left;
+      margin: 50px 0 0 0;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-item.active .page-link {
+      z-index: 3;
+      color: #fff;
+      background-color: #0ea5e9;
+      border-color: #0ea5e9;
+    }
+    div.dataTables_wrapper div.dataTables_length select{
+      width:70px;
+    }
+  </style>
   <!-- Scripts -->
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -50,5 +89,14 @@
     </main>
   </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#dataTable').DataTable();
+
+  });
+</script>
 
 </html>
