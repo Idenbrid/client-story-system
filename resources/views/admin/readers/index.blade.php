@@ -10,7 +10,9 @@
       <h2 class="bg-white text-sky-500 text-4xl">
         Readers
       </h2>
-      <button class="bg-sky-500 text-white py-1 px-3 rounded outline-none focus:outline-none">Add New</button>
+        <a href="{{ route('readers.create')  }}">
+            <button class="bg-sky-500 text-white py-1 px-3 rounded outline-none focus:outline-none">Add New</button>
+        </a>
     </div>
     <!-- Page Heading -->
     <section class="bg-white my-8">

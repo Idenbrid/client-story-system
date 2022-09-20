@@ -14,7 +14,7 @@
     <!-- Page Heading -->
     <!-- Page Form Section -->
     <section class="bg-white my-8">
-      <!-- Header Button -->
+      {{--  <!-- Header Button -->
       <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-neutral-100 ">
         <div class="max-w-lg flex mx-auto ">
           <button class="flex items-center bg-sky-400 py-2 px-5 text-white rounded mx-2">Save <div class="ml-1">
@@ -25,7 +25,7 @@
           <button class="bg-white flex items-center py-2 px-5 text-black rounded mx-2">Cancel
         </div>
       </div>
-      <!-- Header Button -->
+      <!-- Header Button -->  --}}
       <!-- Form -->
       <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-white">
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
@@ -78,8 +78,8 @@
                 <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
           </div>
           <select id="countries" class="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full my-2 sm:m-2   sm:w-9/12 px-2 py-1">
-            <option>Male</option>
-            <option>Female</option>
+            <option>saus</option>
+            <option>saqas</option>
           </select>
         </div>
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
