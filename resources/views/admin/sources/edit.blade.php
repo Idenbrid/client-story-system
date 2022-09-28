@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
       <h2 class="bg-white text-sky-500 text-4xl">
-        {{ __('Edit Source') }}
+        {{ __('Edit Source Data') }}
       </h2>
     </div>
     <!-- Page Heading -->

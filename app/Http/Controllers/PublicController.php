@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Story;
+use App\Models\Reader;
 
 class PublicController extends Controller
 {
@@ -14,6 +17,7 @@ class PublicController extends Controller
     public function index()
     {
         //
+        return view('user.dashboard');
     }
 
     /**
@@ -24,6 +28,19 @@ class PublicController extends Controller
     public function create()
     {
         //
+    }
+    public function stories()
+    {
+        // To return all Source Stories for this manager
+        $stories = Story::where('source_id',Auth::user()->manager->source_id)->paginate(10);
+        return view('user.stories.index',['stories'=>$stories]);
+    }
+    public function readers()
+    {
+        // To return all Source Readers for this manager
+        // $readers = Reader::where('source_id',Auth::user()->manager->source_id)->paginate(10);
+        $readers = Reader::paginate(10);
+        return view('user.readers.index',['readers'=>$readers]);
     }
 
     /**

@@ -22,8 +22,8 @@
                             :active="request()->routeIs('admin.source')">
                             {{ __('Source Admins') }}
                         </x-nav-link>
-                        <x-nav-link class="text-white text-base" href="{{ route('readers.index') }}" :active="request()->routeIs('reader')">
-                            {{ __('Readers') }}
+                        <x-nav-link class="text-white text-base" href="{{ route('admin.manager.index') }}" :active="request()->routeIs('admin.manager.index')">
+                            {{ __('Managers') }}
                         </x-nav-link>
                         <x-nav-link class="text-white text-base" href="{{ route('admin.stories.index') }}"
                             :active="request()->routeIs('story')">
@@ -50,9 +50,20 @@
                         {{ __('Readers') }}
                     </x-nav-link>
                 </div>
-                
+                @elseif(Auth::user()->roles->first()->name == 'manager')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link class="text-white text-base" :href="route('user.home')" :active="request()->routeIs('user.home')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link class="text-white text-base" href="{{ route('user.stories') }}" :active="request()->routeIs('user.stories')">
+                        {{ __('My Stories') }}
+                    </x-nav-link>
+                    <x-nav-link class="text-white text-base" href="{{ route('user.readers') }}" :active="request()->routeIs('user.readers')">
+                        {{ __('My Readers') }}
+                    </x-nav-link>
                 </div>
                 @endif
+                </div>
         {{-- END of Navigation Links FOR SourceAdmin  --}}
         {{-- @endif --}}
         <!-- Settings Dropdown -->

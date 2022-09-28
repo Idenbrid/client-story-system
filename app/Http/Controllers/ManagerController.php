@@ -21,6 +21,13 @@ class ManagerController extends Controller
     {
         //
     }
+    public function adminManager()
+    {
+        //
+        // $managers = User::whereRoleIs('manager')->with('Manager')->paginate(10);
+        $managers = User::whereRoleIs('manager')->with('Manager')->paginate(10);
+        return view('admin.managers.index',['managers'=>$managers]);
+    }
 
     /**
      * Show the form for creating a new resource.

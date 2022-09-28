@@ -15,4 +15,8 @@ class Manager extends Model
     public function Source(){
         return $this->hasOne(Source::class,'source_id','source_id');
     }
+    public function SourceAdmin(){
+        return $this->hasOne(SourceAdmin::class,'source_id','source_id');
+    }
+
 }

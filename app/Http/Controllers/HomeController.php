@@ -25,7 +25,9 @@ class HomeController extends Controller
             return view('admin.dashboard');
         }
         elseif(Auth::user()->hasrole('user')  && Auth::user()->is_active == '1'){
-
+            return view('user.dashboard');
+        }
+        elseif(Auth::user()->hasrole('manager')  && Auth::user()->is_active == '1'){
             return view('user.dashboard');
         }
     }

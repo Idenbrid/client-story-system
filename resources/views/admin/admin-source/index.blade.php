@@ -87,14 +87,14 @@
 
                                 <td class="py-4 px-6">
                                     @if ($admin->source)
-                                    <b>{{ $admin->source->source_id }}</b> ({{ $admin->source->source_name }})
+                                    <b style="color:green">{{ $admin->source->source_id }}</b> (<a href="{{ route('admin.sources.edit',['id'=>$admin->source->id])}}" class="text-primary">{{ $admin->source->source_name }}</a>)
                                     @else
                                     Not Attached Yet
                                     @endif
                                 </td>
                                 <th scope="row"
                                     class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-                                    {{ $admin->first_name }} {{ $admin->last_name }}
+                                    <a href="{{ route('admin.source.edit',['id'=>$admin->id])}}" class="text-primary">{{ $admin->first_name }} {{ $admin->last_name }}</a>
                                 </th>
                                 <th scope="row"
                                     class="capitalize py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
@@ -102,7 +102,7 @@
                                 </th>
 
                                 <td class="py-4 px-6">
-                                    {{ $admin->email }}
+                                    <a href="mailto:{{ $admin->email }}">{{ $admin->email }}</a>
                                 </td>
                                 <td class="py-4 px-6">
                                     {{ $admin->created_at }}

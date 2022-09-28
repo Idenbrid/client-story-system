@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\admin\ReaderController;
 use App\Http\Controllers\admin\StoryController;
 use App\Http\Controllers\admin\SourceController;
 use App\Http\Controllers\admin\SourceAdminController;
-use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\admin\UserController;
 /*
@@ -47,6 +47,15 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
     });
+    // For Source Managers, Created by Source Administrators
+    Route::prefix('manager')->name('admin.manager.')->controller(ManagerController::class)->group(function () {
+        Route::get('/', 'adminManager')->name('index');
+        // Route::get('/create', 'create')->name('create');
+        // Route::post('/store', 'store')->name('store');
+        // Route::get('/edit/{id}', 'edit')->name('edit');
+        // Route::post('/update/{id}', 'update')->name('update');
+        // Route::get('/destroy/{id}', 'destroy')->name('destroy');
+    });
     Route::prefix('stories')->name('admin.stories.')->controller(StoryController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
@@ -83,16 +92,17 @@ Route::prefix('sadmin')->name('sadmin.')->group( function() {
     Route::get('/reader/destroy/{id}', [SourceController::class,'destroyReader'])->name('reader.destroy');
 });
 
-// Routes for Source Manager
-// Route::prefix('manager')->name('manager.')->group( function() {
-//     Route::get('/index', [ManagerController::class,'userDashboard'])->name('home');
-//     Route::get('/mysource', [ManagerController::class,'mySource'])->name('mysource');
-//     Route::post('/mysource/update/{id}', [ManagerController::class,'updateSource'])->name('mysource.update');
-//     Route::get('/reader/edit/{id}', [ManagerController::class,'editReader'])->name('reader.edit');
-//     Route::post('/reader/update/{id}', [ManagerController::class,'updateReader'])->name('reader.update');
-//     Route::get('/readers', [ManagerController::class,'readers'])->name('readers');
-//     Route::get('/reader/create', [ManagerController::class,'createNewReader'])->name('reader.new');
-//     Route::post('/reader/store', [ManagerController::class,'createReader'])->name('reader.create');
-//     Route::get('/reader/destroy/{id}', [ManagerController::class,'destroyReader'])->name('reader.destroy');
-// });
+// Routes for Public/Reader's Manager created by Sub Admin
+Route::prefix('user')->name('user.')->group( function() {
+    Route::get('/dashboard', [PublicController::class,'index'])->name('home');
+    Route::get('/stories', [PublicController::class,'stories'])->name('stories');
+    Route::get('/readers', [PublicController::class,'readers'])->name('readers');
+    // Route::post('/mysource/update/{id}', [PublicController::class,'updateSource'])->name('mysource.update');
+    // Route::get('/reader/edit/{id}', [PublicController::class,'editReader'])->name('reader.edit');
+    // Route::post('/reader/update/{id}', [PublicController::class,'updateReader'])->name('reader.update');
+    // Route::get('/readers', [PublicController::class,'readers'])->name('readers');
+    // Route::get('/reader/create', [PublicController::class,'createNewReader'])->name('reader.new');
+    // Route::post('/reader/store', [PublicController::class,'createReader'])->name('reader.create');
+    // Route::get('/reader/destroy/{id}', [PublicController::class,'destroyReader'])->name('reader.destroy');
+});
 require __DIR__.'/auth.php';

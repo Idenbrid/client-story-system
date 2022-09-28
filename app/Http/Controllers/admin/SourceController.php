@@ -37,7 +37,7 @@ class SourceController extends Controller
         //
         if (Auth::user()->hasRole('admin')) {
             $sadmins = User::whereRoleIs('sadmin')->get();
-            $sadmins->random = Str::upper(substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 6));
+            $sadmins->random = trim(Str::upper(substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 6)));
             return view('admin.sources.create', ['sadmins' => $sadmins]);
         }
     }
@@ -103,7 +103,7 @@ class SourceController extends Controller
     public function edit(Source $source, $id)
     {
         //
-        $source = Source::find($id);
+        $source = Source::findOrfail($id);
         $sadmin = User::where('id', $source->user_id)->get();
         $sadmins = User::whereRoleIs('sadmin')->get();
         return view("admin.sources.edit", ['source' => $source, 'sadmins' => $sadmins]);
@@ -126,9 +126,11 @@ class SourceController extends Controller
         $source->phone = $request->phone;
         $source->address = $request->address;
         if ($request->user_id) {
-            $request->validate([
-                'user_id' => 'unique:source_admins,user_id',
-            ]);
+            if($request->user_id != $source->user_id){
+                $request->validate([
+                    'user_id' => 'unique:source_admins,user_id',
+                ]);
+            }
             $source->user_id = $request->user_id;
         }
         $source->status = $request->status;
@@ -136,9 +138,11 @@ class SourceController extends Controller
                 if ($request->user_id) {
                     $sourceAdminFound = SourceAdmin::where('source_id', $source->source_id)->first();
                     if ($sourceAdminFound) {
-                        $request->validate([
-                            'user_id' => 'required|unique:source_admins,user_id',
-                        ]);
+                        if($request->user_id != $sourceAdminFound->user_id){
+                            $request->validate([
+                                'user_id' => 'unique:source_admins,user_id',
+                            ]);
+                        }
                         $sourceAdminFound->user_id = $request->user_id;
                         $sourceAdminFound->status = $request->status;
                         $sourceAdminFound->update();

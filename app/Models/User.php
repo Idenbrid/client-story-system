@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Source;
 use App\Models\SourceAdmin;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -52,5 +53,8 @@ class User extends Authenticatable
     }
     public function SourceAdmin(){
         return $this->hasOne(SourceAdmin::class,'user_id','id');
+    }
+    public function Manager(){
+        return $this->belongsTo(Manager::class,'id','user_id')->with('SourceAdmin')->with('Source');
     }
 }
