@@ -7,14 +7,16 @@ use Illuminate\Http\Request;
 use App\Models\Story;
 class StoryController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.stories.index');
+        //
+        $stories = Story::paginate(10);
+        return view("admin.stories.index",['stories'=>$stories]);
     }
 
     /**
@@ -24,7 +26,8 @@ class StoryController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        //
+        return view('admin.stories.create');
     }
 
     /**
@@ -36,15 +39,34 @@ class StoryController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'source_name'=>'required',
+            'email'=>'required|email',
+            'phone'=>'required',
+            'address'=>'required',
+            'status'=>'required|integer',
+        ]);
+        $story = new Story();
+        $story->source_name = $request->source_name;
+        $story->email = $request->email;
+        $story->phone = $request->phone;
+        $story->address = $request->address;
+        $story->status = $request->status;
+        if($story->save()){
+            return redirect(route('admin.stories.index'))->with(['status'=>true,'message'=>'Story Created Successfully!']);
+        }else{
+            return redirect(route('admin.stories.index'))->with(['status'=>false,'message'=>'Something went wrong!']);
+        }
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Story $story)
     {
         //
     }
@@ -52,34 +74,55 @@ class StoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Story $story,$id)
     {
         //
+        $story = Story::find($id);
+        return view("admin.stories.edit",['story'=>$story]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Story $story,$id)
     {
         //
+        $story = Story::find($id);
+        $story->source_name = $request->source_name;
+        $story->email = $request->email;
+        $story->phone = $request->phone;
+        $story->address = $request->address;
+        $story->status = $request->status;
+        if($story->update()){
+            return redirect(route('admin.stories.index'))->with(['status'=>true,'message'=>"{$story->source_name} was updated successfully!"]);
+        }else{
+            return redirect(route('admin.stories.index'))->with(['status'=>false,'message'=>'Something went wrong!']);
+        }
+
+        // return view("admin.stories.edit",['story'=>$story]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Story $story,$id)
     {
         //
+        $story = Story::find($id);
+        if($story->delete()){
+            return redirect(route('admin.stories.index'))->with(['status'=>true,'message'=>"The Story was deleted successfully!"]);
+        }else{
+            return redirect(route('admin.stories.index'))->with(['status'=>false,'message'=>'Something went wrong!']);
+        }
     }
 }

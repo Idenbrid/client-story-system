@@ -6,7 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\SourceAdmin;
 use Laravel\Sanctum\HasApiTokens;
+
 use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable
@@ -20,7 +22,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
@@ -43,4 +46,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Source(){
+        return $this->hasOne(Source::class,'user_id','id');
+    }
+    public function SourceAdmin(){
+        return $this->hasOne(SourceAdmin::class,'user_id','id');
+    }
 }

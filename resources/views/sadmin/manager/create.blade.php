@@ -8,7 +8,7 @@
       <!-- Page Heading -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
         <h2 class="bg-white text-sky-500 text-4xl">
-          {{ __('Add New User') }}
+          {{ __('Add New Manager') }}
         </h2>
       </div>
       <!-- Page Heading -->
@@ -156,7 +156,7 @@
                   <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
             </div>
             <select name="source_id" id="source_id" class="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full my-2 sm:m-2   sm:w-9/12 px-2 py-1">
-              {{-- <option value="{{trim($source->source_id)}}" selected>{{$source->source_name}}</option> --}}
+              <option value="{{trim($source->source_id)}}" selected>{{$source->source_name}}</option>
             </select>
             @if($errors->has('source_id'))
                   <div class="text-danger">{{ $errors->first('source_id') }}</div>

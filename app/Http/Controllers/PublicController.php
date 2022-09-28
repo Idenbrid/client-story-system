@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Reader;
 use Illuminate\Http\Request;
 
-class ReaderController extends Controller
+class PublicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class ReaderController extends Controller
      */
     public function index()
     {
-        $readers = Reader::with('Source')->paginate(10);
-        return view('admin.readers.index',['readers'=>$readers]);
+        //
     }
 
     /**
@@ -26,7 +23,7 @@ class ReaderController extends Controller
      */
     public function create()
     {
-        return view('admin.readers.create');
+        //
     }
 
     /**
