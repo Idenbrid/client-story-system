@@ -9,6 +9,8 @@ use App\Http\Controllers\admin\SourceController;
 use App\Http\Controllers\admin\SourceAdminController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\admin\UserController;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,9 +22,16 @@ use App\Http\Controllers\admin\UserController;
 |
 */
 
+Route::post('/save/video', function (Request $request) {
+    return $request;
+});
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/', function () {
+//     return view('app');
+// });
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard',[HomeController::class,'index' ] )->name('dashboard');
