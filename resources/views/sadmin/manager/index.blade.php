@@ -79,7 +79,7 @@
                     {{ $manager->id }}
                   </td>
                   <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-                    {{ $manager->username}}
+                    {{ $manager->User->first_name }} {{ $manager->User->last_name }} ({{ $manager->username}})
                   </th>
                   <th scope="row" class="capitalize py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                     {{ $manager->source->source_name}}

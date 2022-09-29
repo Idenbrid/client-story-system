@@ -30,7 +30,7 @@
       <style>
       .disable{
         pointer-events:none;
-        background:grey;
+        background:#b6ffae;
         }
     </style>
       <form method="POST" action="{{route('admin.sources.store')}}">
@@ -53,7 +53,7 @@
             <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
                 <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
           </div>
-          <input type="text" name="source_id" value="{{ $sadmins->random}}" class="disable order border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Islamia High School" />
+          <input type="text" name="source_id" value="{{ $sadmins->random}}" class="disable order border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Source ID" />
         @if($errors->has('source_id'))
                 <div class="text-danger">{{ $errors->first('source_id') }}</div>
         @endif

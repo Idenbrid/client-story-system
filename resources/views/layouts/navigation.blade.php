@@ -33,7 +33,7 @@
                             {{ __('Luca Users') }}
                         </x-nav-link>
                     </div>
-                </div>
+                
                 @elseif(Auth::user()->roles->first()->name == 'sadmin')
                 {{-- Navigation Links FOR SourceAdmin  --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -51,6 +51,7 @@
                     </x-nav-link>
                 </div>
                 @elseif(Auth::user()->roles->first()->name == 'manager')
+                {{-- Navigation Links FOR Manager  --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link class="text-white text-base" :href="route('user.home')" :active="request()->routeIs('user.home')">
                         {{ __('Dashboard') }}
@@ -63,9 +64,9 @@
                     </x-nav-link>
                 </div>
                 @endif
-
-        {{-- END of Navigation Links FOR SourceAdmin  --}}
-        {{-- @endif --}}
+            </div>
+        {{-- END of Navigation Links  --}}
+        
         <!-- Settings Dropdown -->
         <div class="hidden sm:flex sm:items-center sm:ml-6">
             <x-dropdown align="right" width="48">
@@ -112,45 +113,65 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+                @if(Auth::user()->roles->first()->name == 'admin')
 
-
-                {{-- Start of Mobile Navigation for Admin --}}
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link class="text-white text-base" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link class="text-white text-base" href="#" :active="request()->routeIs('reader')">
-                    {{ __('Readers') }}
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('admin.sources.index') }}"
+                    :active="request()->routeIs('sources')">
+                    {{ __('Read Sources') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link class="text-white text-base" href="#" :active="request()->routeIs('story')">
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('admin.source.index') }}"
+                    :active="request()->routeIs('admin.source')">
+                    {{ __('Source Admins') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('admin.manager.index') }}" :active="request()->routeIs('admin.manager.index')">
+                    {{ __('Managers') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('admin.stories.index') }}"
+                    :active="request()->routeIs('story')">
                     {{ __('Stories') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link class="text-white text-base" href="#" :active="request()->routeIs('LucaUser')">
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('users.index') }}" :active="request()->routeIs('LucaUser')">
                     {{ __('Luca Users') }}
                 </x-responsive-nav-link>
+
                 {{-- End of Mobile Navigation for Admin --}}
+                @elseif(Auth::user()->roles->first()->name == 'sadmin')
 
-
-                {{-- Start of Mobile Navigation for SourceAdmin --}}
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link class="text-white text-base" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link class="text-white text-base" href="#" :active="request()->routeIs('reader')">
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('sadmin.mysource') }}" :active="request()->routeIs('sadmin.mysource')">
+                    {{ __('My Source') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('sadmin.managers') }}" :active="request()->routeIs('sadmin.managers')">
+                    {{ __('Managers') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('sadmin.readers') }}" :active="request()->routeIs('sadmin.readers')">
                     {{ __('Readers') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link class="text-white text-base" href="#" :active="request()->routeIs('story')">
-                    {{ __('Stories') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link class="text-white text-base" href="#" :active="request()->routeIs('LucaUser')">
-                    {{ __('Luca Users') }}
-                </x-responsive-nav-link>
-                {{-- End of Mobile Navigation for SourceAdmin --}}
 
+                {{-- End of Mobile Navigation for SourceAdmin --}}
+                @elseif(Auth::user()->roles->first()->name == 'manager')
+                <x-responsive-nav-link class="text-white text-base" :href="route('user.home')" :active="request()->routeIs('user.home')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('user.stories') }}" :active="request()->routeIs('user.stories')">
+                    {{ __('My Stories') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('user.readers') }}" :active="request()->routeIs('user.readers')">
+                    {{ __('My Readers') }}
+                </x-responsive-nav-link>
+
+            @endif
         </div>
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-sm text-gray-500 text-white">{{ Auth::user()->email }}</div>
             </div>
             <div class="mt-3 space-y-1">
                 <!-- Authentication -->
@@ -158,7 +179,7 @@
                     @csrf
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                                        this.closest('form').submit();" class="text-white-800 text-white">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
