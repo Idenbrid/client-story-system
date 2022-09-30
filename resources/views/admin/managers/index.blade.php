@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 flex justify-between items-center">
       <h2 class="bg-white text-sky-500 text-4xl">
-        {{ __('Managers')}}
+        {{ __('Teachers')}}
       </h2>
         {{-- <a href="{{ route('readers.create')  }}">
             <button class="bg-sky-500 text-white py-1 px-3 rounded outline-none focus:outline-none">Add New</button>

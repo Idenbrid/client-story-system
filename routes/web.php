@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManagerController;
+use App\Models\Source;
 use App\Http\Controllers\admin\ReaderController;
 use App\Http\Controllers\admin\StoryController;
 use App\Http\Controllers\admin\SourceController;
@@ -22,16 +24,21 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/save/video', function (Request $request) {
-    return $request;
-});
+// Route::post('/save/video', function (Request $request) {
+//     return $request;
+//     // return Storage::put('video/1', $request->video);
+    
+// });
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/', function () {
-//     return view('app');
-// });
+Route::get('/get-sources', function () {
+    return Source::all();
+});
+
+// Route::get('/get-sources',[SourceAdminController::class,'getSources' ] );
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard',[HomeController::class,'index' ] )->name('dashboard');

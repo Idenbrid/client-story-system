@@ -8,7 +8,7 @@
         <!-- Page Heading -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 flex justify-between items-center">
           <h2 class="bg-white text-sky-500 text-4xl">
-            {{ __('stories') }}
+            {{ __('Stories') }}
           </h2>
             <a href="{{ route('admin.stories.create')  }}">
                 <button class="bg-sky-500 text-white py-1 px-3 rounded outline-none focus:outline-none">{{ __('Add New') }}</button>
@@ -31,19 +31,31 @@
                     Actions
                   </th>
                   <th scope="col" class="py-3 px-6">
+                    Story ID
+                  </th>
+                  <th scope="col" class="py-3 px-6">
                     Source ID
                   </th>
                   <th scope="col" class="py-3 px-6">
-                    Name
+                    Title
                   </th>
                   <th scope="col" class="py-3 px-6">
-                    Email
+                    Description
                   </th>
                   <th scope="col" class="py-3 px-6">
-                    Phone
+                    Type
+                  </th>
+                  <th scope="col" class="py-3 px-6">
+                    WAV File
                   </th>
                   <th scope="col" class="py-3 px-6">
                     Status
+                  </th>
+                  <th scope="col" class="py-3 px-6">
+                    Created At
+                  </th>
+                  <th scope="col" class="py-3 px-6">
+                    Last Updated
                   </th>
                 </tr>
               </thead>
@@ -73,17 +85,30 @@
                   <td class="py-4 px-6">
                     {{ $story->id }}
                   </td>
+                  <td class="py-4 px-6">
+                    {{ $story->source_id }}
+                  </td>
                   <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-                    {{ $story->source_name }}
+                    {{ $story->title }}
+                  </th>
+                  <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
+                    {{ $story->content }}
+                  </th>
+                  <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
+                    {{ $story->type }}
                   </th>
                   <td class="py-4 px-6">
-                    {{ $story->email }}
+                    <a href="{{ config('app.url') }}/{{ str_replace("$story->file", "public", "public/storage") }}/{{ $story->file }}">Download</a>
+                    {{-- <a href="{{ config('app.url') }}/{{ str_replace("$story->file", "public", "public/storage") }}/{{ $story->file }}">Download</a> --}}
                   </td>
                   <td class="py-4 px-6">
-                    {{ $story->phone }}
+                    {{ $story->status ? 'Hidden':'Visible' }}
                   </td>
                   <td class="py-4 px-6">
-                    {{ $story->status ? 'Active':'Inactive' }}
+                    {{ $story->created_at }}
+                  </td>
+                  <td class="py-4 px-6">
+                    {{ $story->updated_at }}
                   </td>
                 </tr>
                 

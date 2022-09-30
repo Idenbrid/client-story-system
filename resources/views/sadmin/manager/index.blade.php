@@ -8,7 +8,7 @@
         <!-- Page Heading -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 flex justify-between items-center">
           <h2 class="bg-white text-sky-500 text-4xl">
-            {{Auth::user()->source->source_name}} {{ __('Manager') }}
+            {{Auth::user()->source->source_name}} {{ __('Teachers') }}
           </h2>
             <a href="{{ route('sadmin.manager.create')  }}">
                 <button class="bg-sky-500 text-white py-1 px-3 rounded outline-none focus:outline-none">{{ __('Add New') }}</button>
@@ -31,16 +31,16 @@
                     Actions
                   </th>
                   <th scope="col" class="py-3 px-6">
-                    Manager ID
+                    Teacher ID
                   </th>
                   <th scope="col" class="py-3 px-6">
-                    Manager Name
+                    Full Name/Username
                   </th>
                   <th scope="col" class="py-3 px-6">
                     Source
                   </th>
                   <th scope="col" class="py-3 px-6">
-                    Manager Email
+                    Teacher Email
                   </th>
                   <th scope="col" class="py-3 px-6">
                     Date of Birth

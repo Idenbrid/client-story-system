@@ -16,14 +16,14 @@
                         </x-nav-link>
                         <x-nav-link class="text-white text-base" href="{{ route('admin.sources.index') }}"
                             :active="request()->routeIs('sources')">
-                            {{ __('Read Sources') }}
+                            {{ __('Sources') }}
                         </x-nav-link>
                         <x-nav-link class="text-white text-base" href="{{ route('admin.source.index') }}"
                             :active="request()->routeIs('admin.source')">
                             {{ __('Source Admins') }}
                         </x-nav-link>
                         <x-nav-link class="text-white text-base" href="{{ route('admin.manager.index') }}" :active="request()->routeIs('admin.manager.index')">
-                            {{ __('Managers') }}
+                            {{ __('Teachers') }}
                         </x-nav-link>
                         <x-nav-link class="text-white text-base" href="{{ route('admin.stories.index') }}"
                             :active="request()->routeIs('story')">
@@ -33,10 +33,11 @@
                             {{ __('Luca Users') }}
                         </x-nav-link>
                     </div>
-                
+
                 @elseif(Auth::user()->roles->first()->name == 'sadmin')
                 {{-- Navigation Links FOR SourceAdmin  --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if (Auth::user()->SourceAdmin && Auth::user()->SourceAdmin->status)
                     <x-nav-link class="text-white text-base" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
@@ -44,11 +45,17 @@
                         {{ __('My Source') }}
                     </x-nav-link>
                     <x-nav-link class="text-white text-base" href="{{ route('sadmin.managers') }}" :active="request()->routeIs('sadmin.managers')">
-                        {{ __('Managers') }}
+                        {{ __('Teachers') }}
                     </x-nav-link>
                     <x-nav-link class="text-white text-base" href="{{ route('sadmin.readers') }}" :active="request()->routeIs('sadmin.readers')">
                         {{ __('Readers') }}
                     </x-nav-link>
+                    @else
+                    <x-nav-link class="text-white text-base" href="#" onclick="alert(`Admin haven't allocated you a Source yet!`)" style="text-decoration: none;cursor:wait;">
+                        {{ __('No Source Assigned by Admin Yet!') }}
+                    </x-nav-link>
+
+                    @endif
                 </div>
                 @elseif(Auth::user()->roles->first()->name == 'manager')
                 {{-- Navigation Links FOR Manager  --}}
@@ -66,7 +73,7 @@
                 @endif
             </div>
         {{-- END of Navigation Links  --}}
-        
+
         <!-- Settings Dropdown -->
         <div class="hidden sm:flex sm:items-center sm:ml-6">
             <x-dropdown align="right" width="48">

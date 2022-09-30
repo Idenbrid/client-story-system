@@ -15,18 +15,19 @@ return new class extends Migration
     {
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
-            $table->integer('source_id');
-            $table->integer('user_id');
+            $table->string('source_id');
+            $table->integer('user_id')->nullable();
             $table->string('title');
-            $table->text('content');
-            $table->text('file');
-            $table->text('readers');
+            $table->text('content')->nullable();
+            $table->string('type')->nullable();
+            $table->string('file')->nullable();
+            $table->string('readers')->nullable();
             $table->string('q1')->nullable();
             $table->string('q2')->nullable();
             $table->string('q3')->nullable();
             $table->string('q4')->nullable();
             $table->string('q5')->nullable();
-            $table->integer('status')->default(1);
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

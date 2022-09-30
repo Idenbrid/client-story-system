@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Story;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Source;
 class StoryController extends Controller
 {
    /**
@@ -26,8 +28,8 @@ class StoryController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.stories.create');
+        $sources = Source::all();
+        return view('admin.stories.create',['sources'=>$sources]);
     }
 
     /**
@@ -38,24 +40,19 @@ class StoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request->validate([
-            'source_name'=>'required',
-            'email'=>'required|email',
-            'phone'=>'required',
-            'address'=>'required',
-            'status'=>'required|integer',
-        ]);
+        return $request->all();
+        $file = Storage::put('/public', $request->file);
         $story = new Story();
-        $story->source_name = $request->source_name;
-        $story->email = $request->email;
-        $story->phone = $request->phone;
-        $story->address = $request->address;
-        $story->status = $request->status;
+        $story->file = substr($file, 7);;
+        $story->title = $request->title;
+        $story->content = $request->content;
+        $story->type = $request->type;
+        $story->status = $request->hide;
+        $story->source_id = $request->source_id;
         if($story->save()){
-            return redirect(route('admin.stories.index'))->with(['status'=>true,'message'=>'Story Created Successfully!']);
+            return redirect()->route('admin.stories.index');
         }else{
-            return redirect(route('admin.stories.index'))->with(['status'=>false,'message'=>'Something went wrong!']);
+            return redirect()->route('admin.stories.index');
         }
 
     }
