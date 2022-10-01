@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Story;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Source;
 class StoryController extends Controller
@@ -21,6 +22,13 @@ class StoryController extends Controller
         return view("admin.stories.index",['stories'=>$stories]);
     }
 
+    public function sadminStories()
+    {
+        // Visible Stories List for Relevant Source's Admin
+        $stories = Story::where(['source_id'=>Auth::user()->SourceAdmin->source_id,'status'=>0])->paginate(10);
+        return view("sadmin.stories",['stories'=>$stories]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +36,7 @@ class StoryController extends Controller
      */
     public function create()
     {
-        $sources = Source::all();
+        $sources = Source::where('status',1)->get();
         return view('admin.stories.create',['sources'=>$sources]);
     }
 
@@ -40,19 +48,29 @@ class StoryController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
-        $file = Storage::put('/public', $request->file);
+        $file = rand(12121,45645454524).'.webm';
+        if($request->base64){
+            $data = str_replace('data:audio/wav;base64,', '', $request->base64);
+            Storage::put("/$file",base64_decode($data));
+        }
         $story = new Story();
-        $story->file = substr($file, 7);;
         $story->title = $request->title;
         $story->content = $request->content;
+        $story->file = $file;
+        $story->q1 = $request->question1 ?? null;
+        $story->q2 = $request->question2 ?? null;
+        $story->q3 = $request->question3 ?? null;
+        $story->q4 = $request->question4 ?? null;
+        $story->q5 = $request->question5 ?? null;
         $story->type = $request->type;
         $story->status = $request->hide;
         $story->source_id = $request->source_id;
         if($story->save()){
-            return redirect()->route('admin.stories.index');
+            return "done";
+            // return redirect(route('admin.stories.index'));
         }else{
-            return redirect()->route('admin.stories.index');
+            return "error";
+            return redirect(route('admin.stories.index'));
         }
 
     }
@@ -78,7 +96,8 @@ class StoryController extends Controller
     {
         //
         $story = Story::find($id);
-        return view("admin.stories.edit",['story'=>$story]);
+        $sources = Source::where('status',1)->get();
+        return view("admin.stories.edit",['story'=>$story,'sources'=>$sources]);
     }
 
     /**
@@ -92,11 +111,21 @@ class StoryController extends Controller
     {
         //
         $story = Story::find($id);
-        $story->source_name = $request->source_name;
-        $story->email = $request->email;
-        $story->phone = $request->phone;
-        $story->address = $request->address;
-        $story->status = $request->status;
+        if($request->file){
+            $file = Storage::put('/public', $request->file);
+            $story->file = substr($file, 7);;
+            return $request->all();
+        }
+        $story->title = $request->title;
+        $story->content = $request->content;
+        $story->q1 = $request->question1 ?? null;
+        $story->q2 = $request->question2 ?? null;
+        $story->q3 = $request->question3 ?? null;
+        $story->q4 = $request->question4 ?? null;
+        $story->q5 = $request->question5 ?? null;
+        $story->type = $request->type;
+        $story->status = $request->hide;
+        $story->source_id = $request->source_id;
         if($story->update()){
             return redirect(route('admin.stories.index'))->with(['status'=>true,'message'=>"{$story->source_name} was updated successfully!"]);
         }else{

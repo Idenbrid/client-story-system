@@ -27,7 +27,7 @@ use Illuminate\Http\Request;
 // Route::post('/save/video', function (Request $request) {
 //     return $request;
 //     // return Storage::put('video/1', $request->video);
-    
+
 // });
 
 Route::get('/', function () {
@@ -68,9 +68,9 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/', 'adminManager')->name('index');
         // Route::get('/create', 'create')->name('create');
         // Route::post('/store', 'store')->name('store');
-        // Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::get('/edit/{id}', 'edit')->name('edit');
         // Route::post('/update/{id}', 'update')->name('update');
-        // Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
     });
     Route::prefix('stories')->name('admin.stories.')->controller(StoryController::class)->group(function () {
         Route::get('/', 'index')->name('index');
@@ -81,7 +81,22 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
     });
     // Route::resource('stories', StoryController::class);
-    Route::resource('users', UserController::class);
+    Route::prefix('users')->name('admin.users.')->controller(UserController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+    });
+    // Route::resource('users', UserController::class)->names([
+    //     'index'=>'users.index',
+    //     'edit'=>'admin.users.edit',
+    //     'update'=>'admin.users.update',
+    //     'destroy'=>'admin.users.destroy',
+    // ])->parameters([
+    //     'destroy' => 'id'
+    // ]);
 });
 
 // Routes for SourceAdmin
@@ -98,6 +113,9 @@ Route::prefix('sadmin')->name('sadmin.')->group( function() {
     Route::get('/manager/edit/{id}', [ManagerController::class,'edit'])->name('manager.edit');
     Route::post('/manager/update/{id}', [ManagerController::class,'update'])->name('manager.update');
     Route::get('/manager/delete/{id}', [ManagerController::class,'destroy'])->name('manager.delete');
+
+    // Stories for Source Admin
+    Route::get('/stories', [StoryController::class,'sadminStories'])->name('stories');
 
     Route::post('/mysource/update/{id}', [SourceController::class,'updateSource'])->name('mysource.update');
     Route::get('/reader/edit/{id}', [SourceController::class,'editReader'])->name('reader.edit');

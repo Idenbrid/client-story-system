@@ -168,7 +168,10 @@ class ManagerController extends Controller
     {
         //
         if(Manager::where('id',$id)->delete()){
-            return redirect()->route('sadmin.managers');
+            return redirect()->back();
+            // return redirect()->route('sadmin.managers');
+        }else{
+            return redirect()->back();
         }
     }
 }
