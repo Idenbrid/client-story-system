@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
       <h2 class="bg-white text-sky-500 text-4xl">
-        {{ __('Editing Story') }} <b>{{ $story->title}}</b>
+        {{ __('Add New Story') }}
       </h2>
     </div>
     <!-- Page Heading -->
@@ -125,7 +125,7 @@ video::-webkit-media-controls-panel {
 }
         </style>
 
-      <form method="POST" action="{{route('admin.stories.update',['id'=>$story->id])}}">
+      <form method="POST" action="{{route('admin.stories.store')}}">
         @csrf
       <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-white">
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
@@ -134,7 +134,7 @@ video::-webkit-media-controls-panel {
             <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
                 <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
           </div>
-          <input type="text" name="title" value="{{ $story->title }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Once upon a time..." />
+          <input type="text" name="title" id="title" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Once upon a time..." />
         @if($errors->has('title'))
                 <div class="text-danger">{{ $errors->first('title') }}</div>
         @endif
@@ -145,7 +145,7 @@ video::-webkit-media-controls-panel {
             <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
                 <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
           </div>
-          <textarea type="text" name="content" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="There once was a frog named Cory. He loved to tell a good story..." >{{ $story->content }}</textarea>
+          <textarea type="text" name="content" id="content" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="There once was a frog named Cory. He loved to tell a good story..." ></textarea>
         @if($errors->has('content'))
                 <div class="text-danger">{{ $errors->first('content') }}</div>
         @endif
@@ -155,7 +155,7 @@ video::-webkit-media-controls-panel {
               <span>{{ __('Question # 1')}}</span>
 
             </div>
-            <input type="text" name="question1" value="{{ $story->q1 }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#1" />
+            <input type="text" name="question1" id="question1" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#1" />
           @if($errors->has('question1'))
                   <div class="text-danger">{{ $errors->first('question1') }}</div>
           @endif
@@ -165,7 +165,7 @@ video::-webkit-media-controls-panel {
               <span>{{ __('Question # 2')}}</span>
 
             </div>
-            <input type="text" name="question2" value="{{ $story->q2 }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#2" />
+            <input type="text" name="question2" id="question2" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#2" />
           @if($errors->has('question2'))
                   <div class="text-danger">{{ $errors->first('question2') }}</div>
           @endif
@@ -175,7 +175,7 @@ video::-webkit-media-controls-panel {
               <span>{{ __('Question # 3')}}</span>
 
             </div>
-            <input type="text" name="question3" value="{{ $story->q3 }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#3" />
+            <input type="text" name="question3" id="question3" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#3" />
           @if($errors->has('question3'))
                   <div class="text-danger">{{ $errors->first('question3') }}</div>
           @endif
@@ -185,7 +185,7 @@ video::-webkit-media-controls-panel {
               <span>{{ __('Question # 4')}}</span>
 
             </div>
-            <input type="text" name="question4" value="{{ $story->q4 }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#4" />
+            <input type="text" name="question4" id="question4" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#4" />
           @if($errors->has('question4'))
                   <div class="text-danger">{{ $errors->first('question4') }}</div>
           @endif
@@ -195,7 +195,7 @@ video::-webkit-media-controls-panel {
               <span>{{ __('Question # 5')}}</span>
 
             </div>
-            <input type="text" name="question5" value="{{ $story->q5 }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#5" />
+            <input type="text" name="question5" id="question5" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#5" />
           @if($errors->has('question5'))
                   <div class="text-danger">{{ $errors->first('question5') }}</div>
           @endif
@@ -207,8 +207,8 @@ video::-webkit-media-controls-panel {
                 <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
           </div>
           <select name="hide" id="hide" class="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full my-2 sm:m-2   sm:w-9/12 px-2 py-1">
-            <option value="0" @if(!$story->hide) selected @endif>No</option>
-            <option value="1" @if($story->hide) selected @endif>Yes</option>
+            <option value="0" selected>No</option>
+            <option value="1">Yes</option>
           </select>
           @if($errors->has('hide'))
                 <div class="text-danger">{{ $errors->first('hide') }}</div>
@@ -221,8 +221,8 @@ video::-webkit-media-controls-panel {
                 <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
           </div>
           <select name="type" id="type" class="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full my-2 sm:m-2   sm:w-9/12 px-2 py-1">
-            <option value="F" @if($story->type == 'F') selected @endif>F</option>
-            <option value="NF" @if($story->type == 'NF') selected @endif>NF</option>
+            <option value="F" selected>F</option>
+            <option value="NF">NF</option>
           </select>
           @if($errors->has('type'))
                 <div class="text-danger">{{ $errors->first('type') }}</div>
@@ -237,7 +237,7 @@ video::-webkit-media-controls-panel {
           <select name="source_id" id="source_id" class="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full my-2 sm:m-2   sm:w-9/12 px-2 py-1">
             <option selected>Select Source</option>
             @foreach($sources as $source)
-            <option value="{{$source->source_id}}" @if($story->source_id == $source->source_id) selected @endif>{{$source->source_name}}</option>
+            <option value="{{$source->source_id}}">{{$source->source_name}}</option>
             @endforeach
           </select>
           @if($errors->has('type'))
@@ -338,7 +338,7 @@ video::-webkit-media-controls-panel {
       <!-- Submit Button -->
       <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-neutral-100 ">
         <div class="max-w-lg flex mx-auto ">
-          <button type="submit" class="flex items-center bg-sky-400 py-2 px-5 text-white rounded mx-2">Save <div class="ml-1">
+          <button type="button" class="flex items-center bg-sky-400 py-2 px-5 text-white rounded mx-2">Save <div class="ml-1">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
@@ -356,6 +356,7 @@ video::-webkit-media-controls-panel {
 		</div>
     <!-- Form -->
     </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
 // audio recorder
           let recorder, audio_stream;
@@ -375,44 +376,118 @@ video::-webkit-media-controls-panel {
           downloadAudio.addEventListener("click", downloadRecording);
 
           function startRecording() {
-              // button settings
-              recordButton.disabled = true;
-              recordButton.innerText = "Recording..."
-              $("#recordButton").addClass("button-animate");
+                // button settings
+                recordButton.disabled = true;
+                recordButton.innerText = "Recording..."
+                $("#recordButton").addClass("button-animate");
+                $("#stopButton").removeClass("inactive");
+                stopButton.disabled = false;
+                if (!$("#audio-playback").hasClass("hidden")) {
+                    $("#audio-playback").addClass("hidden")
+                };
+                if (!$("#downloadContainer").hasClass("hidden")) {
+                    $("#downloadContainer").addClass("hidden")
+                };
+                navigator.mediaDevices.getUserMedia({
+                    audio: true
+                }).then(stream => {
+                    let data = [];
+                    audio_stream = stream;
+                    recorder = new MediaRecorder(stream);
+                    // audio.srcObject = stream;
+                    recorder.addEventListener('start', e => {
+                        data.length = 0;
+                    });
+                    recorder.addEventListener('dataavailable', event => {
+                        data.push(event.data);
+                    });
+                    recorder.addEventListener('stop', (e) => {
+                        const blob = new Blob(data, {
+                            'type': 'audio/wav'
+                        });
+                        console.log(blob);
+                        const formData = new FormData();
 
-              $("#stopButton").removeClass("inactive");
-              stopButton.disabled = false;
+                        let title = $("#title").val();
+                        let content = $("#content").val();
+                        let question1 = $("#question1").val();
+                        let question2 = $("#question2").val();
+                        let question3 = $("#question3").val();
+                        let question4 = $("#question4").val();
+                        let question5 = $("#question5").val();
+                        let hide = $("#hide").val();
+                        let type = $("#type").val();
+                        let source_id = $("#source_id").val();
+                        formData.append('title', title);
+                        formData.append('audio_file', blob);
 
-
-              if (!$("#audio-playback").hasClass("hidden")) {
-                  $("#audio-playback").addClass("hidden")
-              };
-
-              if (!$("#downloadContainer").hasClass("hidden")) {
-                  $("#downloadContainer").addClass("hidden")
-              };
-
-              navigator.mediaDevices.getUserMedia({ audio: true })
-                  .then(function (stream) {
-                      audio_stream = stream;
-                      recorder = new MediaRecorder(stream);
-
-                      // when there is data, compile into object for preview src
-                      recorder.ondataavailable = function (e) {
-                          const url = URL.createObjectURL(e.data);
-                          preview.src = url;
-
-                          // set link href as blob url, replaced instantly if re-recorded
-                          downloadAudio.href = url;
-                      };
-                      recorder.start();
-
-                      timeout_status = setTimeout(function () {
-                          console.log("5 min timeout");
-                          stopRecording();
-                      }, 300000);
-                  });
-          }
+                        formData.append('content',content);
+                        formData.append('question1',question1);
+                        formData.append('question2',question2);
+                        formData.append('question3',question3);
+                        formData.append('question4',question4);
+                        formData.append('question5',question5);
+                        formData.append('hide',hide);
+                        formData.append('type',type);
+                        formData.append('source_id',source_id);
+                        $.ajax({
+                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                            method: 'post',
+                            processData: false,
+                            contentType: false,
+                            cache: false,
+                            // data: {
+                            //     "_token": "{{ csrf_token() }}",
+                            //     "id": formData
+                            // },
+                            data: formData,
+                            enctype: 'multipart/form-data',
+                            url: '/admin/stories/store',
+                            success: function (response) {
+                                console.log(response);
+                            }
+                        });
+                        // preview.src = url;
+                        //  downloadAudio.href = url;
+                        // sendAudioFile(blob);
+                    });
+                    recorder.start();
+                });
+                // navigator.mediaDevices.getUserMedia({
+                //         audio: true
+                //     })
+                //     .then(function (stream) {
+                //         audio_stream = stream;
+                //         recorder = new MediaRecorder(stream);
+                //         // when there is data, compile into object for preview src
+                //         recorder.ondataavailable = function (e) {
+                //             const blob = new Blob(e.data, {
+                //                 'type': 'audio/mp3'
+                //             });
+                //             console.log(blob);
+                //             // const url = URL.createObjectURL(e.data);
+                //             // preview.src = url;
+                //             // let blob = new Blob(e.data)
+                //             // console.log(blob)
+                //             // var reader = new FileReader();
+                //             // reader.readAsDataURL(url);
+                //             // reader.onloadend = function () {
+                //             //     var base64String = reader.result;
+                //             //     console.log('Base64 String - ', base64String);
+                //             // }
+                //             // var name = new Date();
+                //             // var res = name.toISOString().slice(0, 10)
+                //             // downloadAudio.download = res + '.wav';
+                //             // set link href as blob url, replaced instantly if re-recorded
+                //             // downloadAudio.href = url;
+                //         };
+                //         recorder.start();
+                //         timeout_status = setTimeout(function () {
+                //             console.log("5 min timeout");
+                //             stopRecording();
+                //         }, 300000);
+                //     });
+            }
 
           function stopRecording() {
               recorder.stop();

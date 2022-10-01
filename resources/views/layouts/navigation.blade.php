@@ -29,7 +29,7 @@
                             :active="request()->routeIs('story')">
                             {{ __('Stories') }}
                         </x-nav-link>
-                        <x-nav-link class="text-white text-base" href="{{ route('users.index') }}" :active="request()->routeIs('LucaUser')">
+                        <x-nav-link class="text-white text-base" href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.index')">
                             {{ __('Luca Users') }}
                         </x-nav-link>
                     </div>
@@ -43,6 +43,9 @@
                     </x-nav-link>
                     <x-nav-link class="text-white text-base" href="{{ route('sadmin.mysource') }}" :active="request()->routeIs('sadmin.mysource')">
                         {{ __('My Source') }}
+                    </x-nav-link>
+                    <x-nav-link class="text-white text-base" href="{{ route('sadmin.stories') }}" :active="request()->routeIs('sadmin.stories')">
+                        {{ __('Stories') }}
                     </x-nav-link>
                     <x-nav-link class="text-white text-base" href="{{ route('sadmin.managers') }}" :active="request()->routeIs('sadmin.managers')">
                         {{ __('Teachers') }}
@@ -140,7 +143,7 @@
                     :active="request()->routeIs('story')">
                     {{ __('Stories') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link class="text-white text-base" href="{{ route('users.index') }}" :active="request()->routeIs('LucaUser')">
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.index')">
                     {{ __('Luca Users') }}
                 </x-responsive-nav-link>
 
@@ -155,6 +158,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link class="text-white text-base" href="{{ route('sadmin.managers') }}" :active="request()->routeIs('sadmin.managers')">
                     {{ __('Managers') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link class="text-white text-base" href="{{ route('sadmin.stories') }}" :active="request()->routeIs('sadmin.stories')">
+                    {{ __('Stories') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link class="text-white text-base" href="{{ route('sadmin.readers') }}" :active="request()->routeIs('sadmin.readers')">
                     {{ __('Readers') }}

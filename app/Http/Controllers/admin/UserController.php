@@ -83,5 +83,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::find($id);
+        if($user->delete()){
+            return redirect()->back()->with(['status'=>true,'message'=>"The Story was deleted successfully!"]);
+        }else{
+            return redirect()->back()->with(['status'=>false,'message'=>'Something went wrong!']);
+        }
     }
 }

@@ -32,7 +32,7 @@ class PublicController extends Controller
     public function stories()
     {
         // To return all Source Stories for this manager
-        $stories = Story::where('source_id',Auth::user()->manager->source_id)->paginate(10);
+        $stories = Story::where(['source_id'=>Auth::user()->manager->source_id,'status'=>0])->paginate(10);
         return view('user.stories.index',['stories'=>$stories]);
     }
     public function readers()

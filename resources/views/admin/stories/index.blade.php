@@ -60,6 +60,7 @@
                 </tr>
               </thead>
               <tbody>
+                
                 @foreach ($stories as $story)
                     
                 
@@ -92,7 +93,7 @@
                     {{ $story->title }}
                   </th>
                   <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-                    {{ $story->content }}
+                    {{ Str::limit($story->content, 50) }}
                   </th>
                   <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                     {{ $story->type }}

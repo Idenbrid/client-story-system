@@ -24,7 +24,9 @@ class SourceController extends Controller
         //
         $sources = Source::with('SourceAdmin')->with('User')->paginate(10);
         // return $sources;
-        return view("admin.sources.index", ['sources' => $sources]);
+        
+            return view("admin.sources.index", ['sources' => $sources]);
+        
     }
 
     /**

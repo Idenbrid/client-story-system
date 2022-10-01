@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manager;
+use App\Models\Source;
+use App\Models\SourceAdmin;
+use App\Models\Story;
+use App\Models\User;
+use App\Models\Reader;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +23,20 @@ class HomeController extends Controller
             return view('reader.dashboard');
         }
         elseif(Auth::user()->hasrole('admin')  && Auth::user()->is_active == '1'){
-
-            return view('admin.dashboard');
+            $totalAdmin = User::whereRoleIs('admin')->count();
+            $totalSources = Source::count();
+            $totalSAdmin = SourceAdmin::count();
+            $totalStories = Story::count();
+            $totalTeachers = Manager::count();
+            $totalUsers = User::count();
+            return view('admin.dashboard',[
+                'totalAdmin'=>$totalAdmin,
+                'totalSources'=>$totalSources,
+                'totalSAdmin'=>$totalSAdmin,
+                'totalTeachers'=>$totalTeachers,
+                'totalStories'=>$totalStories,
+                'totalUsers'=>$totalUsers,
+        ]);
         }
         elseif(Auth::user()->hasrole('sadmin')  && Auth::user()->is_active == '1'){
 

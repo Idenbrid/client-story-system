@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
       <h2 class="bg-white text-sky-500 text-4xl">
-        {{ __('Editing Story') }} <b>{{ $story->title}}</b>
+        {{ __('Add New Story') }}
       </h2>
     </div>
     <!-- Page Heading -->
@@ -124,8 +124,8 @@ video::-webkit-media-controls-panel {
     background-color: #fff;
 }
         </style>
-
-      <form method="POST" action="{{route('admin.stories.update',['id'=>$story->id])}}">
+        
+      <form method="POST" action="{{route('admin.stories.store')}}">
         @csrf
       <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-white">
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
@@ -134,7 +134,7 @@ video::-webkit-media-controls-panel {
             <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
                 <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
           </div>
-          <input type="text" name="title" value="{{ $story->title }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Once upon a time..." />
+          <input type="text" name="title" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Once upon a time..." />
         @if($errors->has('title'))
                 <div class="text-danger">{{ $errors->first('title') }}</div>
         @endif
@@ -145,7 +145,7 @@ video::-webkit-media-controls-panel {
             <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
                 <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
           </div>
-          <textarea type="text" name="content" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="There once was a frog named Cory. He loved to tell a good story..." >{{ $story->content }}</textarea>
+          <textarea type="text" name="content" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="There once was a frog named Cory. He loved to tell a good story..." ></textarea>
         @if($errors->has('content'))
                 <div class="text-danger">{{ $errors->first('content') }}</div>
         @endif
@@ -153,9 +153,9 @@ video::-webkit-media-controls-panel {
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('Question # 1')}}</span>
-
+              
             </div>
-            <input type="text" name="question1" value="{{ $story->q1 }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#1" />
+            <input type="text" name="question1" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#1" />
           @if($errors->has('question1'))
                   <div class="text-danger">{{ $errors->first('question1') }}</div>
           @endif
@@ -163,9 +163,9 @@ video::-webkit-media-controls-panel {
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('Question # 2')}}</span>
-
+              
             </div>
-            <input type="text" name="question2" value="{{ $story->q2 }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#2" />
+            <input type="text" name="question2" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#2" />
           @if($errors->has('question2'))
                   <div class="text-danger">{{ $errors->first('question2') }}</div>
           @endif
@@ -173,9 +173,9 @@ video::-webkit-media-controls-panel {
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('Question # 3')}}</span>
-
+              
             </div>
-            <input type="text" name="question3" value="{{ $story->q3 }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#3" />
+            <input type="text" name="question3" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#3" />
           @if($errors->has('question3'))
                   <div class="text-danger">{{ $errors->first('question3') }}</div>
           @endif
@@ -183,9 +183,9 @@ video::-webkit-media-controls-panel {
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('Question # 4')}}</span>
-
+              
             </div>
-            <input type="text" name="question4" value="{{ $story->q4 }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#4" />
+            <input type="text" name="question4" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#4" />
           @if($errors->has('question4'))
                   <div class="text-danger">{{ $errors->first('question4') }}</div>
           @endif
@@ -193,9 +193,9 @@ video::-webkit-media-controls-panel {
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('Question # 5')}}</span>
-
+              
             </div>
-            <input type="text" name="question5" value="{{ $story->q5 }}" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#5" />
+            <input type="text" name="question5" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#5" />
           @if($errors->has('question5'))
                   <div class="text-danger">{{ $errors->first('question5') }}</div>
           @endif
@@ -207,8 +207,8 @@ video::-webkit-media-controls-panel {
                 <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
           </div>
           <select name="hide" id="hide" class="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full my-2 sm:m-2   sm:w-9/12 px-2 py-1">
-            <option value="0" @if(!$story->hide) selected @endif>No</option>
-            <option value="1" @if($story->hide) selected @endif>Yes</option>
+            <option value="0" selected>No</option>
+            <option value="1">Yes</option>
           </select>
           @if($errors->has('hide'))
                 <div class="text-danger">{{ $errors->first('hide') }}</div>
@@ -221,8 +221,8 @@ video::-webkit-media-controls-panel {
                 <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
           </div>
           <select name="type" id="type" class="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full my-2 sm:m-2   sm:w-9/12 px-2 py-1">
-            <option value="F" @if($story->type == 'F') selected @endif>F</option>
-            <option value="NF" @if($story->type == 'NF') selected @endif>NF</option>
+            <option value="F" selected>F</option>
+            <option value="NF">NF</option>
           </select>
           @if($errors->has('type'))
                 <div class="text-danger">{{ $errors->first('type') }}</div>
@@ -237,7 +237,7 @@ video::-webkit-media-controls-panel {
           <select name="source_id" id="source_id" class="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full my-2 sm:m-2   sm:w-9/12 px-2 py-1">
             <option selected>Select Source</option>
             @foreach($sources as $source)
-            <option value="{{$source->source_id}}" @if($story->source_id == $source->source_id) selected @endif>{{$source->source_name}}</option>
+            <option value="{{$source->source_id}}">{{$source->source_name}}</option>
             @endforeach
           </select>
           @if($errors->has('type'))
@@ -254,7 +254,7 @@ video::-webkit-media-controls-panel {
             <button class="btn btn-sm" id="recordButton">Start Recording</button>
             <button class="btn btn-sm" id="stopButton" class="inactive">Stop</button>
           </div>
-
+      
           <div class="playback">
               <audio src="" controls id="audio-playback" class="hidden"></audio>
           </div>
@@ -262,8 +262,8 @@ video::-webkit-media-controls-panel {
                 <div class="text-danger">{{ $errors->first('file') }}</div>
         @endif
         </div>
-
-
+        
+  
         {{-- <div class="max-w-4xl mx-auto my-1 flex  items-start  flex-col sm:flex-row sm:items-center">
           <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
             <span>{{ __('Phone')}}</span>
@@ -329,11 +329,11 @@ video::-webkit-media-controls-panel {
                 <path d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z" /></svg>
               Add another record</button>
           </div>
-        </div>
+        </div> 
      </div> --}}
-
-
-
+      
+     
+    
 
       <!-- Submit Button -->
       <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-neutral-100 ">

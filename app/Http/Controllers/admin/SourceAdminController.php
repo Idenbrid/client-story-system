@@ -69,7 +69,7 @@ class SourceAdminController extends Controller
     public function store(Request $request)
     {
         //
-        return $request;
+        // return $request;
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
