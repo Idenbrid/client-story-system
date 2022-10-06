@@ -57,4 +57,7 @@ class User extends Authenticatable
     public function Manager(){
         return $this->belongsTo(Manager::class,'id','user_id')->with('SourceAdmin')->with('Source');
     }
+    public function Reader(){
+        return $this->belongsTo(Reader::class,'reader_id','id');
+    }
 }

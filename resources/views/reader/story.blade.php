@@ -28,26 +28,31 @@
                           <br>
                           <hr>
                           @if ($story->q1)
-                            <b>Q1:</b> <p class="card-text">{{ $story->q1 }}</p>
+                            <p class="card-text"><b>Q1:</b> {{ $story->q1 }}</p>
                             @endif
 
                             @if ($story->q2)
-                            <b>Q2:</b> <p class="card-text">{{ $story->q2 }}</p>
+                            <p class="card-text"><b>Q2:</b> {{ $story->q2 }}</p>
                             @endif
 
                             @if ($story->q3)
-                            <b>Q3:</b> <p class="card-text">{{ $story->q3 }}</p>
+                            <p class="card-text"><b>Q3:</b> {{ $story->q3 }}</p>
                             @endif
 
                             @if ($story->q4)
-                            <b>Q4:</b> <p class="card-text">{{ $story->q4 }}</p>
+                            <p class="card-text"><b>Q4:</b> {{ $story->q4 }}</p>
                             @endif
 
                             @if ($story->q5)
-                            <b>Q5:</b> <p class="card-text">{{ $story->q5 }}</p>
+                            <p class="card-text"><b>Q5:</b> {{ $story->q5 }}</p>
                             @endif
                         </div>
 
+                        <form action="{{ route('reader.sample') }}">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id ?? null }}">
+                            <input type="file" name="audio" id="audio">
+                        </form>
 
 
                       </div>

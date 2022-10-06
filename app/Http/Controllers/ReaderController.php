@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assign;
+use App\Models\Reader;
 use App\Models\Story;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReaderController extends Controller
 {
@@ -15,8 +18,10 @@ class ReaderController extends Controller
     public function index()
     {
         //
-        $stories= Story::where('status',0)->get();
-        return view('reader.dashboard',['stories'=>$stories]);
+        $reader = Reader::where('user_id',Auth::user()->id)->first();
+        $available = Assign::where('reader_id',$reader->id)->with(['Manager','Story'])->get();
+
+        return view('reader.dashboard',['available'=>$available]);
     }
 
     /**
@@ -35,6 +40,11 @@ class ReaderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function sample(Request $request)
+    {
+        //
+        return $request->all();
+    }
     public function store(Request $request)
     {
         //
