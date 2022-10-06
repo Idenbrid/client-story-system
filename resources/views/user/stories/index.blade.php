@@ -37,6 +37,9 @@
                   Story Title
                 </th>
                 <th scope="col" class="py-3 px-6">
+                  Grade
+                </th>
+                <th scope="col" class="py-3 px-6">
                   Story
                 </th>
                 <th scope="col" class="py-3 px-6">
@@ -76,10 +79,13 @@
                 </td> --}}
 
                 <td class="py-4 px-6 whitespace-nowrap">
-                    {{ $story->title }}
+                    <a href="{{ route('user.story',['id'=>$story->id]) }}"> {{ $story->title }}</a>
+                </td>
+                <td class="py-4 px-6 whitespace-nowrap">
+                    {{ $story->grade }}
                 </td>
                 <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-wrap dark:text-black">
-                    {{ $story->content }}
+                    {{ $story->title }}
                 </th>
                 <td class="py-4 px-6">
                     {{ $story->created_at }}
@@ -93,7 +99,7 @@
                 <td class="py-4 px-6">
                     {{ $story->readers ?? '-' }}
                   </td>
-                
+
               </tr>
 
               @endforeach

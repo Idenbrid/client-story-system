@@ -8,7 +8,7 @@
       <!-- Page Heading -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
         <h2 class="bg-white text-sky-500 text-4xl">
-          {{ __('Add New Teacher') }}
+          {{ __('Add New Manager') }}
         </h2>
       </div>
       <!-- Page Heading -->
@@ -27,7 +27,7 @@
         </div>
         <!-- Header Button -->  --}}
         <!-- Form -->
-        <form method="POST" action="{{route('sadmin.manager.new')}}">
+        <form method="POST" action="{{route('user.reader.store')}}">
           @csrf
         <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-white">
             <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
