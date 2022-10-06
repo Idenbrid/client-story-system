@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Manager;
+use App\Models\Reader;
+use App\Models\Source;
+use App\Models\SourceAdmin;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -91,7 +95,11 @@ class UserController extends Controller
         //
         $user = User::find($id);
         if($user->delete()){
-            return redirect()->back()->with(['status'=>true,'message'=>"The Story was deleted successfully!"]);
+            $sadministration = SourceAdmin::where('user_id',$id)->delete();
+            $manager = Manager::where('user_id',$id)->delete();
+            $reader = Reader::where('user_id',$id)->delete();
+            $source = Source::where('user_id',$id)->update(['user_id'=>null]);
+            return redirect()->back()->with(['status'=>true,'message'=>"The User was deleted successfully!"]);
         }else{
             return redirect()->back()->with(['status'=>false,'message'=>'Something went wrong!']);
         }

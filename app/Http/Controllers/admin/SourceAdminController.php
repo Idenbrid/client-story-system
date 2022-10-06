@@ -161,7 +161,10 @@ class SourceAdminController extends Controller
     {
         //
         $sadmin = User::find($id);
+        $source = Source::where('user_id',$id)->first();
         if ($sadmin->delete()) {
+            $sadministration = SourceAdmin::where('user_id',$id)->delete();
+            $source->update(['user_id'=>null]);
             return redirect(route('admin.source.index'))->with(['status' => true, 'message' => "The Source Admin was deleted successfully!"]);
         } else {
             return redirect(route('admin.source.index'))->with(['status' => false, 'message' => 'Something went wrong!']);

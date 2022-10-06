@@ -137,7 +137,7 @@ class ManagerController extends Controller
     public function update(Request $request, Manager $manager,$id)
     {
         //
-        
+
                 $manager = Manager::find($id);
                 $manager->username = $request->username;
                 $manager->dob = $request->dob;
@@ -154,9 +154,9 @@ class ManagerController extends Controller
                 $manager->update();
                 // $manager->attachRole('manager');
                 return redirect(route('sadmin.managers'))->with(['status' => true, 'message' => 'New Manager was updated successfully!']);
-            
+
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -167,7 +167,10 @@ class ManagerController extends Controller
     public function destroy(Manager $manager,$id)
     {
         //
-        if(Manager::where('id',$id)->delete()){
+        $manager = Manager::where('user_id',$id)->first();
+        $user = User::find($id);
+        if($manager->delete()){
+            $user->delete();
             return redirect()->back();
             // return redirect()->route('sadmin.managers');
         }else{
