@@ -130,11 +130,18 @@ Route::prefix('sadmin')->name('sadmin.')->group( function() {
 // Routes for Public/Reader's Manager created by Sub Admin
 Route::prefix('user')->name('user.')->group( function() {
     Route::get('/dashboard', [PublicController::class,'index'])->name('home');
+
     Route::get('/stories', [PublicController::class,'stories'])->name('stories');
     Route::get('/story/{id}', [PublicController::class,'story'])->name('story');
+
+    Route::get('/reader/edit/{id}', [PublicController::class,'edit'])->name('reader.edit');
+    Route::post('/reader/upadte/{id}', [PublicController::class,'update'])->name('reader.update');
+
     Route::get('/reader/create', [PublicController::class,'createReader'])->name('reader.create');
     Route::post('/reader/create', [PublicController::class,'storeReader'])->name('reader.store');
     Route::get('/readers', [PublicController::class,'readers'])->name('readers');
+
+    Route::get('/reader/delete/{id}', [PublicController::class,'destroy'])->name('reader.destroy');
 });
 
 // Routes for Reader

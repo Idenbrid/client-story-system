@@ -109,7 +109,7 @@ class ManagerController extends Controller
     public function show(Manager $manager)
     {
         //
-        $managers = Manager::whereNotNull('source_id')->where('source_id', Auth::user()->source->source_id)->with('Source')->paginate(10);
+        $managers = Manager::whereNotNull('source_id')->where('source_id', Auth::user()->SourceAdmin->source_id)->with('Source')->paginate(10);
         // return $managers;
         return view('sadmin.manager.index', ['managers' => $managers]);
     }
@@ -167,7 +167,7 @@ class ManagerController extends Controller
     public function destroy(Manager $manager,$id)
     {
         //
-        $manager = Manager::where('user_id',$id)->first();
+        $manager = Manager::where('id',$id)->first();
         $user = User::find($id);
         if($manager->delete()){
             $user->delete();

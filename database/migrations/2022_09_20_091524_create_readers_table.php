@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('last_name')->nullable();
             $table->date('dob')->nullable();
             $table->string('gender')->nullable();
-            $table->string('source_name')->nullable();
-            $table->string('source_assignee_id')->nullable();
+            $table->string('source_id')->nullable();
+            $table->string('manager_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

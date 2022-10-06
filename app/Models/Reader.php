@@ -9,12 +9,13 @@ class Reader extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'username',
         'first_name',
         'last_name',
         'dob',
         'gender',
         'source_id',
-        'source_assignee_id',
+        'manager_id',
         'user_id',
     ];
     public function User(){

@@ -10,9 +10,9 @@
           <h2 class="bg-white text-sky-500 text-4xl">
             {{ __('Readers') }}
           </h2>
-            <a href="{{ route('sadmin.reader.new')  }}">
+            {{--  <a href="{{ route('sadmin.reader.new')  }}">
                 <button class="bg-sky-500 text-white py-1 px-3 rounded outline-none focus:outline-none">{{ __('Add New') }}</button>
-            </a>
+            </a>  --}}
         </div>
         <!-- Page Heading -->
         <!-- Readers Table Data -->

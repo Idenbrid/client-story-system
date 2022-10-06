@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Story;
 use App\Models\Reader;
 use App\Models\Source;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class PublicController extends Controller
 {
@@ -55,7 +57,7 @@ class PublicController extends Controller
     {
         // To return all Source Readers for this manager
         // $readers = Reader::where('source_id',Auth::user()->manager->source_id)->paginate(10);
-        $readers = Reader::paginate(10);
+        $readers = Reader::where('source_id',Auth::user()->Manager->source->source_id)->latest()->paginate(10);
         return view('user.readers.index',['readers'=>$readers]);
     }
 
@@ -72,31 +74,36 @@ class PublicController extends Controller
     public function storeReader(Request $request)
     {
         //
+        // return $request->all();
         $request->validate([
-            'username' => 'required|unique:managers,username',
+            'username' => 'required|unique:readers,username',
             'first_name' => 'required',
             'last_name' => 'required',
             'dob' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users,email',
             'password' => 'required',
             'gender' => 'required',
         ]);
 
         $existingUser = User::where('email', $request->email)->first();
         if ($existingUser) {
+            // return $existingUser;
             // Adding new manager for source from existing user
-            $manager = new Reader();
-            $manager->username = $request->username;
-            $manager->user_id = $existingUser->id;
-            $manager->source_id = Auth::user()->source->source_id;
-            $manager->dob = $request->dob;
-            $manager->gender = $request->gender;
-            if ($manager->save()) {
+            $reader = new Reader();
+            $reader->username = $request->username;
+            $reader->first_name = $request->first_name;
+            $reader->last_name = $request->last_name;
+            $reader->manager_id =  Auth::user()->Manager->id;
+            $reader->user_id = $existingUser->id;
+            $reader->source_id = Auth::user()->Manager->source_id;
+            $reader->dob = $request->dob;
+            $reader->gender = $request->gender;
+            if ($reader->save()) {
                 if (!$existingUser->hasRole('manager')) {
-                    // $manager->attachRole('manager');
+                    // $reader->attachRole('manager');
                     $existingUser->attachRole('manager');
                 }
-                return redirect(route('sadmin.managers'))->with(['status' => true, 'message' => 'New Manager was added successfully!']);
+                return redirect(route('user.readers'))->with(['status' => true, 'message' => 'New Reader was added successfully!']);
             }
         } else {
             // Create a new User
@@ -109,16 +116,18 @@ class PublicController extends Controller
 
             // Storing new User and New Manager of this Source
             if ($user->save()) {
-                $user->attachRole('manager');
-                $manager = new Manager;
-                $manager->username = $request->username;
-                $manager->user_id = $user->id;
-                $manager->source_id = Auth::user()->source->source_id;
-                $manager->dob = $request->dob;
-                $manager->gender = $request->gender;
-                $manager->save();
-                // $manager->attachRole('manager');
-                return redirect(route('sadmin.managers'))->with(['status' => true, 'message' => 'New Manager was added successfully!']);
+                $user->attachRole('reader');
+                $reader = new Reader();
+                $reader->username = $request->username;
+                $reader->first_name = $request->first_name;
+                $reader->last_name = $request->last_name;
+                $reader->manager_id =  Auth::user()->Manager->id;
+                $reader->user_id = $user->id;
+                $reader->source_id = Auth::user()->Manager->source_id;
+                $reader->dob = $request->dob;
+                $reader->gender = $request->gender;
+                $reader->save();
+                return redirect(route('user.readers'))->with(['status' => true, 'message' => 'New Reader was added successfully!']);
             }
         }
     }
@@ -142,7 +151,9 @@ class PublicController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Editing a Reader
+        $reader = Reader::find($id);
+        return view("user.readers.edit", ['reader' => $reader]);
     }
 
     /**
@@ -154,7 +165,28 @@ class PublicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Updating User
+            $reader = Reader::find($id);
+            $user = User::find($reader->user_id);
+            $reader->username = $request->username;
+            $reader->first_name = $request->first_name;
+            $reader->last_name = $request->last_name;
+            $reader->dob = $request->dob;
+            $reader->gender = $request->gender;
+            if ($reader->update()) {
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->email = $request->email;
+            if ($request->password) {
+                $user->password = Hash::make($request->password);
+            }
+            $user->update();
+                return redirect(route('user.readers'))->with(['status' => true, 'message' => 'Reader was Updated successfully!']);
+            }else{
+                return redirect(route('user.readers'))->with(['status' => true, 'message' => 'Something went wrong!']);
+            }
+
+
     }
 
     /**
@@ -165,6 +197,14 @@ class PublicController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Deleting Reader/student from System
+        $reader = Reader::find($id);
+        $user = User::find($reader->user_id);
+        if ($reader->delete()) {
+            $user->delete();
+            return redirect()->back();
+        }else{
+            return redirect()->back();
+        }
     }
 }
