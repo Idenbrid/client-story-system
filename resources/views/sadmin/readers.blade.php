@@ -39,6 +39,13 @@
                   <th scope="col" class="py-3 px-6">
                     Email
                   </th>
+
+                  <th scope="col" class="py-3 px-6">
+                    Teacher Name
+                  </th>
+                  <th scope="col" class="py-3 px-6">
+                    Date of Birth
+                  </th>
                   <th scope="col" class="py-3 px-6">
                     Joined At
                   </th>
@@ -73,13 +80,19 @@
                     {{ $reader->first_name }} {{$reader->last_name}}
                   </th>
                   <th scope="row" class="capitalize py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-                    {{ $reader->email}}
+                    {{ $reader->User->email}}
                   </th>
-                  <td class="py-4 px-6">
+                  {{--  <td class="py-4 px-6">
                     {{ $reader->created_at }}
+                  </td>  --}}
+                  <td class="py-4 px-6">
+                    <a href={{ route('sadmin.manager.edit',['id'=>$reader->manager->id]) }}>{{ $reader->manager->username }}</a>
                   </td>
                   <td class="py-4 px-6">
                     {{ $reader->dob }}
+                  </td>
+                  <td class="py-4 px-6">
+                    {{ $reader->created_at }}
                   </td>
                 </tr>
 
@@ -87,7 +100,7 @@
               </tbody>
             </table>
           </div>
-          {{ $readers->links() }}
+          {{--  {{ $readers->links() }}  --}}
 
         </section>
         <!-- Readers Table Data -->

@@ -176,7 +176,7 @@ class SourceController extends Controller
     public function readers()
     {
         //
-        $readers = User::whereRoleIs('reader')->paginate(10);
+        $readers = Reader::where('source_id',Auth::user()->Source->source_id)->latest()->get();
         // return $readers;
         return view("sadmin.readers", ['readers' => $readers]);
     }

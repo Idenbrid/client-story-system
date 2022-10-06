@@ -43,6 +43,9 @@
                     Teacher Email
                   </th>
                   <th scope="col" class="py-3 px-6">
+                    {{ "Readers" }}
+                  </th>
+                  <th scope="col" class="py-3 px-6">
                     Date of Birth
                   </th>
                   <th scope="col" class="py-3 px-6">
@@ -55,7 +58,7 @@
               </thead>
               <tbody>
                 @foreach ($managers as $manager)
-                    
+
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <td class="p-4 w-4">
                     <div class="flex items-center">
@@ -74,7 +77,7 @@
                         <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
                     </a>
                   </td>
-                  
+
                   <td class="py-4 px-6">
                     {{ $manager->id }}
                   </td>
@@ -88,6 +91,9 @@
                     {{ $manager->User->email }}
                   </td>
                   <td class="py-4 px-6">
+                    {{ \App\Models\Reader::where('manager_id',$manager->id)->count() }}
+                  </td>
+                  <td class="py-4 px-6">
                     {{ $manager->dob }}
                   </td>
                   <td class="py-4 px-6">
@@ -97,7 +103,7 @@
                     {{ $manager->created_at }}
                   </td>
                 </tr>
-                
+
                 @endforeach
               </tbody>
             </table>

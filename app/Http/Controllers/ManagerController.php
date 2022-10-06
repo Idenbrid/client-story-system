@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Manager;
+use App\Models\Reader;
 use App\Models\Source;
 use App\Models\SourceAdmin;
 use App\Models\User;
@@ -167,10 +168,25 @@ class ManagerController extends Controller
     public function destroy(Manager $manager,$id)
     {
         //
-        $manager = Manager::where('id',$id)->first();
-        $user = User::find($id);
+        $manager = Manager::find($id);
+        $user = User::find($manager->user_id);
         if($manager->delete()){
             $user->delete();
+            return redirect()->back();
+            // return redirect()->route('sadmin.managers');
+        }else{
+            return redirect()->back();
+        }
+    }
+    public function destroyAdmin(Manager $manager,$id)
+    {
+        //
+        $user = User::find($id);
+        $manager = Manager::where('user_id',$id)->first();
+
+
+        if($user->delete()){
+            $manager->delete();
             return redirect()->back();
             // return redirect()->route('sadmin.managers');
         }else{

@@ -12,6 +12,9 @@ class Manager extends Model
     public function User(){
         return $this->hasOne(User::class,'id','user_id');
     }
+    public function Reader(){
+        return $this->hasMany(Reader::class,'id','user_id');
+    }
     public function Source(){
         return $this->hasOne(Source::class,'source_id','source_id');
     }

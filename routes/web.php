@@ -70,7 +70,7 @@ Route::group(['prefix' => 'admin'], function() {
         // Route::post('/store', 'store')->name('store');
         Route::get('/edit/{id}', 'edit')->name('edit');
         // Route::post('/update/{id}', 'update')->name('update');
-        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        Route::get('/destroy/{id}', 'destroyAdmin')->name('destroy');
     });
     Route::prefix('stories')->name('admin.stories.')->controller(StoryController::class)->group(function () {
         Route::get('/', 'index')->name('index');
