@@ -486,7 +486,8 @@
                         const blob = new Blob(data, {
                             'type': 'audio/wave'
                         });
-                        console.log(blob);
+                       const url=URL.createObjectURL(blob)
+                       preview.src = url;
                         const formData = new FormData(document.forms[0]);
                         formData.append('audio_file', blob);
 
@@ -495,7 +496,6 @@
                         reader.onloadend = function() {
                             var base64data = reader.result;
                             document.getElementById('base64').value = base64data;
-                            console.log(base64data);
                         }
 
                         function blobToBase64(blob) {
