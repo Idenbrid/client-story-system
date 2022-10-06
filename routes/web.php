@@ -131,6 +131,9 @@ Route::prefix('sadmin')->name('sadmin.')->group( function() {
 Route::prefix('user')->name('user.')->group( function() {
     Route::get('/dashboard', [PublicController::class,'index'])->name('home');
     Route::get('/stories', [PublicController::class,'stories'])->name('stories');
+    Route::get('/story/{id}', [PublicController::class,'story'])->name('story');
+    Route::get('/reader/create', [PublicController::class,'createReader'])->name('reader.create');
+    Route::post('/reader/create', [PublicController::class,'storeReader'])->name('reader.store');
     Route::get('/readers', [PublicController::class,'readers'])->name('readers');
 });
 

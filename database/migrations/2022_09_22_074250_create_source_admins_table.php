@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('source_id');
             $table->integer('status')->deafult(1);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
