@@ -169,10 +169,17 @@
               <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
                   <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" /></svg></sup>
             </div>
+<<<<<<< HEAD
             <textarea type="text" name="content" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="There once was a frog named Cory. He loved to tell a good story...">{{ $story->content }}</textarea>
             @if($errors->has('content'))
             <div class="text-danger">{{ $errors->first('content') }}</div>
             @endif
+=======
+            <textarea type="text" name="content" rows="5" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="There once was a frog named Cory. He loved to tell a good story..." >{{ $story->content }}</textarea>
+          @if($errors->has('content'))
+                  <div class="text-danger">{{ $errors->first('content') }}</div>
+          @endif
+>>>>>>> df3e5fb4938c8309d4bcbb5e033a91cf7b61ac9d
           </div>
           <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
@@ -247,7 +254,7 @@
             <div class="text-danger">{{ $errors->first('type') }}</div>
             @endif
           </div>
-          <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
+          {{--  <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('Source')}}</span>
               <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
@@ -260,6 +267,7 @@
               @endforeach
             </select>
             @if($errors->has('type'))
+<<<<<<< HEAD
             <div class="text-danger">{{ $errors->first('type') }}</div>
             @endif
           </div>
@@ -274,6 +282,11 @@
             <audio src="{{asset('/storage').'/'.$story->file}}" controls id="audio-playback"></audio>
             <!-- </div> -->
           </div>
+=======
+                  <div class="text-danger">{{ $errors->first('type') }}</div>
+          @endif
+          </div>  --}}
+>>>>>>> df3e5fb4938c8309d4bcbb5e033a91cf7b61ac9d
           <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('File')}}</span>
