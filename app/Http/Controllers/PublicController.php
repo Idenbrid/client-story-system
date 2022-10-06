@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assign;
 use App\Models\Manager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -43,8 +44,35 @@ class PublicController extends Controller
     {
         // To return all Source Stories for this manager
         // $stories = Story::where(['source_id'=>Auth::user()->manager->source_id,'status'=>0])->paginate(10);
-        $stories = Story::where('status',0)->paginate(10);
+        $stories = Story::where('status',0)->get();
         return view('user.stories.index',['stories'=>$stories]);
+    }
+    public function assignments()
+    {
+        // To return all Source Stories for this manager
+        // $stories = Story::where(['source_id'=>Auth::user()->manager->source_id,'status'=>0])->paginate(10);
+        $assigned  =Assign::where('manager_id',Auth::user()->Manager->id)->latest()->with(['Reader','Story'])->get();
+        return view('user.stories.assigned',['assigned'=>$assigned]);
+    }
+    public function assignStories()
+    {
+        // To return all Source Stories for this manager
+        // $stories = Story::where(['source_id'=>Auth::user()->manager->source_id,'status'=>0])->paginate(10);
+        $stories = Story::where('status',0)->get();
+        $readers = Reader::where('source_id',Auth::user()->Manager->source_id)->get();
+        return view('user.stories.assign',['stories'=>$stories,'readers'=>$readers]);
+    }
+    public function storiesAssigned(Request $request)
+    {
+        // Assigning Story to Reader
+        $assign = new Assign();
+        $assign->reader_id = $request->reader;
+        $assign->story_id = $request->story;
+        $assign->manager_id = Auth::user()->Manager->id;
+        $assign->source_id = Auth::user()->Manager->source_id;
+        $assign->save();
+        $assigned  =Assign::where('manager_id',Auth::user()->Manager->id)->with(['Reader','Story'])->get();
+        return redirect()->route('user.stories.assignments');
     }
     public function story($id)
     {

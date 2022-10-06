@@ -8,7 +8,7 @@
       <!-- Page Heading -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 flex justify-between items-center">
         <h2 class="bg-white text-sky-500 text-4xl">
-          {{ __('My Stories') }}
+          {{ __('Stories') }}
         </h2>
           {{-- <a href="{{ route('sadmin.manager.create')  }}">
               <button class="bg-sky-500 text-white py-1 px-3 rounded outline-none focus:outline-none">{{ __('Add New') }}</button>
@@ -18,29 +18,26 @@
       <!-- Readers Table Data -->
       <section class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-0">
         <div class="overflow-x-auto relative ">
-          <table id="dataTable" class=" w-full text-sm text-left text-gray-500 dark:text-gray-400" style="width:100%">
+           <table id="dataTable" class=" w-full text-sm text-left text-gray-500 dark:text-gray-400" style="width:100%">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                {{-- <th scope="col" class="p-4">
+                 {{--  <th scope="col" class="p-4">
                   <div class="flex items-center">
                     <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="checkbox-all-search" class="sr-only">checkbox</label>
                   </div>
-                </th> --}}
-                {{-- <th scope="col" class="py-3 px-6">
-                  Source ID
-                </th>
+                </th>  --}}
+                 {{--  <th scope="col" class="py-3 px-6">
+                  Action
+                </th>  --}}
                 <th scope="col" class="py-3 px-6">
-                  Source Name
-                </th> --}}
+                  ID
+                </th>
                 <th scope="col" class="py-3 px-6">
                   Story Title
                 </th>
                 <th scope="col" class="py-3 px-6">
                   Grade
-                </th>
-                <th scope="col" class="py-3 px-6">
-                  Story
                 </th>
                 <th scope="col" class="py-3 px-6">
                   Created At
@@ -60,7 +57,7 @@
               @foreach ($stories as $story)
 
               <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                {{-- <td class="p-4 w-4">
+                 {{--  <td class="p-4 w-4">
                   <div class="flex items-center">
                     <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
@@ -76,17 +73,17 @@
                     <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                       <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
                   </a>
-                </td> --}}
+                </td>  --}}
 
+                <td class="py-4 px-6 whitespace-nowrap">
+                    {{ $story->id }}
+                </td>
                 <td class="py-4 px-6 whitespace-nowrap">
                     <a href="{{ route('user.story',['id'=>$story->id]) }}"> {{ $story->title }}</a>
                 </td>
                 <td class="py-4 px-6 whitespace-nowrap">
                     {{ $story->grade }}
                 </td>
-                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-wrap dark:text-black">
-                    {{ $story->title }}
-                </th>
                 <td class="py-4 px-6">
                     {{ $story->created_at }}
                 </td>
@@ -106,7 +103,7 @@
             </tbody>
           </table>
         </div>
-        {{ $stories->links() }}
+        {{--  {{ $stories->links() }}  --}}
 
       </section>
       <!-- Readers Table Data -->

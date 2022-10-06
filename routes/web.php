@@ -133,6 +133,9 @@ Route::prefix('user')->name('user.')->group( function() {
 
     Route::get('/stories', [PublicController::class,'stories'])->name('stories');
     Route::get('/story/{id}', [PublicController::class,'story'])->name('story');
+    Route::get('/stories/assignments', [PublicController::class,'assignments'])->name('stories.assignments');
+    Route::get('/stories/assign', [PublicController::class,'assignStories'])->name('stories.assign');
+    Route::post('/stories/assigned', [PublicController::class,'storiesAssigned'])->name('stories.assigned');
 
     Route::get('/reader/edit/{id}', [PublicController::class,'edit'])->name('reader.edit');
     Route::post('/reader/upadte/{id}', [PublicController::class,'update'])->name('reader.update');

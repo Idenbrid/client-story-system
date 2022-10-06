@@ -72,6 +72,9 @@
                     <x-nav-link class="text-white text-base" href="{{ route('user.readers') }}" :active="request()->routeIs('user.readers')">
                         {{ __('My Readers') }}
                     </x-nav-link>
+                    <x-nav-link class="text-white text-base" href="{{ route('user.stories.assignments') }}" :active="request()->routeIs('user.stories.assignments')">
+                        {{ __('Assignments') }}
+                    </x-nav-link>
                 </div>
                 @endif
             </div>
