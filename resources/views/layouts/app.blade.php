@@ -58,6 +58,9 @@
     <!-- Page Heading -->
     <header class="bg-white">
       <div class="max-w-7xl rounded mx-auto py-2 my-3 px-4 sm:px-6 lg:px-4 bg-neutral-100 ">
+        @if (!Auth::user()->hasRole('reader'))
+
+
         <!-- Breadcrumb -->
         <ol class="inline-flex items-center">
           <li class="inline-flex items-center">
@@ -81,17 +84,18 @@
           @endforeach
 
         </ol>
+        @endif
       </div>
     </header>
     <!-- Page Content -->
     <main>
-        
+
 
 
       {{ $slot }}
 
-      
-      
+
+
     </main>
   </div>
 </body>
@@ -102,7 +106,7 @@
 <script>
   $(document).ready(function() {
     $('#dataTable').DataTable();
-    
+
   });
 </script>
 

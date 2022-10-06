@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\ReaderController;
 use App\Models\Manager;
 use App\Models\Source;
 use App\Models\SourceAdmin;
@@ -14,16 +15,17 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index(){
-        
+
         if(Auth::user()->hasrole('story') && Auth::user()->is_active == '1'){
             return view('story.dashboard');
         }
         elseif(Auth::user()->hasrole('reader')  && Auth::user()->is_active == '1'){
 
-            return view('reader.dashboard');
+            return redirect('/reader/dashboard');
         }
         elseif(Auth::user()->hasrole('admin')  && Auth::user()->is_active == '1'){
             $totalAdmin = User::whereRoleIs('admin')->count();
+            $totalReaders = Reader::count();
             $totalSources = Source::count();
             $totalSAdmin = SourceAdmin::count();
             $totalStories = Story::count();
@@ -31,6 +33,7 @@ class HomeController extends Controller
             $totalUsers = User::count();
             return view('admin.dashboard',[
                 'totalAdmin'=>$totalAdmin,
+                'totalReaders'=>$totalReaders,
                 'totalSources'=>$totalSources,
                 'totalSAdmin'=>$totalSAdmin,
                 'totalTeachers'=>$totalTeachers,
@@ -40,7 +43,7 @@ class HomeController extends Controller
         }
         elseif(Auth::user()->hasrole('sadmin')  && Auth::user()->is_active == '1'){
 
-            return view('admin.dashboard');
+            return redirect('/sadmin/dashboard');
         }
         elseif(Auth::user()->hasrole('user')  && Auth::user()->is_active == '1'){
             return view('user.dashboard');

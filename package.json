@@ -20,7 +20,6 @@
         "esbuild": "^0.15.8",
         "videojs-record": "^4.5.0",
         "vue": "^3.2.36",
-        "vue-audio-tapir": "^1.5.0",
         "vue-loader": "^17.0.0"
     }
 }

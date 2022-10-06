@@ -3,13 +3,13 @@
         <!-- <video id="myVideo" playsinline class="video-js vjs-default-skin">
             <p class="vjs-no-js">
                 To view this video please enable JavaScript, or consider upgrading to a
-                web browser that 
+                web browser that
                  <a href="https://videojs.com/html5-video-support/" target="_blank">
                     supports HTML5 video.
-                </a> 
+                </a>
              </p>
         </video> -->
-     
+
                 <!-- <button type="button" class="btn btn-sm" @click.prevent="startRecording()" v-bind:disabled="isStartRecording" id="btnStart">▶️ Recording Now</button>
         <button type="button" class="btn btn-sm" @click.prevent="retakeVideo()" v-bind:disabled="isRetakeDisabled" id="btnRetake">🔼Retake</button>
         <br> -->
@@ -72,7 +72,7 @@
 </template>
 
 <script>
-    
+
     import axios from 'axios';
 import 'video.js/dist/video-js.css'
 import 'videojs-record/dist/css/videojs.record.css'
@@ -186,13 +186,13 @@ export default {
                 }
             }).then(
                 success => {
-                    
+
                     this.submitText = "Story Added Successfully!";
                     window.location.href = "/admin/stories";
                 }
             ).catch(
                 error =>{
-                    
+
                     this.submitText = "Upload Failed";
                 }
             );

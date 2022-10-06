@@ -34,7 +34,7 @@
                     Story ID
                   </th>
                   <th scope="col" class="py-3 px-6">
-                    Source ID
+                    Grade
                   </th>
                   <th scope="col" class="py-3 px-6">
                     Title
@@ -60,10 +60,10 @@
                 </tr>
               </thead>
               <tbody>
-                
+
                 @foreach ($stories as $story)
-                    
-                
+
+
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <td class="p-4 w-4">
                     <div class="flex items-center">
@@ -82,12 +82,12 @@
                         <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
                     </a>
                   </td>
-                  
+
                   <td class="py-4 px-6">
                     {{ $story->id }}
                   </td>
                   <td class="py-4 px-6">
-                    {{ $story->source_id }}
+                    {{ $story->grade }}
                   </td>
                   <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                     {{ $story->title }}
@@ -99,7 +99,7 @@
                     {{ $story->type }}
                   </th>
                   <td class="py-4 px-6">
-                    <a href="{{ config('app.url') }}/{{ str_replace("$story->file", "public", "public/storage") }}/{{ $story->file }}">Download</a>
+                    <a href="{{ url('/storage/') }}/{{$story->file}}" download>Download File</a>
                     {{-- <a href="{{ config('app.url') }}/{{ str_replace("$story->file", "public", "public/storage") }}/{{ $story->file }}">Download</a> --}}
                   </td>
                   <td class="py-4 px-6">
@@ -112,7 +112,7 @@
                     {{ $story->updated_at }}
                   </td>
                 </tr>
-                
+
                 @endforeach
               </tbody>
             </table>

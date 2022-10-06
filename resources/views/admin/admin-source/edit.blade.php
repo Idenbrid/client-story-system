@@ -128,9 +128,9 @@
                 <path d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z" /></svg>
               Add another record</button>
           </div>
-        </div> 
+        </div>
      </div> --}}
-      
+
       <!-- Submit Button -->
       <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-neutral-100 ">
         <div class="max-w-lg flex mx-auto ">
@@ -139,7 +139,7 @@
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
             </div></button>
-          <button type="reset" class="bg-white flex items-center py-2 px-5 text-black rounded mx-2">Cancel</button>
+          <a href="{{route('admin.source.index')}}" class="bg-white flex items-center py-2 px-5 text-black rounded mx-2">Cancel</a>
         </div>
       </div>
       <!-- Submit Button -->
@@ -147,7 +147,7 @@
     <!-- Form -->
     </section>
     <script>
-        
+
 
         </script>
     <!-- Page Form Section -->

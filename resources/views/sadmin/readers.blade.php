@@ -8,7 +8,7 @@
         <!-- Page Heading -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 flex justify-between items-center">
           <h2 class="bg-white text-sky-500 text-4xl">
-            {{Auth::user()->source->source_name}} {{ __('Readers') }}
+            {{ __('Readers') }}
           </h2>
             <a href="{{ route('sadmin.reader.new')  }}">
                 <button class="bg-sky-500 text-white py-1 px-3 rounded outline-none focus:outline-none">{{ __('Add New') }}</button>
@@ -37,22 +37,16 @@
                     Reader Name
                   </th>
                   <th scope="col" class="py-3 px-6">
-                    Source
+                    Email
                   </th>
                   <th scope="col" class="py-3 px-6">
-                    Reader Email
-                  </th>
-                  <th scope="col" class="py-3 px-6">
-                    Date of Birth
-                  </th>
-                  <th scope="col" class="py-3 px-6">
-                    Gender
+                    Joined At
                   </th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($readers as $reader)
-                    
+
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <td class="p-4 w-4">
                     <div class="flex items-center">
@@ -71,7 +65,7 @@
                         <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
                     </a>
                   </td>
-                  
+
                   <td class="py-4 px-6">
                     {{ $reader->id }}
                   </td>
@@ -79,19 +73,16 @@
                     {{ $reader->first_name }} {{$reader->last_name}}
                   </th>
                   <th scope="row" class="capitalize py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-                    {{ $reader->source->source_name}}
+                    {{ $reader->email}}
                   </th>
                   <td class="py-4 px-6">
-                    {{ $reader->User->email }}
+                    {{ $reader->created_at }}
                   </td>
                   <td class="py-4 px-6">
                     {{ $reader->dob }}
                   </td>
-                  <td class="py-4 px-6">
-                    {{ $reader->gender ? 'Male':'Female' }}
-                  </td>
                 </tr>
-                
+
                 @endforeach
               </tbody>
             </table>

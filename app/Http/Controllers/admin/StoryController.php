@@ -18,7 +18,7 @@ class StoryController extends Controller
     public function index()
     {
         //
-        $stories = Story::paginate(10);
+        $stories = Story::latest()->paginate(10);
         return view("admin.stories.index",['stories'=>$stories]);
     }
 
@@ -48,12 +48,18 @@ class StoryController extends Controller
      */
     public function store(Request $request)
     {
-        $file = rand(12121,45645454524).'.webm';
+        $request->validate([
+            'title'=>'required',
+            'content'=>'required',
+            'grade'=>'required',
+        ]);
+        $file = rand(12121,45645454524).'.wav';
         if($request->base64){
-            $data = str_replace('data:audio/wav;base64,', '', $request->base64);
-            Storage::put("/$file",base64_decode($data));
+            $data = str_replace('data:audio/wave;base64,', '', $request->base64);
+            Storage::put("/public/$file",base64_decode($data));
         }
         $story = new Story();
+        $story->grade = $request->grade;
         $story->title = $request->title;
         $story->content = $request->content;
         $story->file = $file;
@@ -66,8 +72,8 @@ class StoryController extends Controller
         $story->status = $request->hide;
         $story->source_id = $request->source_id;
         if($story->save()){
-            return "done";
-            // return redirect(route('admin.stories.index'));
+            // return "done";
+            return redirect(route('admin.stories.index'));
         }else{
             return "error";
             return redirect(route('admin.stories.index'));
@@ -116,6 +122,7 @@ class StoryController extends Controller
             $story->file = substr($file, 7);;
             return $request->all();
         }
+        $story->grade = $request->grade;
         $story->title = $request->title;
         $story->content = $request->content;
         $story->q1 = $request->question1 ?? null;

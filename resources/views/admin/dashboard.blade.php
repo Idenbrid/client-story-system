@@ -16,7 +16,7 @@
                             <hr><br>
                             <h1 class="card-text h1">{{ $totalAdmin }} Super Admin</h1>
                             <hr><br>
-                            <a href="#" class="btn btn-primary">Check Details</a>
+                            <a href="{{ route('admin.users.role',['role'=>Auth::user()->roles->first()->name]) }}" class="btn btn-primary">Check Details</a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                             <hr><br>
                             <h1 class="card-text h1">{{ $totalSources }} Total Sources</h1>
                             <hr><br>
-                            <a href="#" class="btn btn-primary">See All Sources</a>
+                            <a href="{{ route('admin.sources.index') }}" class="btn btn-primary">See All Sources</a>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                             <hr><br>
                             <h1 class="card-text h1">{{ $totalSAdmin }} Source Administrators</h1>
                             <hr><br>
-                            <a href="#" class="btn btn-primary">See Source Admins</a>
+                            <a href="{{ route('admin.users.role',['role'=>'sadmin']) }}" class="btn btn-primary">See Source Admins</a>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                             <hr><br>
                             <h1 class="card-text h1">{{ $totalStories }} Stories</h1>
                             <hr><br>
-                            <a href="#" class="btn btn-primary">See All</a>
+                            <a href="{{ route('admin.stories.index') }}" class="btn btn-primary">See All</a>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                             <hr><br>
                             <h1 class="card-text h1">{{ $totalUsers }} Users</h1>
                             <hr><br>
-                            <a href="#" class="btn btn-primary">Check Details</a>
+                            <a href="{{ route('admin.users.index') }}" class="btn btn-primary">Check Details</a>
                         </div>
                     </div>
                 </div>
@@ -78,10 +78,25 @@
                             <hr><br>
                             <h1 class="card-text h1">{{ $totalTeachers }} Teachers</h1>
                             <hr><br>
-                            <a href="#" class="btn btn-primary">Check Details</a>
+                            <a href="{{ route('admin.manager.index') }}" class="btn btn-primary">Check Details</a>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row pt-5">
+                <div class="col-4">
+                    <div class="card">
+                        {{-- <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%"> --}}
+                        <div class="card-body">
+                            <h2 class="card-title">People who can see all the stories</h2>
+                            <hr><br>
+                            <h1 class="card-text h1">{{ $totalReaders }} Readers</h1>
+                            <hr><br>
+                            <a href="{{ route('admin.users.role',['role'=>'reader']) }}" class="btn btn-primary">See All</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             </div>
         </div>

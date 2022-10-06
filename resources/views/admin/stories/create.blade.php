@@ -129,6 +129,35 @@
                     <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
                         <div
                             class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
+                            <span>{{ __('Grade') }}</span>
+                            <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0"
+                                    xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                    <path
+                                        d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" />
+                                </svg></sup>
+                        </div>
+                        <select name="grade" id="grade"
+                            class="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full my-2 sm:m-2   sm:w-9/12 px-2 py-1">
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                        @if ($errors->has('hide'))
+                            <div class="text-danger">{{ $errors->first('hide') }}</div>
+                        @endif
+                    </div>
+                    <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
+                        <div
+                            class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
                             <span>{{ __('Title') }}</span>
                             <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0"
                                     xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
@@ -136,9 +165,9 @@
                                         d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" />
                                 </svg></sup>
                         </div>
-                        <input type="text" name="title" id="title"
+                        <input type="text" value="{{old('title')}}" name="title" id="title"
                             class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
-                            placeholder="Once upon a time..." />
+                            placeholder="The Wonderful Day" />
                         @if ($errors->has('title'))
                             <div class="text-danger">{{ $errors->first('title') }}</div>
                         @endif
@@ -153,9 +182,9 @@
                                         d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z" />
                                 </svg></sup>
                         </div>
-                        <textarea type="text" name="content" id="content"
+                        <textarea type="text" value="{{old('content')}}" name="content" id="content"
                             class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
-                            placeholder="There once was a frog named Cory. He loved to tell a good story..."></textarea>
+                            placeholder="There once was a frog named Cory. He loved to tell a good story...">{{old('content')}}</textarea>
                         @if ($errors->has('content'))
                             <div class="text-danger">{{ $errors->first('content') }}</div>
                         @endif
@@ -166,7 +195,7 @@
                             <span>{{ __('Question # 1') }}</span>
 
                         </div>
-                        <input type="text" name="question1" id="question1"
+                        <input type="text" value="{{old('question1')}}" name="question1" id="question1"
                             class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
                             placeholder="Story Q#1" />
                         @if ($errors->has('question1'))
@@ -179,7 +208,7 @@
                             <span>{{ __('Question # 2') }}</span>
 
                         </div>
-                        <input type="text" name="question2" id="question2"
+                        <input type="text" value="{{old('question2')}}" name="question2" id="question2"
                             class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
                             placeholder="Story Q#2" />
                         @if ($errors->has('question2'))
@@ -192,7 +221,7 @@
                             <span>{{ __('Question # 3') }}</span>
 
                         </div>
-                        <input type="text" name="question3" id="question3"
+                        <input type="text" value="{{old('question3')}}" name="question3" id="question3"
                             class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
                             placeholder="Story Q#3" />
                         @if ($errors->has('question3'))
@@ -205,7 +234,7 @@
                             <span>{{ __('Question # 4') }}</span>
 
                         </div>
-                        <input type="text" name="question4" id="question4"
+                        <input type="text" value="{{old('question4')}}" name="question4" id="question4"
                             class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
                             placeholder="Story Q#4" />
                         @if ($errors->has('question4'))
@@ -218,7 +247,7 @@
                             <span>{{ __('Question # 5') }}</span>
 
                         </div>
-                        <input type="text" name="question5" id="question5"
+                        <input type="text" value="{{old('question5')}}" name="question5" id="question5"
                             class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
                             placeholder="Story Q#5" />
                         @if ($errors->has('question5'))
@@ -244,6 +273,7 @@
                             <div class="text-danger">{{ $errors->first('hide') }}</div>
                         @endif
                     </div>
+
                     <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
                         <div
                             class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
@@ -263,7 +293,7 @@
                             <div class="text-danger">{{ $errors->first('type') }}</div>
                         @endif
                     </div>
-                    <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
+                    {{--  <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
                         <div
                             class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
                             <span>{{ __('Source') }}</span>
@@ -284,7 +314,7 @@
                         @if ($errors->has('type'))
                             <div class="text-danger">{{ $errors->first('type') }}</div>
                         @endif
-                    </div>
+                    </div>  --}}
                     <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
                         <div
                             class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
@@ -378,7 +408,7 @@
         </div>
      </div> --}}
 
-<textarea id="base64" name="base64"></textarea>
+<textarea id="base64" name="base64" style="display: none"></textarea>
 
 
                     <!-- Submit Button -->
@@ -394,14 +424,13 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div></button>
-                            <button type="reset"
-                                class="bg-white flex items-center py-2 px-5 text-black rounded mx-2">Cancel</button>
+                                <a href="{{route('admin.stories.index')}}" class="bg-white flex items-center py-2 px-5 text-black rounded mx-2">Cancel</a>
                         </div>
                     </div>
                     <!-- Submit Button -->
             </form>
 
-            <div class="download">
+            <div class="download" style="display:none">
                 <button class="hidden" id="downloadContainer">
                     <a href="" download="" id="downloadButton">Download Audio</a>
                 </button>
@@ -455,7 +484,7 @@
                     });
                     recorder.addEventListener('stop', (e) => {
                         const blob = new Blob(data, {
-                            'type': 'audio/wav'
+                            'type': 'audio/wave'
                         });
                         console.log(blob);
                         const formData = new FormData(document.forms[0]);

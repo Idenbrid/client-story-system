@@ -50,7 +50,7 @@
                   </th>
                   <th scope="col" class="py-3 px-6">
                     GENDER
-                  </th> 
+                  </th>
                   <th scope="col" class="py-3 px-6">
                     SOURCE NAME
                   </th>
@@ -72,23 +72,25 @@
                         <path fill="none" d="M0 0h24v24H0V0z" />
                         <path d="M3 17.46v3.04c0 .28.22.5.5.5h3.04c.13 0 .26-.05.35-.15L17.81 9.94l-3.75-3.75L3.15 17.1c-.1.1-.15.22-.15.36zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" /></svg>
                     </a> --}}
+                    @if(!$user->hasRole('admin'))
                     <a href="{{ route('admin.users.destroy',['id'=>$user->id])}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" title="Remove User From System">
                       <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
                     </a>
+                    @endif
                   </td>
                   <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark">
                     {{ $user->id }}
                   </th>
                   <td class="py-4 px-6">
                     {{ $user->first_name }} {{ $user->last_name }}
-                    
+
                   </td>
                   <td class="py-4 px-6">
                       {{ $user->email }}
                 </td>
                     <td class="py-4 px-6">
-                      @if($user->hasRole('admin'))<b>Super Admin</b> @elseif($user->hasRole('sadmin'))Source Admin @elseif($user->hasRole('manager'))Teacher @else {{ $user->role ?? 'Others' }} @endif
+                      @if($user->hasRole('admin'))<b>Super Admin</b> @elseif($user->hasRole('sadmin'))Source Admin @elseif($user->hasRole('manager'))Teacher @elseif($user->hasRole('reader'))Reader @else {{ $user->role ?? 'Others' }} @endif
                     </td>
                   <td class="py-4 px-6">
                     {{ $user->created_at }}

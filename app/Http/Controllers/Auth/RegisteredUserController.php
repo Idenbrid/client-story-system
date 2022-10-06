@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Reader;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -46,7 +47,19 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        $user->attachRole('user');
+        $user->attachRole('reader');
+
+        $reader = new Reader();
+        $reader->first_name = $user->first_name;
+        $reader->last_name = $user->last_name;
+        $reader->dob = $user->dob ?? null;
+        $reader->gender = $user->gender ?? null;
+        $reader->source_id = null;
+        $reader->source_assignee_id = null;
+        $reader->user_id = $user->id;
+        $reader->save();
+
+
 
         event(new Registered($user));
 

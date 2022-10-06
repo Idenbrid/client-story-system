@@ -24,9 +24,9 @@ class SourceController extends Controller
         //
         $sources = Source::with('SourceAdmin')->with('User')->paginate(10);
         // return $sources;
-        
+
             return view("admin.sources.index", ['sources' => $sources]);
-        
+
     }
 
     /**
@@ -176,7 +176,7 @@ class SourceController extends Controller
     public function readers()
     {
         //
-        $readers = Reader::where('source_id', Auth::user()->Source->id)->with('Source')->paginate(10);
+        $readers = User::whereRoleIs('reader')->paginate(10);
         // return $readers;
         return view("sadmin.readers", ['readers' => $readers]);
     }
@@ -214,13 +214,13 @@ class SourceController extends Controller
             }
         } else {
             $user = new User;
-            $user->name = $request->first_name . ' ' . $request->last_name;
-            $user->name = $request->first_name . ' ' . $request->last_name;
+            $user->first_name = $request->first_name . ' ' . $request->last_name;
+            $user->last_name = $request->first_name . ' ' . $request->last_name;
             $user->email = $request->email;
             $user->is_active = 1;
-            $user->role = 'reader';
             $user->password = Hash::make("{$request->password}");
             if ($user->save()) {
+                $user->attachRole('reader');
                 $reader = new Reader();
                 $reader->first_name = $request->first_name;
                 $reader->last_name = $request->last_name;

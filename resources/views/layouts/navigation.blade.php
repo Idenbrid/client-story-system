@@ -44,9 +44,9 @@
                     <x-nav-link class="text-white text-base" href="{{ route('sadmin.mysource') }}" :active="request()->routeIs('sadmin.mysource')">
                         {{ __('My Source') }}
                     </x-nav-link>
-                    <x-nav-link class="text-white text-base" href="{{ route('sadmin.stories') }}" :active="request()->routeIs('sadmin.stories')">
+                    {{--  <x-nav-link class="text-white text-base" href="{{ route('sadmin.stories') }}" :active="request()->routeIs('sadmin.stories')">
                         {{ __('Stories') }}
-                    </x-nav-link>
+                    </x-nav-link>  --}}
                     <x-nav-link class="text-white text-base" href="{{ route('sadmin.managers') }}" :active="request()->routeIs('sadmin.managers')">
                         {{ __('Teachers') }}
                     </x-nav-link>

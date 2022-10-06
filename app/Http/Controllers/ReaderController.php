@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Story;
 use Illuminate\Http\Request;
-use App\Models\User;
 
-class UserController extends Controller
+class ReaderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('admin.users.index',['users'=>$users]);
-    }
-
-    public function role($role)
-    {
-        $users = User::whereRoleIs($role)->paginate(10);
-        return view('admin.users.index',['users'=>$users]);
+        //
+        $stories= Story::where('status',0)->get();
+        return view('reader.dashboard',['stories'=>$stories]);
     }
 
     /**
@@ -32,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        //
     }
 
     /**
@@ -55,6 +49,10 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        $story = Story::find($id);
+        $story->increment('views');
+        $story->save();
+        return view('reader.story',['story'=>$story]);
     }
 
     /**
@@ -89,11 +87,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        $user = User::find($id);
-        if($user->delete()){
-            return redirect()->back()->with(['status'=>true,'message'=>"The Story was deleted successfully!"]);
-        }else{
-            return redirect()->back()->with(['status'=>false,'message'=>'Something went wrong!']);
-        }
     }
 }

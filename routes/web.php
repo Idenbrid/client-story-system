@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManagerController;
 use App\Models\Source;
-use App\Http\Controllers\admin\ReaderController;
+use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\admin\StoryController;
 use App\Http\Controllers\admin\SourceController;
 use App\Http\Controllers\admin\SourceAdminController;
@@ -86,6 +86,7 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
         Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::get('/role/{role}', 'role')->name('role');
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
     });
@@ -131,12 +132,14 @@ Route::prefix('user')->name('user.')->group( function() {
     Route::get('/dashboard', [PublicController::class,'index'])->name('home');
     Route::get('/stories', [PublicController::class,'stories'])->name('stories');
     Route::get('/readers', [PublicController::class,'readers'])->name('readers');
-    // Route::post('/mysource/update/{id}', [PublicController::class,'updateSource'])->name('mysource.update');
-    // Route::get('/reader/edit/{id}', [PublicController::class,'editReader'])->name('reader.edit');
-    // Route::post('/reader/update/{id}', [PublicController::class,'updateReader'])->name('reader.update');
-    // Route::get('/readers', [PublicController::class,'readers'])->name('readers');
-    // Route::get('/reader/create', [PublicController::class,'createNewReader'])->name('reader.new');
-    // Route::post('/reader/store', [PublicController::class,'createReader'])->name('reader.create');
-    // Route::get('/reader/destroy/{id}', [PublicController::class,'destroyReader'])->name('reader.destroy');
 });
+
+// Routes for Reader
+Route::prefix('reader')->name('reader.')->group( function() {
+    Route::get('/dashboard', [ReaderController::class,'index'])->name('dashboard');
+    Route::get('/read/story/{id}', [ReaderController::class,'show'])->name('read.story');
+    Route::get('/readers', [ReaderController::class,'readers'])->name('readers');
+
+});
+
 require __DIR__.'/auth.php';

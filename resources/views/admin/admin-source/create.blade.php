@@ -41,7 +41,7 @@
                         </div>
                         <input type="text" name="first_name"
                             class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
-                            placeholder="Mike" />
+                            />
                         @if ($errors->has('first_name'))
                             <div class="text-danger">{{ $errors->first('first_name') }}</div>
                         @endif
@@ -57,7 +57,7 @@
                         </div>
                         <input type="text" name="last_name"
                             class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
-                            placeholder="John" />
+                            />
                         @if ($errors->has('name'))
                             <div class="text-danger">{{ $errors->first('last_name') }}</div>
                         @endif
@@ -74,7 +74,7 @@
                         </div>
                         <input type="email" name="email"
                             class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
-                            placeholder="contact@story.test" />
+                            />
                         @if ($errors->has('email'))
                             <div class="text-danger">{{ $errors->first('email') }}</div>
                         @endif
@@ -91,7 +91,7 @@
                         </div>
                         <input type="text" name="password"
                             class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
-                            placeholder="default (sadmin@123)" />
+                            />
                         @if ($errors->has('password'))
                             <div class="text-danger">{{ $errors->first('password') }}</div>
                         @endif
@@ -161,8 +161,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div></button>
-                            <button type="reset"
-                                class="bg-white flex items-center py-2 px-5 text-black rounded mx-2">Cancel</button>
+                                <a href="{{route('admin.source.index')}}" class="bg-white flex items-center py-2 px-5 text-black rounded mx-2">Cancel</a>
                         </div>
                     </div>
                     <!-- Submit Button -->
