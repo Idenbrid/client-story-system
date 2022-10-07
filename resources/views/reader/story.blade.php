@@ -138,7 +138,7 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      animation: scroll 100s linear infinite;
+      animation: scroll 100s linear infinite; 
       animation-duration: 130s;
       animation-play-state: running;
       animation-delay: 0s;
@@ -150,7 +150,7 @@
 
     @keyframes scroll {
       0% {
-        transform: translateX(19%);
+        transform: translateX(57vw);
       }
 
       100% {
@@ -245,7 +245,7 @@
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  
+
   <script>
 
     let recorder, audio_stream;
