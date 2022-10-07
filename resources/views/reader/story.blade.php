@@ -138,8 +138,12 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+<<<<<<< HEAD
       transform:translateX(100%);
       animation: scroll 100s linear infinite;
+=======
+      animation: scroll 100s linear infinite; 
+>>>>>>> 5827254db404d0df20905b90bf6535a1ad7b331f
       animation-duration: 130s;
       animation-play-state: running;
       animation-delay: 0s;
