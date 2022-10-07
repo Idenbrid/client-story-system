@@ -67,7 +67,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link class="text-white text-base" href="{{ route('user.stories') }}" :active="request()->routeIs('user.stories')">
-                        {{ __('My Stories') }}
+                        {{ __('Stories') }}
                     </x-nav-link>
                     <x-nav-link class="text-white text-base" href="{{ route('user.readers') }}" :active="request()->routeIs('user.readers')">
                         {{ __('My Readers') }}

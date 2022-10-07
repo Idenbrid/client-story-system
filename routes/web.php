@@ -102,7 +102,7 @@ Route::group(['prefix' => 'admin'], function() {
 });
 
 // Routes for SourceAdmin
-Route::prefix('sadmin')->name('sadmin.')->group( function() {
+Route::prefix('sadmin')->middleware(['auth'])->name('sadmin.')->group( function() {
     Route::get('/', [SourceAdminController::class,'userDashboard'])->name('dashboard');
     Route::get('/dashboard', [SourceAdminController::class,'userDashboard'])->name('home');
     Route::get('/mysource', [SourceAdminController::class,'mySource'])->name('mysource');
@@ -129,9 +129,10 @@ Route::prefix('sadmin')->name('sadmin.')->group( function() {
 });
 
 // Routes for Public/Reader's Manager created by Sub Admin
-Route::prefix('user')->name('user.')->group( function() {
+Route::prefix('user')->middleware(['auth'])->name('user.')->group( function() {
     Route::get('/dashboard', [PublicController::class,'index'])->name('home');
 
+    Route::post('/grade', [PublicController::class,'gradeStory'])->name('grade.stories');
     Route::get('/stories', [PublicController::class,'stories'])->name('stories');
     Route::get('/story/{id}', [PublicController::class,'story'])->name('story');
     Route::get('/stories/assignments', [PublicController::class,'assignments'])->name('stories.assignments');

@@ -20,16 +20,52 @@
           <div class="overflow-x-auto relative ">
             {{ $story->content }}
           </div>
+        <br><hr>
+
+          @if ($story->q1)
+          <form action="{{ route('user.story.questions',['q'=>'q1']) }}" method="post">
+          <div class="max-w-7xl rounded mx-auto py-2 my-1 px-2 sm:px-2 lg:px-0">
+            <b>Q1</b>:<input type="text" value="{{ $story->q1 }}" class="form-control border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400">
+          </div>
+        </form>
+          @endif
+
+          @if ($story->q2)
+          <div class="max-w-7xl rounded mx-auto py-2 my-1 px-2 sm:px-2 lg:px-0">
+            <b>Q2</b>:<input type="text" value="{{ $story->q2 }}" class="form-control border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400">
+          </div>
+          @endif
+
+          @if ($story->q3)
+          <div class="max-w-7xl rounded mx-auto py-2 my-1 px-2 sm:px-2 lg:px-0">
+            <b>Q3</b>:<input type="text" value="{{ $story->q3 }}" class="form-control border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400">
+          </div>
+          @endif
+
+          @if ($story->q4)
+          <div class="max-w-7xl rounded mx-auto py-2 my-1 px-2 sm:px-2 lg:px-0">
+            <b>Q4</b>:<input type="text" value="{{ $story->q4 }}" class="form-control border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400">
+          </div>
+          @endif
+
+          @if ($story->q5)
+          <div class="max-w-7xl rounded mx-auto py-2 my-1 px-2 sm:px-2 lg:px-0">
+            <b>Q5</b>:<input type="text" value="{{ $story->q5 }}" class="form-control border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400">
+          </div>
+          @endif
+
           <hr>
-          <hr>
-            <span class="h3">Wav:
+          <br>
+            <span class="h4">Wav:
                 <audio controls>
                     <source src="{{ public_path('/storage/'.$story->file) }}" type="audio/ogg">
                     <source src="{{ public_path('/storage/'.$story->file) }}" type="audio/mpeg">
                   </audio></span><br>
-            <span class="h3">Grade: {{ $story->grade }}</span><br>
-            <span class="h3">Reads: {{ $story->views }}</span><br>
-            <span class="h3">Type: {{ $story->type }}</span><br>
+
+            <span class="h4">Grade: {{ $story->grade }}</span><br>
+            <span class="h4">Type: {{ $story->type }}</span><br>
+            <span class="h4">Reads/Views: {{ $story->views }}</span><br>
+            <span class="h4">Total Readers: {{ $readers }}</span><br>
 
             {{--  <table id="dataTable" class=" w-full text-sm text-left text-gray-500 dark:text-gray-400" style="width:100%">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
