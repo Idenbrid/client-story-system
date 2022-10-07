@@ -55,7 +55,7 @@ class RegisteredUserController extends Controller
         $reader->dob = $user->dob ?? null;
         $reader->gender = $user->gender ?? null;
         $reader->source_id = null;
-        $reader->source_assignee_id = null;
+        $reader->manager_id = null;
         $reader->user_id = $user->id;
         $reader->save();
 

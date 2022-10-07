@@ -49,7 +49,7 @@
                     Status
                   </th>
                   <th scope="col" class="py-3 px-6">
-                    Readers
+                    Samples
                   </th>
                 </tr>
               </thead>
@@ -82,7 +82,7 @@
                       <a href={{ route('user.reader.edit',['id'=>$assign->reader->id]) }}> {{ $assign->Reader->username }}</a>
                   </td>
                   <td class="py-4 px-6 whitespace-nowrap">
-                    {{ $assign->Story->title }}
+                    <a href={{ route('user.story',['id'=>$assign->story->id]) }}> {{ $assign->Story->title }}</a>
                   </td>
                   <td class="py-4 px-6">
                     {{ $assign->Story->grade }}

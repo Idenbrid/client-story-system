@@ -40,6 +40,22 @@ class PublicController extends Controller
         $source = Auth::user()->Manager->source;
         return view("user.readers.create", ['source' => $source]);
     }
+    public function grades()
+    {
+        // To return all Source grades for this manager
+        // $grades = Story::where(['source_id'=>Auth::user()->manager->source_id,'status'=>0])->paginate(10);
+        $grades = Story::where('status',0)->select('grade')->distinct()->get();
+        return view('user.grades.index',['grades'=>$grades]);
+    }
+    public function gradeStory(Request $request)
+    {
+        // return $request->all();
+        // To return all Source grades for this manager
+        // $grades = Story::where(['source_id'=>Auth::user()->manager->source_id,'status'=>0])->paginate(10);
+        $stories = Story::where('status',0)->where('grade',$request->id)->orderBy('views','DESC')->get(['id','title','views']);
+        return json_encode($stories);
+        // return view('user.grades.index',['grades'=>$grades]);
+    }
     public function stories()
     {
         // To return all Source Stories for this manager
@@ -59,12 +75,21 @@ class PublicController extends Controller
         // To return all Source Stories for this manager
         // $stories = Story::where(['source_id'=>Auth::user()->manager->source_id,'status'=>0])->paginate(10);
         $stories = Story::where('status',0)->get();
+        $grades = Story::where('status',0)->select('grade')->distinct()->orderBy('grade')->get();
         $readers = Reader::where('source_id',Auth::user()->Manager->source_id)->get();
-        return view('user.stories.assign',['stories'=>$stories,'readers'=>$readers]);
+        return view('user.stories.assign',['stories'=>$stories,'readers'=>$readers,'grades'=>$grades]);
     }
     public function storiesAssigned(Request $request)
     {
         // Assigning Story to Reader
+        $request->validate([
+            'reader'=>'required',
+            'story'=>'required',
+        ]);
+        $already = Assign::where('reader_id',$request->reader)->where('story_id',$request->story)->first();
+        if ($already) {
+            return redirect()->back()->withErrors(['assigned' => 'The Selected Story has already been assigned to this Reader']);
+        }else{
         $assign = new Assign();
         $assign->reader_id = $request->reader;
         $assign->story_id = $request->story;
@@ -73,13 +98,15 @@ class PublicController extends Controller
         $assign->save();
         $assigned  =Assign::where('manager_id',Auth::user()->Manager->id)->with(['Reader','Story'])->get();
         return redirect()->route('user.stories.assignments');
+        }
     }
     public function story($id)
     {
         // To return all Source Stories for this manager
         // $stories = Story::where(['source_id'=>Auth::user()->manager->source_id,'status'=>0])->paginate(10);
         $story = Story::find($id);
-        return view('user.stories.view',['story'=>$story]);
+        $readers = Assign::where('story_id',$story->id)->count();
+        return view('user.stories.view',['story'=>$story,'readers'=>$readers]);
     }
     public function readers()
     {
@@ -228,7 +255,9 @@ class PublicController extends Controller
         // Deleting Reader/student from System
         $reader = Reader::find($id);
         $user = User::find($reader->user_id);
+        $assignedStories = Assign::where('reader_id',$id);
         if ($reader->delete()) {
+            $assignedStories->delete();
             $user->delete();
             return redirect()->back();
         }else{
