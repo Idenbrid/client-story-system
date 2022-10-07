@@ -138,6 +138,7 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+      transform:translateX(100%);
       animation: scroll 100s linear infinite; 
       animation-duration: 130s;
       animation-play-state: running;
@@ -163,10 +164,10 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
           <div class="card" style="width:100%">
+            <div class="card-body">
             <h2 class="h2" style="">Title: {{ $story->title }}</h2>
             <h4 class="card-title">Created At: {{ $story->created_at }} <span class="text-muted">({{ $story->views }} Reads)</span></h4>
             <br>
-            <div class="card-body">
               <span class="h3 text-muted">Story;</span>
               <!-- Sliding Text & Controls -->
               <section class="d-flex flex-column">
@@ -342,6 +343,7 @@
       stopButton.disabled = true;
       $("#audio-playback").removeClass("hidden");
       $("#audio-record").addClass("hidden");
+      $("#audio-record").removeClass("d-flex");
       $("#downloadContainer").removeClass("hidden");
       submitBtn.removeClass("hidden")
     }

@@ -11,11 +11,9 @@
                 <div class="p-6 bg-white border-b border-gray-200 row">
 
                     @if (count($available) > 0)
-
-
                         @foreach ($available as $get)
-                        <div class="col-4">
-                        <div class="card" style="width:400px;margin:5px">
+                        <div class="col-lg-4 col-md-6 col-sm-6 my-3">
+                        <div class="card" >
                             <h2 class="h2" style="text-align: center;">{{ $get->story->title }}</h2>
                             <div class="card-body">
                               <h4 class="card-title">Created At: {{ $get->story->created_at }} <span class="text-muted">({{ $get->story->views }} Reads)</span></h4>
