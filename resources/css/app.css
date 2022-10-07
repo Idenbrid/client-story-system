@@ -2,13 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-[type="date"]:focus
-{
+[type="date"]:focus {
     box-shadow: none;
-    outline-offset:0px ;
-    border-color: white ;
+    outline-offset: 0px;
+    border-color: white;
 }
 
 .focus\:outline-blue-400:focus {
     outline-color: none;
-  }
+}
+
+a {
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+.hidden{
+    display: none !important;
+}

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManagerController;
 use App\Models\Source;
 use App\Http\Controllers\ReaderController;
+use App\Http\Controllers\admin\SampleController;
 use App\Http\Controllers\admin\StoryController;
 use App\Http\Controllers\admin\SourceController;
 use App\Http\Controllers\admin\SourceAdminController;

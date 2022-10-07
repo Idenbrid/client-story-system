@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\Models\Assign;
-use App\Models\Reader;
-use App\Models\Story;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Sample;
 
-class ReaderController extends Controller
+class SampleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +16,6 @@ class ReaderController extends Controller
     public function index()
     {
         //
-        $reader = Reader::where('user_id',Auth::user()->id)->first();
-        $available = Assign::where('reader_id',$reader->id)->with(['Manager','Story'])->get();
-
-        return view('reader.dashboard',['available'=>$available]);
     }
 
     /**
@@ -45,12 +39,6 @@ class ReaderController extends Controller
         //
     }
 
-    public function sample(Request $request)
-    {
-        // Collecting Sample from reader
-        return $request->all();
-    }
-
     /**
      * Display the specified resource.
      *
@@ -60,10 +48,6 @@ class ReaderController extends Controller
     public function show($id)
     {
         //
-        $story = Story::find($id);
-        $story->increment('views');
-        $story->save();
-        return view('reader.story',['story'=>$story]);
     }
 
     /**

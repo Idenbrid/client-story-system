@@ -122,7 +122,7 @@
           background-color: #fff;
         }
       </style>
-      <form method="POST" action="{{ route('admin.stories.store') }}" id="form" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('admin.stories.store') }}" id="storyCreationForm" enctype="multipart/form-data">
         @csrf
         <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-white">
           <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
@@ -392,6 +392,8 @@
       const downloadAudio = document.getElementById("downloadButton");
       downloadAudio.addEventListener("click", downloadRecording);
 
+      const storyCreationForm=document.getElementById("storyCreationForm")
+
       function startRecording() {
         // button settings
         recordButton.disabled = true;
@@ -424,7 +426,7 @@
             });
             const url = URL.createObjectURL(blob)
             preview.src = url;
-            const formData = new FormData(document.forms[0]);
+            const formData = new FormData(storyCreationForm);
             formData.append('audio_file', blob);
 
             var reader = new FileReader();
