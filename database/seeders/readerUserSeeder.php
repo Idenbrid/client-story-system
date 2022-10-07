@@ -16,7 +16,8 @@ class readerUserSeeder extends Seeder
     public function run()
     {
         $user =  User::create([
-            'name' => 'Reader',
+            'first_name' => 'Dear',
+            'last_name' => 'Reader',
             'email' => 'reader@gmail.com',
             'password' => bcrypt('12345678'),
         ]);

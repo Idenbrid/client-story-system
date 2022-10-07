@@ -135,6 +135,7 @@ Route::prefix('user')->middleware(['auth'])->name('user.')->group( function() {
     Route::post('/grade', [PublicController::class,'gradeStory'])->name('grade.stories');
     Route::get('/stories', [PublicController::class,'stories'])->name('stories');
     Route::get('/story/{id}', [PublicController::class,'story'])->name('story');
+    Route::post('/stories/questions', [PublicController::class,'questions'])->name('story.questions');
     Route::get('/stories/assignments', [PublicController::class,'assignments'])->name('stories.assignments');
     Route::get('/stories/assign', [PublicController::class,'assignStories'])->name('stories.assign');
     Route::post('/stories/assigned', [PublicController::class,'storiesAssigned'])->name('stories.assigned');

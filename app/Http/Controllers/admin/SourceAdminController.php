@@ -24,7 +24,6 @@ class SourceAdminController extends Controller
         //
         $admins = User::whereRoleIs('sadmin')->with('Source')->paginate(10);
         // return $admins;
-        // $admins = SourceAdmin::with('User')->paginate(10);
         return view("admin.admin-source.index", ['admins' => $admins]);
     }
     public function userDashboard()
@@ -83,9 +82,9 @@ class SourceAdminController extends Controller
         $source_admin->password = Hash::make($request->password);
         if ($source_admin->save()) {
             $source_admin->attachRole('sadmin');
-            return redirect(route('admin.source.index'))->with(['status' => true, 'message' => 'Source Administrator Created Successfully!']);
+            return redirect()->route('admin.source.index')->with(['status' => true, 'message' => 'Source Administrator Created Successfully!']);
         } else {
-            return redirect(route('admin.source.index'))->with(['status' => false, 'message' => 'Something went wrong!']);
+            return redirect()->route('admin.source.index')->with(['status' => false, 'message' => 'Something went wrong!']);
         }
     }
 

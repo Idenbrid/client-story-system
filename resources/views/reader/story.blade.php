@@ -139,7 +139,7 @@
       flex-direction: row;
       align-items: center;
       transform:translateX(100%);
-      animation: scroll 100s linear infinite; 
+      animation: scroll 100s linear infinite;
       animation-duration: 130s;
       animation-play-state: running;
       animation-delay: 0s;
@@ -176,10 +176,13 @@
                     {{ $story->content}}
                   </div>
                 </div>
+
                 <div class="my-4">
+                    Story Controls:
                   <button id="startMarqueBtn" class="btn btn-sm btn-success">
                     <i class="fa-solid fa-play"></i>
                   </button>
+
                   <button id="stopMarqueBtn" class="btn btn-sm btn-danger">
                     <i class="fa-solid fa-circle-stop"></i>
                   </button>
@@ -189,41 +192,18 @@
               <!-- Sliding Text & Controls -->
 
               <!-- Story Audio/ Request Audio -->
+
+              <span class="h3 text-muted">Story Audio;</span>
               <audio controls>
-                <source src="{{asset('/storage').'/'.$story->file}}" type="audio/wav">
-                <source src="{{asset('/storage').'/'.$story->file}}" type="audio/mpeg">
+                <source src="{{ url('/storage/') }}/{{$story->file}}" type="audio/wav">
+                <source src="{{ url('/storage/') }}/{{$story->file}}" type="audio/mpeg">
                 Your browser does not support the audio element.
               </audio>
               <audio src="" autoplay></audio>
-              <a href="{{ public_path('/storage/') }}" class="btn btn-info" download="">Download Audio...</a>
+              {{-- <a href="{{ url('/storage/') }}/{{$story->file}}" class="btn btn-info" download="">Download Audio...</a> --}}
               <!-- Story Audio/ Request Audio -->
-
-              <!-- User Audio -->
-              <form id="readerSingleCreationForm">
-                <div class="mt-5 d-flex flex-column align-items-start">
-                  <div class="playback">
-                    <audio src="" controls="" id="audio-playback" class="hidden"></audio>
-                  </div>
-                  <section id="audio-record" class="d-flex align-items-center uppercase font-semibold relative pr-3.5">
-                    <div class="uppercase font-semibold relative pr-3.5">
-                      <span>File</span>
-                      <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
-                          <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z"></path>
-                        </svg></sup>
-                    </div>
-                    <div class="audio-record">
-                      <button class="btn btn-sm" id="recordButton">Start Recording</button>
-                      <button class="btn btn-sm" id="stopButton" disabled="">Stop</button>
-                    </div>
-                  </section>
-                  <button id="submitBtn" class="btn btn-info">Submit</button>
-                </div>
-              </form>
-              <!-- User Audio -->
-
-              {{-- <a href="{{ route('reader.read.story',['id'=>$story->id]) }}" class="btn btn-primary">Read more...</a> --}}
-              <br>
-              <hr>
+            <hr>
+              <span class="h3 text-muted">Quiz;</span>
               @if ($story->q1)
               <p class="card-text"><b>Q1:</b> {{ $story->q1 }}</p>
               @endif
@@ -239,6 +219,35 @@
               @if ($story->q5)
               <p class="card-text"><b>Q5:</b> {{ $story->q5 }}</p>
               @endif
+
+              <!-- User Audio -->
+
+              <form id="readerSingleCreationForm">
+                <div class="mt-5 d-flex flex-column align-items-start">
+                    <span class="h3 text-muted">Sample Collection;</span>
+                  <div class="playback">
+                    Please record your noise-free Sample.
+                    <audio src="" controls="" id="audio-playback" class="hidden"></audio>
+                  </div>
+                  <section id="audio-record" class="d-flex align-items-center uppercase font-semibold relative pr-3.5">
+                    <div class="uppercase font-semibold relative pr-3.5">
+                      <span>Sample</span>
+                      <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
+                          <path d="M18.562,14.63379,14.00031,12,18.562,9.36621a1.00016,1.00016,0,0,0-1-1.73242L13,10.26776V5a1,1,0,0,0-2,0v5.26776l-4.562-2.634a1.00016,1.00016,0,0,0-1,1.73242L9.99969,12,5.438,14.63379a1.00016,1.00016,0,0,0,1,1.73242L11,13.73224V19a1,1,0,0,0,2,0V13.73224l4.562,2.634a1.00016,1.00016,0,0,0,1-1.73242Z"></path>
+                        </svg></sup>
+                    </div>
+                    <div class="audio-record">
+                      <button class="btn btn-sm" id="recordButton">Start Recording</button>
+                      <button class="btn btn-sm" id="stopButton" disabled="">Stop</button>
+                    </div>
+                  </section>
+                  <button id="submitBtn" class="btn btn-info">Submit</button>
+                </div>
+              </form>
+              <!-- User Audio -->
+
+              {{-- <a href="{{ route('reader.read.story',['id'=>$story->id]) }}" class="btn btn-primary">Read more...</a> --}}
+
             </div>
           </div>
         </div>

@@ -70,6 +70,14 @@ class PublicController extends Controller
         $assigned  =Assign::where('manager_id',Auth::user()->Manager->id)->latest()->with(['Reader','Story'])->get();
         return view('user.stories.assigned',['assigned'=>$assigned]);
     }
+    public function questions(Request $request)
+    {
+        // To return all Source Stories for this manager
+        // $stories = Story::where(['source_id'=>Auth::user()->manager->source_id,'status'=>0])->paginate(10);
+        return $request->all();
+        $assigned  =Assign::where('manager_id',Auth::user()->Manager->id)->latest()->with(['Reader','Story'])->get();
+        return view('user.stories.assigned',['assigned'=>$assigned]);
+    }
     public function assignStories()
     {
         // To return all Source Stories for this manager

@@ -58,8 +58,8 @@
           <br>
             <span class="h4">Wav:
                 <audio controls>
-                    <source src="{{ public_path('/storage/'.$story->file) }}" type="audio/ogg">
-                    <source src="{{ public_path('/storage/'.$story->file) }}" type="audio/mpeg">
+                    <source src="{{ url('/storage/') }}/{{$story->file}}" type="audio/ogg">
+                    <source src="{{ url('/storage/') }}/{{$story->file}}" type="audio/mpeg">
                   </audio></span><br>
 
             <span class="h4">Grade: {{ $story->grade }}</span><br>

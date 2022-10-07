@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('source_id');
             $table->string('dob');
             $table->integer('gender');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
