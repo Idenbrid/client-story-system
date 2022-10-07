@@ -140,6 +140,7 @@ Route::prefix('user')->middleware(['auth'])->name('user.')->group( function() {
     Route::get('/stories/assign', [PublicController::class,'assignStories'])->name('stories.assign');
     Route::post('/stories/assigned', [PublicController::class,'storiesAssigned'])->name('stories.assigned');
 
+
     Route::get('/reader/edit/{id}', [PublicController::class,'edit'])->name('reader.edit');
     Route::post('/reader/upadte/{id}', [PublicController::class,'update'])->name('reader.update');
 
@@ -152,10 +153,11 @@ Route::prefix('user')->middleware(['auth'])->name('user.')->group( function() {
 
 // Routes for Reader
 Route::prefix('reader')->name('reader.')->group( function() {
+    // Sample Collection
     Route::get('/dashboard', [ReaderController::class,'index'])->name('dashboard');
     Route::get('/read/story/{id}', [ReaderController::class,'show'])->name('read.story');
     Route::get('/readers', [ReaderController::class,'readers'])->name('readers');
-    Route::post('/reader/sample', [ReaderController::class,'sample'])->name('sample');
+    Route::post('/sample', [ReaderController::class,'sample'])->name('sample');
 
 });
 
