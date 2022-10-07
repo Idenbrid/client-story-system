@@ -117,7 +117,7 @@
               <div class="dreamit-blog-content">
                 <div class="dreamit-blog-title">
                   <h2>
-                    <a href="blog-details.html">{{ $get->story->title }}</a>
+                    <a href="{{ route('reader.read.story',['id'=>$get->story->id]) }}">{{ $get->story->title }}</a>
                   </h2>
                 </div>
                 <div class="dreamit-blog-text">
