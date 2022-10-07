@@ -138,7 +138,6 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      transform:translateX(100%);
       animation: scroll 100s linear infinite; 
       animation-duration: 130s;
       animation-play-state: running;
