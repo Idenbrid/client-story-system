@@ -60,4 +60,7 @@ class User extends Authenticatable
     public function Reader(){
         return $this->belongsTo(Reader::class,'reader_id','id');
     }
+    public function ReaderData(){
+        return $this->hasOne(Reader::class,'user_id','id');
+    }
 }

@@ -157,7 +157,7 @@ Route::prefix('reader')->name('reader.')->group( function() {
     Route::get('/dashboard', [ReaderController::class,'index'])->name('dashboard');
     Route::get('/read/story/{id}', [ReaderController::class,'show'])->name('read.story');
     Route::get('/readers', [ReaderController::class,'readers'])->name('readers');
-    Route::post('/sample', [ReaderController::class,'sample'])->name('sample');
+    Route::post('/sample/{id}', [ReaderController::class,'sample'])->name('sample');
 
 });
 

@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('samples', function (Blueprint $table) {
             $table->id();
+            $table->string('reader_id')->nullable();
+            $table->string('story_id')->nullable();
+            $table->string('manager_id')->nullable();
+            $table->string('source_id')->nullable();
+            $table->string('file')->nullable();
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('end_at')->nullable();
+            $table->string('status')->nullable();
+            $table->timestamp('last_submit')->nullable();
             $table->timestamps();
         });
     }

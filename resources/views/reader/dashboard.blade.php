@@ -111,8 +111,8 @@
           <div class="col-lg-4 col-md-6 col-sm-6 my-4">
             <div class="dreamit-single-blog-box">
               <div class="dreamit-meta-box">
-                <a >Created At: </a>
-                <h3>{{ $get->story->created_at }}</h3>
+                <a >Assigned At: </a>
+                <h3>{{ $get->created_at }}</h3>
               </div>
               <div class="dreamit-blog-content">
                 <div class="dreamit-blog-title">
