@@ -44,14 +44,14 @@
                     <x-nav-link class="text-white text-base" href="{{ route('sadmin.mysource') }}" :active="request()->routeIs('sadmin.mysource')">
                         {{ __('My Source') }}
                     </x-nav-link>
-                    {{--  <x-nav-link class="text-white text-base" href="{{ route('sadmin.stories') }}" :active="request()->routeIs('sadmin.stories')">
-                        {{ __('Stories') }}
-                    </x-nav-link>  --}}
                     <x-nav-link class="text-white text-base" href="{{ route('sadmin.managers') }}" :active="request()->routeIs('sadmin.managers')">
                         {{ __('Teachers') }}
                     </x-nav-link>
                     <x-nav-link class="text-white text-base" href="{{ route('sadmin.readers') }}" :active="request()->routeIs('sadmin.readers')">
                         {{ __('Readers') }}
+                    </x-nav-link>
+                    <x-nav-link class="text-white text-base" href="{{ route('sadmin.samples') }}" :active="request()->routeIs('sadmin.samples')">
+                        {{ __('Story Samples') }}
                     </x-nav-link>
                     @else
                     <x-nav-link class="text-white text-base" href="#" onclick="alert(`Admin haven't allocated you a Source yet!`)" style="text-decoration: none;cursor:wait;">

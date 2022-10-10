@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Manager;
 use App\Models\Model;
+use App\Models\Sample;
 use App\Models\Source;
 use App\Models\SourceAdmin;
 use App\Models\User;
@@ -26,6 +27,12 @@ class SourceAdminController extends Controller
         // return $admins;
         return view("admin.admin-source.index", ['admins' => $admins]);
     }
+    public function samples()
+    {
+        //
+        $samples = Sample::where('source_id',Auth::user()->SourceAdmin->source_id)->get();
+        return view("sadmin.samples.index", ['samples' => $samples]);
+    }
     public function userDashboard()
     {
         //
@@ -37,9 +44,6 @@ class SourceAdminController extends Controller
         //
 
         $sadmin = User::where('id', Auth::user()->id)->with('Source')->latest()->first();
-        // return $sadmin;
-        // return $sadmin->Source;
-
         return view("sadmin.mysource", ['source' => $sadmin->Source]);
     }
 
@@ -50,12 +54,6 @@ class SourceAdminController extends Controller
      */
     public function create()
     {
-
-        //
-        // $readers = Reader::where('source_id', Auth::user()->Source->id)->with('Source')->paginate(10);
-        // $readers = Reader::where('source_id', Auth::user()->Source->id)->with('Source')->paginate(10);
-        // return $readers;
-        // return view("sadmin.readers", ['readers' => $readers]);
         return view("admin.admin-source.create");
     }
 

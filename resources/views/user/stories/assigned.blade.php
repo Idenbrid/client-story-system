@@ -21,15 +21,6 @@
              <table id="dataTable" class=" w-full text-sm text-left text-gray-500 dark:text-gray-400" style="width:100%">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                   {{--  <th scope="col" class="p-4">
-                    <div class="flex items-center">
-                      <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                      <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                    </div>
-                  </th>  --}}
-                   {{--  <th scope="col" class="py-3 px-6">
-                    Action
-                  </th>  --}}
                   <th scope="col" class="py-3 px-6">
                     ID
                   </th>
@@ -55,25 +46,13 @@
               </thead>
               <tbody>
                 @foreach ($assigned as $assign)
+                @php
+                    $samples = \App\Models\Sample::where('reader_id',$assign->Reader->id)->get('id');
+                @endphp
+
 
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                   {{--  <td class="p-4 w-4">
-                    <div class="flex items-center">
-                      <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                      <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                    </div>
-                  </td>
-                  <td class="flex items-center py-4 px-6 space-x-3">
-                    <a href="{{route('sadmin.manager.edit',['id'=>$story->id])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
-                        <path fill="none" d="M0 0h24v24H0V0z" />
-                        <path d="M3 17.46v3.04c0 .28.22.5.5.5h3.04c.13 0 .26-.05.35-.15L17.81 9.94l-3.75-3.75L3.15 17.1c-.1.1-.15.22-.15.36zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" /></svg>
-                    </a>
-                    <a href="{{route('sadmin.manager.delete',['id'=>$story->id])}}" class="font-medium text-red-600 dark:text-red-500 hover:underline">
-                      <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
-                    </a>
-                  </td>  --}}
+
 
                   <td class="py-4 px-6 whitespace-nowrap">
                       {{ $assign->id }}
@@ -94,16 +73,16 @@
                     {{ $assign->status ? 'Hidden':'Visible' }}
                   </td>
                   <td class="py-4 px-6">
-                      {{ $assign->readers ?? '-' }}
+                        @foreach ($samples as $sample)
+                            <a href="{{ route('user.sample',['id'=>$sample->id]) }}">{{ $sample->id }}</a>,
+                        @endforeach
                     </td>
-
                 </tr>
 
                 @endforeach
               </tbody>
             </table>
           </div>
-          {{--  {{ $stories->links() }}  --}}
 
         </section>
         <!-- Readers Table Data -->

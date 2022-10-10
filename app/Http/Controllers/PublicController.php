@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Story;
 use App\Models\Reader;
+use App\Models\Sample;
 use App\Models\Source;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -122,6 +123,14 @@ class PublicController extends Controller
         // $readers = Reader::where('source_id',Auth::user()->manager->source_id)->paginate(10);
         $readers = Reader::where('source_id',Auth::user()->Manager->source->source_id)->latest()->paginate(10);
         return view('user.readers.index',['readers'=>$readers]);
+    }
+
+    public function viewSample($id)
+    {
+        // To return all Source Readers for this manager
+        // $readers = Reader::where('source_id',Auth::user()->manager->source_id)->paginate(10);
+        $sample = Sample::where('id',$id)->with(['Story','Reader'])->first();
+        return view('user.samples.view',['sample'=>$sample]);
     }
 
     /**
