@@ -9,6 +9,7 @@ use App\Models\SourceAdmin;
 use App\Models\Story;
 use App\Models\User;
 use App\Models\Reader;
+use App\Models\Sample;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,7 @@ class HomeController extends Controller
             $totalReaders = Reader::count();
             $totalSources = Source::count();
             $totalSAdmin = SourceAdmin::count();
+            $totalSamples = Sample::count();
             $totalStories = Story::count();
             $totalTeachers = Manager::count();
             $totalUsers = User::count();
@@ -36,6 +38,7 @@ class HomeController extends Controller
                 'totalReaders'=>$totalReaders,
                 'totalSources'=>$totalSources,
                 'totalSAdmin'=>$totalSAdmin,
+                'totalSamples'=>$totalSamples,
                 'totalTeachers'=>$totalTeachers,
                 'totalStories'=>$totalStories,
                 'totalUsers'=>$totalUsers,

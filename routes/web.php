@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminSampleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\HomeController;
@@ -90,6 +91,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
     });
+
+    // Routes for Admin to check Story and Reader Samples
+
+    Route::prefix('samples')->name('admin.samples.')->controller(AdminSampleController::class)->group(function () {
+        Route::get('/index',[AdminSampleController::class,'index'])->name('index');
+    });
+
     // Route::resource('users', UserController::class)->names([
     //     'index'=>'users.index',
     //     'edit'=>'admin.users.edit',

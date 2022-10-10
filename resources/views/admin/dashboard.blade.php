@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="max-w-7xl rounded mx-auto py-2 my-3 px-4 sm:px-6 lg:px-4 bg-neutral-100">
       <div class="row">
-    
+
         <!-- <div class="p-6 m-3 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
@@ -109,7 +109,7 @@
           <div class="card">
             {{-- <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%"> --}}
             <div class="card-body">
-              <h2 class="card-title">Sources are like Schools/Companies or any kind of Source</h2>
+              <h2 class="card-title">Schools/Companies or any kind of Source</h2>
               <hr><br>
               <h1 class="card-text h1">{{ $totalSources }} Total Sources</h1>
               <hr><br>
@@ -123,7 +123,7 @@
             <div class="card-body">
               <h2 class="card-title">Limited Power Users allocated to each Source</h2>
               <hr><br>
-              <h1 class="card-text h1">{{ $totalSAdmin }} Source Administrators</h1>
+              <h1 class="card-text h1">{{ $totalSAdmin }} Source Adminis</h1>
               <hr><br>
               <a href="{{ route('admin.users.role',['role'=>'sadmin']) }}" class="btn btn-primary">See Source Admins</a>
             </div>
@@ -157,7 +157,7 @@
           <div class="card">
             {{-- <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%"> --}}
             <div class="card-body">
-              <h2 class="card-title">People who work for the sources on their Admin's behalf</h2>
+              <h2 class="card-title">People working on their Admin's behalf</h2>
               <hr><br>
               <h1 class="card-text h1">{{ $totalTeachers }} Teachers</h1>
               <hr><br>
@@ -174,6 +174,18 @@
               <h1 class="card-text h1">{{ $totalReaders }} Readers</h1>
               <hr><br>
               <a href="{{ route('admin.users.role',['role'=>'reader']) }}" class="btn btn-primary">See All</a>
+            </div>
+          </div>
+        </div>
+        <div  class="col-xl-4 col-lg-6 col-md-6 col-sm-12 my-3">
+          <div class="card">
+            {{-- <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%"> --}}
+            <div class="card-body">
+              <h2 class="card-title">Samples over all the stories</h2>
+              <hr><br>
+              <h1 class="card-text h1">{{ $totalSamples }} Samples</h1>
+              <hr><br>
+              <a href="{{ route('admin.samples.index') }}" class="btn btn-primary">Check All</a>
             </div>
           </div>
         </div>

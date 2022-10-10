@@ -15,7 +15,9 @@ class AdminSampleController extends Controller
      */
     public function index()
     {
-        //
+        // Retuning all Samples to Admin Dashboard
+        $samples = Sample::with('Source')->get();
+        return view('admin.samples.index',['samples'=>$samples]);
     }
 
     /**
