@@ -6,7 +6,10 @@ use App\Models\Assign;
 use App\Models\Reader;
 use App\Models\Sample;
 use App\Models\Story;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,54 +50,41 @@ class ReaderController extends Controller
         //
     }
 
-    public function sample(Request $request,$id)
+    public function sample(Request $request, $id)
     {
-        // Collecting Sample from reader
-        // str_replace('.webm','.wav',$request->audio_file);
-        $sample = Sample::where(['story_id'=>$id,'reader_id'=> Auth::user()->ReaderData->id])->first();
-        if ($sample) {
-
-            $file = $request->file('audio_file');
-            $extension = '.wav';
-            $fileName = Auth::user()->first_name.rand(111222, 999000) .$extension;
-            $location = 'storage/samples/';
-            $file->move($location,$fileName);
-
-            // $newFile =  str_replace('.webm','.wav',substr($file, 7));
-            // $file = Storage::put('/public/samples', $request->audio_file);
-            $sample->reader_id = Auth::user()->ReaderData->id;
-            $sample->story_id = $id;
-            $sample->manager_id = Auth::user()->ReaderData->manager_id;
-            $sample->source_id = Auth::user()->ReaderData->source_id;
-            $sample->file = $fileName;
-            $sample->last_submit = $sample->updated_at;
-            if ($sample->update()) {
-                return redirect()->back()->with(['status' => true, 'message' => "Your Sample was updated successfully!"]);
-            } else {
-                return redirect()->back()->with(['status' => false, 'message' => 'Something went wrong!']);
-            }
-        }else{
-            $file = $request->file('audio_file');
-            $extension = '.wav';
-            $fileName = Auth::user()->first_name.rand(111222, 999000) .$extension;
-            $location = 'storage/samples/';
-            $file->move($location,$fileName);
-
-            // $newFile =  str_replace('.webm','.wav',substr($file, 7));
-            // $file = Storage::put('/public/samples', $request->audio_file);
-            $sample->reader_id = Auth::user()->ReaderData->id;
-            $sample->story_id = $id;
-            $sample->manager_id = Auth::user()->ReaderData->manager_id;
-            $sample->source_id = Auth::user()->ReaderData->source_id;
-            $sample->file = $fileName;
-            $sample->last_submit = $sample->updated_at;
-            if ($sample->save()) {
-                return redirect()->back()->with(['status' => true, 'message' => "Your Sample was successfully submitted!"]);
-            } else {
-                return redirect()->back()->with(['status' => false, 'message' => 'Something went wrong!']);
-            }
+        $start = date_create(str_replace("/", "-", $request->started));
+        $started_at =  date_format($start, "Y-m-d H:i:s");
+        $end = date_create(str_replace("/", "-", $request->ended));
+        $ended_at =  date_format($end, "Y-m-d H:i:s");
+        $emitted = Carbon::parse($started_at);
+        $tz = Carbon::parse($ended_at);
+        $gap = $tz->diffInSeconds($emitted);
+        function format_time($t, $f = ':') // t = seconds, f = separator
+        {
+            return sprintf("%02d%s%02d%s%02d", floor($t / 3600), $f, ($t / 60) % 60, $f, $t % 60);
         }
 
+        $duration =  format_time($gap-1);
+        $file = $request->file('audio_file');
+        $extension = '.wav';
+        $fileName = Auth::user()->first_name . rand(111222, 999000) . $extension;
+        $location = 'storage/samples/';
+        $file->move($location, $fileName);
+        $sample = new Sample();
+        $sample->reader_id = Auth::user()->ReaderData->id;
+        $sample->story_id = $id;
+        $sample->manager_id = Auth::user()->ReaderData->manager_id;
+        $sample->source_id = Auth::user()->ReaderData->source_id;
+        $sample->file = $fileName;
+        $sample->duration = $duration;
+        $sample->started_at = $started_at;
+        $sample->end_at = $ended_at;
+        $sample->last_submit = $sample->updated_at;
+        if ($sample->save()) {
+            return redirect()->back()->with(['status' => true, 'message' => "Your Sample was successfully submitted!"]);
+        } else {
+            return redirect()->back()->with(['status' => false, 'message' => 'Something went wrong!']);
+        }
     }
 
     /**
@@ -109,11 +99,11 @@ class ReaderController extends Controller
         // Returning One Story of $id to Reader
         $assigned = Assign::where(['reader_id' => auth()->user()->ReaderData->id, 'story_id' => $id])->latest()->with(['Story', 'Manager'])->first();
         if ($assigned) {
-            $samples = Sample::where(['story_id' => $assigned->story->id, 'reader_id'=> auth()->user()->ReaderData->id])->latest()->get();
+            $samples = Sample::where(['story_id' => $assigned->story->id, 'reader_id' => auth()->user()->ReaderData->id])->latest()->get();
             $story = Story::find($assigned->story->id);
             $story->increment('views');
             $story->save();
-            return view('reader.story', ['story' => $story, 'assigned' => $assigned,'samples'=>$samples]);
+            return view('reader.story', ['story' => $story, 'assigned' => $assigned, 'samples' => $samples]);
         } else {
             return redirect()->back();
         }

@@ -257,22 +257,59 @@
                             <!-- User Audio -->
 
                             {{-- <a href="{{ route('reader.read.story',['id'=>$story->id]) }}" class="btn btn-primary">Read more...</a> --}}
-                            <span class="h3 text-muted">Previous Samples;</span>
                             <!-- Sliding Text & Controls -->
                             <section class="d-flex flex-column">
                                 <div style="margin-top: 20px;">
                                     <div>
-                                        @foreach ($samples as $sample)
-                                            <span class="h3 text-muted">Story Audio;</span>
-                                            <audio controls>
-                                                <source src="{{ url('/storage/') }}/{{ $sample->file }}"
-                                                    type="audio/wav">
-                                                <source src="{{ url('/storage/') }}/{{ $sample->file }}"
-                                                    type="audio/mpeg">
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                            <audio src="" autoplay></audio>
-                                        @endforeach
+                                        <span class="h3 text-muted">Previous Samples;</span>
+                                        <div class="table-responsive">
+                                            @if (count($samples) > 0)
+                                            <table class="table table-secondary">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Started</th>
+                                                        <th scope="col">Ended</th>
+                                                        <th scope="col">File</th>
+                                                        <th scope="col">Duration</th>
+                                                        {{-- <th scope="col">Updated</th> --}}
+                                                        <th scope="col">Teacher</th>
+                                                        <th scope="col">Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+                                                    @foreach ($samples as $sample)
+                                                        <tr class="">
+                                                            <td scope="row">{{ $sample->id }}</td>
+                                                            <td>{{ $sample->started_at }}</td>
+                                                            <td>{{ $sample->end_at }}</td>
+                                                            <td><audio controls>
+                                                                    <source
+                                                                        src="{{ url('/storage/samples') }}/{{ $sample->file }}"
+                                                                        type="audio/wav">
+                                                                    <source
+                                                                        src="{{ url('/storage/samples') }}/{{ $sample->file }}"
+                                                                        type="audio/mpeg">
+                                                                    Your browser does not support the audio element.
+                                                                </audio>
+                                                                <audio src="" autoplay></audio>
+                                                            </td>
+                                                            <td>{{ $sample->duration }}s</td>
+                                                            {{-- <td>{{ $sample->last_submit }}</td> --}}
+                                                            <td>{{ Auth::user()->ReaderData->Manager->username }}</td>
+                                                            <td>{{ $sample->status == 1 ? 'Approved' : 'In review' }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+
+                                                </tbody>
+                                            </table>
+                                            @else
+                                            <div style="text-muted">No Samples Submitted Yet!</div>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </section>
@@ -308,7 +345,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script>
-        let recorder, audio_stream;
+        let recorder, audio_stream, started, ended;
         const recordButton = document.getElementById("recordButton");
         const stopButton = document.getElementById("stopButton");
         const preview = document.getElementById("audio-playback");
@@ -323,6 +360,28 @@
         stopButton.addEventListener("click", stopRecording);
         stopButton.disabled = true;
         submitBtn.addClass("hidden")
+
+        $(document).ready(function() {
+            function getTimeStamp() {
+                var now = new Date();
+                return ((now.getMonth() + 1) + '/' + (now.getDate()) + '/' + now.getFullYear() + " " + now
+                    .getHours() + ':' +
+                    ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) + ':' + ((now
+                        .getSeconds() < 10) ? ("0" + now
+                        .getSeconds()) : (now.getSeconds())));
+            }
+            $("#recordButton").click(function(e) {
+                let tt = getTimeStamp();
+                formData.append('started', tt)
+                console.log(tt);
+                $("#started").val(`${tt}`);
+            });
+            $("#stopButton").click(function(e) {
+                let tt = getTimeStamp();
+                formData.append('ended', tt)
+                $("#ended").val(`${tt}`);
+            });
+        });
 
         $("#stopMarqueBtn").on("click", () => {
             $('#storyMarquee').css({
