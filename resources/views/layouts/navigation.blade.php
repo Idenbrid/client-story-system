@@ -29,9 +29,13 @@
                             :active="request()->routeIs('story')">
                             {{ __('Stories') }}
                         </x-nav-link>
+                        <x-nav-link class="text-white text-base" href="{{ route('admin.samples.index') }}" :active="request()->routeIs('admin.samples.index')">
+                            {{ __('Story Samples') }}
+                        </x-nav-link>
                         <x-nav-link class="text-white text-base" href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.index')">
                             {{ __('Luca Users') }}
                         </x-nav-link>
+
                     </div>
 
                 @elseif(Auth::user()->roles->first()->name == 'sadmin')

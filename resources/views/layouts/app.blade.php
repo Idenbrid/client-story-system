@@ -50,7 +50,10 @@
     }
   </style>
   <!-- Scripts -->
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <!-- Scripts -->
+  <link rel="stylesheet" href="http://127.0.0.1:8000/build/assets/app.b5531dfd.css" /><link rel="stylesheet" href="http://127.0.0.1:8000/build/assets/app.79695696.css" /><script type="module" src="http://127.0.0.1:8000/build/assets/app.a65afb34.js"></script></head>
+
+  {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
 <body class="font-sans antialiased">
