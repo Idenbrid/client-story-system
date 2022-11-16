@@ -8,9 +8,11 @@ use App\Models\Sample;
 use App\Models\Story;
 use Carbon\Carbon;
 use DateTime;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session as FacadesSession;
 use Illuminate\Support\Facades\Storage;
 
 class ReaderController extends Controller
@@ -22,11 +24,16 @@ class ReaderController extends Controller
      */
     public function index()
     {
-        //
-        $reader = Reader::where('user_id', Auth::user()->id)->first();
-        $available = Assign::where('reader_id', $reader->id)->with(['Manager', 'Story'])->get();
+        if(Auth::check())
+        {
+            $reader = Reader::where('user_id', Auth::user()->id)->first();
+            $available = Assign::where('reader_id', $reader->id)->with(['Manager', 'Story'])->get();
+            return view('reader.dashboard',compact('available'));
+        }
+        else{
+            redirect('/login');
+        }
 
-        return view('reader.dashboard', ['available' => $available]);
     }
 
     /**
@@ -52,10 +59,11 @@ class ReaderController extends Controller
 
     public function sample(Request $request, $id)
     {
-        $start = date_create(str_replace("/", "-", $request->started));
-        $started_at =  date_format($start, "Y-m-d H:i:s");
-        $end = date_create(str_replace("/", "-", $request->ended));
-        $ended_at =  date_format($end, "Y-m-d H:i:s");
+
+        // $start = date_create(str_replace("/", "-", $request->started));
+        $started_at =  Carbon::parse($request->started);
+        // $end = date_create(str_replace("/", "-", $request->ended));
+        $ended_at =  Carbon::parse($request->ended);
         $emitted = Carbon::parse($started_at);
         $tz = Carbon::parse($ended_at);
         $gap = $tz->diffInSeconds($emitted);
@@ -80,11 +88,19 @@ class ReaderController extends Controller
         $sample->started_at = $started_at;
         $sample->end_at = $ended_at;
         $sample->last_submit = $sample->updated_at;
-        if ($sample->save()) {
-            return redirect()->back()->with(['status' => true, 'message' => "Your Sample was successfully submitted!"]);
-        } else {
-            return redirect()->back()->with(['status' => false, 'message' => 'Something went wrong!']);
+        if($sample->save())
+        {
+            $reader = Reader::where('user_id', Auth::user()->id)->first();
+            $available = Assign::where(['reader_id'=> $reader->id,'story_id'=>$id])->latest()->first();
+            $available->is_read=1;
+            $available->update();
+            return redirect()->route('reader.dashboard')->with(['success' => true, 'message' => "was updated successfully!"]);
         }
+        // return redirect()->route('');
+
+        // else {
+        //     return redirect()->back()->with(['status' => false, 'message' => 'Something went wrong!']);
+        // }
     }
 
     /**
@@ -93,16 +109,20 @@ class ReaderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
 
         // Returning One Story of $id to Reader
         $assigned = Assign::where(['reader_id' => auth()->user()->ReaderData->id, 'story_id' => $id])->latest()->with(['Story', 'Manager'])->first();
         if ($assigned) {
             $samples = Sample::where(['story_id' => $assigned->story->id, 'reader_id' => auth()->user()->ReaderData->id])->latest()->get();
+
             $story = Story::find($assigned->story->id);
             $story->increment('views');
             $story->save();
+            // $request->session()->flash('story_id',$assigned->story->id);
+            // $Key = 'key_' . $assigned->story->id;
+            // session()->put($Key, 1);
             return view('reader.story', ['story' => $story, 'assigned' => $assigned, 'samples' => $samples]);
         } else {
             return redirect()->back();

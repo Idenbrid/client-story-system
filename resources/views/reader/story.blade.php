@@ -119,7 +119,7 @@
             flex-direction: row !important;
             position: relative;
             width: 100%;
-            border: red 5px ridge;
+            /* border: red 5px ridge; */
             font-weight: bold
         }
 
@@ -146,7 +146,7 @@
             animation-delay: 0s;
             animation-direction: normal;
             color: brown;
-            font-size: 14;
+            font-size: 45px;
             font-weight: arial;
         }
 
@@ -196,33 +196,18 @@
                             <!-- Sliding Text & Controls -->
 
                             <!-- Story Audio/ Request Audio -->
-
+{{--
                             <span class="h3 text-muted">Story Audio;</span>
                             <audio controls>
                                 <source src="{{ url('/storage/') }}/{{ $story->file }}" type="audio/wav">
                                 <source src="{{ url('/storage/') }}/{{ $story->file }}" type="audio/mpeg">
                                 Your browser does not support the audio element.
-                            </audio>
-                            <audio src="" autoplay></audio>
+                            </audio> --}}
+                            {{-- <audio src="" autoplay></audio> --}}
                             {{-- <a href="{{ url('/storage/') }}/{{$story->file}}" class="btn btn-info" download="">Download Audio...</a> --}}
                             <!-- Story Audio/ Request Audio -->
                             <hr>
-                            <span class="h3 text-muted">Quiz;</span>
-                            @if ($story->q1)
-                                <p class="card-text"><b>Q1:</b> {{ $story->q1 }}</p>
-                            @endif
-                            @if ($story->q2)
-                                <p class="card-text"><b>Q2:</b> {{ $story->q2 }}</p>
-                            @endif
-                            @if ($story->q3)
-                                <p class="card-text"><b>Q3:</b> {{ $story->q3 }}</p>
-                            @endif
-                            @if ($story->q4)
-                                <p class="card-text"><b>Q4:</b> {{ $story->q4 }}</p>
-                            @endif
-                            @if ($story->q5)
-                                <p class="card-text"><b>Q5:</b> {{ $story->q5 }}</p>
-                            @endif
+
 
                             <!-- User Audio -->
 
@@ -261,9 +246,9 @@
                             <section class="d-flex flex-column">
                                 <div style="margin-top: 20px;">
                                     <div>
-                                        <span class="h3 text-muted">Previous Samples;</span>
+                                        <span class="h3 text-muted">Quiz</span>
                                         <div class="table-responsive">
-                                            @if (count($samples) > 0)
+                                            {{-- @if (count($samples) > 0)
                                             <table class="table table-secondary">
                                                 <thead>
                                                     <tr>
@@ -280,7 +265,7 @@
                                                 <tbody>
 
 
-                                                    @foreach ($samples as $sample)
+                                                    {{-- @foreach ($samples as $sample)
                                                         <tr class="">
                                                             <td scope="row">{{ $sample->id }}</td>
                                                             <td>{{ $sample->started_at }}</td>
@@ -297,18 +282,40 @@
                                                                 <audio src="" autoplay></audio>
                                                             </td>
                                                             <td>{{ $sample->duration }}s</td>
-                                                            {{-- <td>{{ $sample->last_submit }}</td> --}}
                                                             <td>{{ Auth::user()->ReaderData->Manager->username }}</td>
                                                             <td>{{ $sample->status == 1 ? 'Approved' : 'In review' }}
                                                             </td>
                                                         </tr>
-                                                    @endforeach
+                                                    @endforeach --}}
 
                                                 </tbody>
-                                            </table>
-                                            @else
-                                            <div style="text-muted">No Samples Submitted Yet!</div>
+                                            {{-- </table> --}}
+                                            {{-- @else --}}
+                                            {{-- <div style="text-muted">No Samples Submitted Yet!</div> --}}
+                                            {{-- @endif  --}}
+{{--
+
+                                            <span class="h3 text-muted">Quiz;</span> --}}
+                                            @if ($story->q1)
+                                                <p class="card-text"><b>Q1:</b> {{ $story->q1 }}</p>
                                             @endif
+                                            @if ($story->q2)
+                                                <p class="card-text"><b>Q2:</b> {{ $story->q2 }}</p>
+                                            @endif
+                                            @if ($story->q3)
+                                                <p class="card-text"><b>Q3:</b> {{ $story->q3 }}</p>
+                                            @endif
+                                            @if ($story->q4)
+                                                <p class="card-text"><b>Q4:</b> {{ $story->q4 }}</p>
+                                            @endif
+                                            @if ($story->q5)
+                                                <p class="card-text"><b>Q5:</b> {{ $story->q5 }}</p>
+                                            @endif
+
+
+
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -321,15 +328,15 @@
                                             Exit
                                         </div>
                                     </a>
-                                    <a href="{{ route('reader.dashboard') }}">
+                                    {{-- <a href="{{ route('reader.dashboard') }}">
                                         <div class="btn btn-warning">
                                             Read Other Stories
                                         </div>
-                                    </a>
+                                    </a> --}}
 
                                     <a onClick="window.location.reload();">
                                         <div class="btn btn-info">
-                                            Reload
+                                            Clear
                                         </div>
                                     </a>
 
@@ -492,7 +499,7 @@
                 enctype: 'multipart/form-data',
                 url: "{{ route('reader.sample', ['id' => $story->id]) }}",
                 success: function(response) {
-                    console.log(response);
+                    window.location = '{{ route('reader.dashboard') }}';
                 }
             });
         }

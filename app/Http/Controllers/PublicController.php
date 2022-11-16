@@ -11,6 +11,7 @@ use App\Models\Reader;
 use App\Models\Sample;
 use App\Models\Source;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class PublicController extends Controller
@@ -95,13 +96,14 @@ class PublicController extends Controller
             'reader'=>'required',
             'story'=>'required',
         ]);
-        $already = Assign::where('reader_id',$request->reader)->where('story_id',$request->story)->first();
+        $already = Assign::where('reader_id',$request->reader)->whereDate('created_at', '=', date('Y-m-d'))->where('story_id',$request->story)->first();
         if ($already) {
-            return redirect()->back()->withErrors(['assigned' => 'The Selected Story has already been assigned to this Reader']);
+            return redirect()->back()->withErrors(['assigned' => 'The Selected Story has already been assigned to this Reader today']);
         }else{
         $assign = new Assign();
         $assign->reader_id = $request->reader;
         $assign->story_id = $request->story;
+        $assign->is_read =0;
         $assign->manager_id = Auth::user()->Manager->id;
         $assign->source_id = Auth::user()->Manager->source_id;
         $assign->save();

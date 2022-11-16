@@ -54,9 +54,9 @@
                     <th scope="col" class="py-3 px-6">
                         Submitted At
                       </th>
-                    <th scope="col" class="py-3 px-6">
+                    {{-- <th scope="col" class="py-3 px-6">
                       Status
-                    </th>
+                    </th> --}}
                   </tr>
                 </thead>
                 <tbody>
@@ -66,12 +66,20 @@
                     <td class="py-4 px-6">
                       {{ $sample->id }}
                     </td>
+
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-                      {{$sample->Reader->username}}
+                      {{ $sample->Reader ? $sample->Reader->username : 'No reader'}}
                     </th>
+
+
                     <td class="py-4 px-6">
+                        @if($sample->Story)
                       <a href="{{route('admin.stories.edit',['id'=>$sample->Story->id])}}">{{$sample->Story->title}}</a>
+                      @else
+                      <p>No Story</p>
+                      @endif
                     </td>
+
                     <td class="py-4 px-6">
                       {{\App\Models\Manager::find($sample->manager_id)->username}}
                     </td>
@@ -97,9 +105,9 @@
                     <td class="py-4 px-6">
                         {{ $sample->created_at }}
                       </td>
-                    <td class="py-4 px-6">
+                    {{-- <td class="py-4 px-6">
                       {{ $sample->status == 1 ? 'Active':'In review' }}
-                    </td>
+                    </td> --}}
                   </tr>
 
                   @endforeach

@@ -45,9 +45,9 @@
                 <th scope="col" class="py-3 px-6">
                   Last Update
                 </th>
-                <th scope="col" class="py-3 px-6">
+                {{-- <th scope="col" class="py-3 px-6">
                   Status
-                </th>
+                </th> --}}
                 <th scope="col" class="py-3 px-6">
                   Readers
                 </th>
@@ -90,9 +90,9 @@
                 <th scope="row" class="capitalize py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                   {{ $story->updated_at }}
                 </th>
-                <td class="py-4 px-6">
+                {{-- <td class="py-4 px-6">
                   {{ $story->status ? 'Hidden':'Visible' }}
-                </td>
+                </td> --}}
                 <td class="py-4 px-6">
                     {{ $story->readers ?? '-' }}
                   </td>

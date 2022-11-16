@@ -45,9 +45,9 @@
                   <th scope="col" class="py-3 px-6">
                     Type
                   </th>
-                  <th scope="col" class="py-3 px-6">
+                  {{-- <th scope="col" class="py-3 px-6">
                     WAV File
-                  </th>
+                  </th> --}}
                   <th scope="col" class="py-3 px-6">
                     Status
                   </th>
@@ -98,10 +98,10 @@
                   <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                     {{ $story->type }}
                   </th>
-                  <td class="py-4 px-6">
-                    <a href="{{ url('/storage/') }}/{{$story->file}}" download>Download File</a>
+                  {{-- <td class="py-4 px-6">
+                    <a href="{{ url('/storage/') }}/{{$story->file}}" download>Download File</a> --}}
                     {{-- <a href="{{ config('app.url') }}/{{ str_replace("$story->file", "public", "public/storage") }}/{{ $story->file }}">Download</a> --}}
-                  </td>
+                  {{-- </td> --}}
                   <td class="py-4 px-6">
                     {{ $story->status ? 'Hidden':'Visible' }}
                   </td>

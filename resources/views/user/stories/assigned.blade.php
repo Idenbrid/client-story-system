@@ -36,9 +36,9 @@
                   <th scope="col" class="py-3 px-6">
                     Assigned At
                   </th>
-                  <th scope="col" class="py-3 px-6">
+                  {{-- <th scope="col" class="py-3 px-6">
                     Status
-                  </th>
+                  </th> --}}
                   <th scope="col" class="py-3 px-6">
                     Samples
                   </th>
@@ -69,9 +69,9 @@
                   <th scope="row" class="capitalize py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                     {{ $assign->created_at }}
                   </th>
-                  <td class="py-4 px-6">
+                  {{-- <td class="py-4 px-6">
                     {{ $assign->status ? 'Hidden':'Visible' }}
-                  </td>
+                  </td> --}}
                   <td class="py-4 px-6">
                         @foreach ($samples as $sample)
                             <a href="{{ route('user.sample',['id'=>$sample->id]) }}">{{ $sample->id }}</a>,

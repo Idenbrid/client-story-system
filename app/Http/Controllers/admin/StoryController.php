@@ -53,16 +53,16 @@ class StoryController extends Controller
             'content'=>'required',
             'grade'=>'required',
         ]);
-        $file = rand(12121,45645454524).'.wav';
-        if($request->base64){
-            $data = str_replace('data:audio/wave;base64,', '', $request->base64);
-            Storage::put("/public/$file",base64_decode($data));
-        }
+        // $file = rand(12121,45645454524).'.wav';
+        // if($request->base64){
+        //     $data = str_replace('data:audio/wave;base64,', '', $request->base64);
+        //     Storage::put("/public/$file",base64_decode($data));
+        // }
         $story = new Story();
         $story->grade = $request->grade;
         $story->title = $request->title;
         $story->content = $request->content;
-        $story->file = $file;
+        // $story->file = $file;
         $story->q1 = $request->question1 ?? null;
         $story->q2 = $request->question2 ?? null;
         $story->q3 = $request->question3 ?? null;
@@ -117,11 +117,11 @@ class StoryController extends Controller
     {
         //
         $story = Story::find($id);
-        if($request->file){
-            $file = Storage::put('/public', $request->file);
-            $story->file = substr($file, 7);;
-            return $request->all();
-        }
+        // if($request->file){
+        //     $file = Storage::put('/public', $request->file);
+        //     $story->file = substr($file, 7);;
+        //     return $request->all();
+        // }
         $story->grade = $request->grade;
         $story->title = $request->title;
         $story->content = $request->content;

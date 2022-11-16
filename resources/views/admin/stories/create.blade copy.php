@@ -124,7 +124,7 @@ video::-webkit-media-controls-panel {
     background-color: #fff;
 }
         </style>
-        
+
       <form method="POST" action="{{route('admin.stories.store')}}">
         @csrf
       <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-white">
@@ -153,7 +153,7 @@ video::-webkit-media-controls-panel {
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('Question # 1')}}</span>
-              
+
             </div>
             <input type="text" name="question1" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#1" />
           @if($errors->has('question1'))
@@ -163,7 +163,7 @@ video::-webkit-media-controls-panel {
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('Question # 2')}}</span>
-              
+
             </div>
             <input type="text" name="question2" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#2" />
           @if($errors->has('question2'))
@@ -173,7 +173,7 @@ video::-webkit-media-controls-panel {
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('Question # 3')}}</span>
-              
+
             </div>
             <input type="text" name="question3" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#3" />
           @if($errors->has('question3'))
@@ -183,7 +183,7 @@ video::-webkit-media-controls-panel {
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('Question # 4')}}</span>
-              
+
             </div>
             <input type="text" name="question4" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#4" />
           @if($errors->has('question4'))
@@ -193,7 +193,7 @@ video::-webkit-media-controls-panel {
         <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
             <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
               <span>{{ __('Question # 5')}}</span>
-              
+
             </div>
             <input type="text" name="question5" class="border border-gray-300 w-full my-2 sm:m-2  sm:w-9/12 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400" placeholder="Story Q#5" />
           @if($errors->has('question5'))
@@ -244,7 +244,7 @@ video::-webkit-media-controls-panel {
                 <div class="text-danger">{{ $errors->first('type') }}</div>
         @endif
         </div>
-        <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
+        <!-- <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
           <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
             <span>{{ __('File')}}</span>
             <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
@@ -254,16 +254,16 @@ video::-webkit-media-controls-panel {
             <button class="btn btn-sm" id="recordButton">Start Recording</button>
             <button class="btn btn-sm" id="stopButton" class="inactive">Stop</button>
           </div>
-      
+
           <div class="playback">
               <audio src="" controls id="audio-playback" class="hidden"></audio>
           </div>
           @if($errors->has('file'))
                 <div class="text-danger">{{ $errors->first('file') }}</div>
         @endif
-        </div>
-        
-  
+        </div> -->
+
+
         {{-- <div class="max-w-4xl mx-auto my-1 flex  items-start  flex-col sm:flex-row sm:items-center">
           <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
             <span>{{ __('Phone')}}</span>
@@ -329,11 +329,11 @@ video::-webkit-media-controls-panel {
                 <path d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z" /></svg>
               Add another record</button>
           </div>
-        </div> 
+        </div>
      </div> --}}
-      
-     
-    
+
+
+
 
       <!-- Submit Button -->
       <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-neutral-100 ">

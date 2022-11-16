@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'permission' => \Laratrust\Middleware\LaratrustPermission::class,
         'ability' => \Laratrust\Middleware\LaratrustAbility::class,
         'sadmin' => \App\Http\Middleware\SourceAdmin::class,
+        // 'prevent-back-history' => \App\Http\Middleware\PreventBackHistory::class,
     ];
 }

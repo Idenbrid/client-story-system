@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\SourceAdminController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\admin\UserController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,15 +34,20 @@ use Illuminate\Http\Request;
 // });
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
+
+Route::get('/cache', function () {
+    Artisan::call('optimize:clear');
+
+})->name('cache');
 
 Route::get('/get-sources', function () {
     return Source::all();
 });
 
 // Route::get('/get-sources',[SourceAdminController::class,'getSources' ] );
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::middleware('auth')->get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
 });
 Route::group(['prefix' => 'admin'], function () {
@@ -166,7 +172,8 @@ Route::prefix('user')->middleware(['auth', 'role:manager'])->name('user.')->grou
 });
 
 // Routes for Reader
-Route::prefix('reader')->name('reader.')->group(function () {
+// 'middleware' => 'prevent-back-history'
+Route::group(['as'=>'reader.','prefix'=>'reader'], function (){
     // Sample Collection
     Route::get('/dashboard', [ReaderController::class, 'index'])->name('dashboard');
     Route::get('/read/story/{id}', [ReaderController::class, 'show'])->name('read.story');

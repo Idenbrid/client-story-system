@@ -267,7 +267,7 @@
         <div class="text-danger">{{ $errors->first('type') }}</div>
         @endif
         </div> --}}
-        <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
+        {{-- <div class="max-w-4xl mx-auto my-1 flex items-start  flex-col sm:flex-row sm:items-center">
           <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
             <span>{{ __('File') }}</span>
             <sup class="top-[2px] right-[-12px]"><svg class="w-3 fill-rose-500  absolute right-0 top-0" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
@@ -284,7 +284,7 @@
           @if ($errors->has('file'))
           <div class="text-danger">{{ $errors->first('file') }}</div>
           @endif
-        </div>
+        </div> --}}
         {{-- <div class="max-w-4xl mx-auto my-1 flex  items-start  flex-col sm:flex-row sm:items-center">
           <div class="uppercase flex justify-start sm:justify-end w-full sm:w-48 font-semibold relative pr-3.5">
             <span>{{ __('Phone')}}</span>
