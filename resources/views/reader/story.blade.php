@@ -236,7 +236,7 @@
                                             <button class="btn btn-sm" id="stopButton" disabled="">Stop</button>
                                         </div>
                                     </section>
-                                    <button id="submitBtn" class="btn btn-info">Submit</button>
+                                    <button id="submitBtn" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
                             <!-- User Audio -->
@@ -244,9 +244,9 @@
                             {{-- <a href="{{ route('reader.read.story',['id'=>$story->id]) }}" class="btn btn-primary">Read more...</a> --}}
                             <!-- Sliding Text & Controls -->
                             <section class="d-flex flex-column">
-                                <div style="margin-top: 20px;">
+                                <div style="margin: 20px 0;">
                                     <div>
-                                        <span class="h3 text-muted">Quiz</span>
+                                        <span class="h3 text-muted my-2">Quiz</span>
                                         <div class="table-responsive">
                                             {{-- @if (count($samples) > 0)
                                             <table class="table table-secondary">
@@ -293,28 +293,22 @@
                                             {{-- @else --}}
                                             {{-- <div style="text-muted">No Samples Submitted Yet!</div> --}}
                                             {{-- @endif  --}}
-{{--
-
-                                            <span class="h3 text-muted">Quiz;</span> --}}
+                                            {{--<span class="h3 text-muted my-2 ">Quiz;</span> --}}
                                             @if ($story->q1)
-                                                <p class="card-text"><b>Q1:</b> {{ $story->q1 }}</p>
+                                                <p class="card-text bg-neutral-100"><b>Q1:</b> {{ $story->q1 }}</p>
                                             @endif
                                             @if ($story->q2)
-                                                <p class="card-text"><b>Q2:</b> {{ $story->q2 }}</p>
+                                                <p class="card-text bg-neutral-100"><b>Q2:</b> {{ $story->q2 }}</p>
                                             @endif
                                             @if ($story->q3)
-                                                <p class="card-text"><b>Q3:</b> {{ $story->q3 }}</p>
+                                                <p class="card-text bg-neutral-100"><b>Q3:</b> {{ $story->q3 }}</p>
                                             @endif
                                             @if ($story->q4)
-                                                <p class="card-text"><b>Q4:</b> {{ $story->q4 }}</p>
+                                                <p class="card-text bg-neutral-100"><b>Q4:</b> {{ $story->q4 }}</p>
                                             @endif
                                             @if ($story->q5)
-                                                <p class="card-text"><b>Q5:</b> {{ $story->q5 }}</p>
+                                                <p class="card-text bg-neutral-100"><b>Q5:</b> {{ $story->q5 }}</p>
                                             @endif
-
-
-
-
 
                                         </div>
                                     </div>
@@ -335,7 +329,7 @@
                                     </a> --}}
 
                                     <a onClick="window.location.reload();">
-                                        <div class="btn btn-info">
+                                        <div class="btn btn-secondary">
                                             Clear
                                         </div>
                                     </a>

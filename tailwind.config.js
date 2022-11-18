@@ -18,12 +18,17 @@ module.exports = {
                 current: 'currentColor',
                 'white': '#ffffff',
                 'sky':{
-                    400:"#38bdf8",
-                    500:"#0ea5e9"
+                    400:"#fff",
+                    500:"#FEB81C"
                 },
                 'rose':{
                     500:"#f43f5e",
                     600:"#e11d48"
+                }
+            },
+            borderColor:{
+                'indigo':{
+                    400:'#FEB81C'
                 }
             },
             maxWidth: {

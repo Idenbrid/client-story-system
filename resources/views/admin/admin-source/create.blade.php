@@ -152,7 +152,7 @@
                     <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-neutral-100 ">
                         <div class="max-w-lg flex mx-auto ">
                             <button type="submit"
-                                class="flex items-center bg-sky-400 py-2 px-5 text-white rounded mx-2">Save <div
+                                class="flex items-center btn-primary py-2 px-5 text-white rounded mx-2">Save <div
                                     class="ml-1">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20">
