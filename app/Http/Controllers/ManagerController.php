@@ -55,7 +55,7 @@ class ManagerController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'dob' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users',
             'password' => 'required',
             'gender' => 'required',
         ]);

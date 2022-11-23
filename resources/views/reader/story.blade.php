@@ -163,8 +163,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="card" style="width:100%">
+                <div class="bg-white border-b border-gray-200">
+                    <div class="card border-0" style="width:100%">
                         <div class="card-body">
                             <h2 class="h2" style="">Title: {{ $story->title }}</h2>
                             <h4 class="card-title">Assigned At: {{ $assigned->created_at }} by
@@ -196,7 +196,7 @@
                             <!-- Sliding Text & Controls -->
 
                             <!-- Story Audio/ Request Audio -->
-{{--
+                            {{--
                             <span class="h3 text-muted">Story Audio;</span>
                             <audio controls>
                                 <source src="{{ url('/storage/') }}/{{ $story->file }}" type="audio/wav">
@@ -236,112 +236,133 @@
                                             <button class="btn btn-sm" id="stopButton" disabled="">Stop</button>
                                         </div>
                                     </section>
-                                    <button id="submitBtn" class="btn btn-info">Submit</button>
-                                </div>
-                            </form>
-                            <!-- User Audio -->
 
-                            {{-- <a href="{{ route('reader.read.story',['id'=>$story->id]) }}" class="btn btn-primary">Read more...</a> --}}
-                            <!-- Sliding Text & Controls -->
-                            <section class="d-flex flex-column">
-                                <div style="margin-top: 20px;">
-                                    <div>
-                                        <span class="h3 text-muted">Quiz</span>
-                                        <div class="table-responsive">
-                                            {{-- @if (count($samples) > 0)
-                                            <table class="table table-secondary">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">ID</th>
-                                                        <th scope="col">Started</th>
-                                                        <th scope="col">Ended</th>
-                                                        <th scope="col">File</th>
-                                                        <th scope="col">Duration</th>
-                                                        {{-- <th scope="col">Updated</th> --}}
-                                                        <th scope="col">Teacher</th>
-                                                        <th scope="col">Status</th>
-                                                    </tr>
+                                </div>
+
+
+
+                                <section class="d-flex flex-column">
+                                    <div style="margin-top: 20px;">
+                                        <div>
+                                            <span class="h3 text-muted">Quiz</span>
+                                            <div class="table-responsive">
+                                                {{-- @if (count($samples) > 0)
+                                                <table class="table table-secondary">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">ID</th>
+                                                            <th scope="col">Started</th>
+                                                            <th scope="col">Ended</th>
+                                                            <th scope="col">File</th>
+                                                            <th scope="col">Duration</th>
+                                                            {{-- <th scope="col">Updated</th> --}}
+                                                <th scope="col">Teacher</th>
+                                                <th scope="col">Status</th>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
 
 
                                                     {{-- @foreach ($samples as $sample)
-                                                        <tr class="">
-                                                            <td scope="row">{{ $sample->id }}</td>
-                                                            <td>{{ $sample->started_at }}</td>
-                                                            <td>{{ $sample->end_at }}</td>
-                                                            <td><audio controls>
-                                                                    <source
-                                                                        src="{{ url('/storage/samples') }}/{{ $sample->file }}"
-                                                                        type="audio/wav">
-                                                                    <source
-                                                                        src="{{ url('/storage/samples') }}/{{ $sample->file }}"
-                                                                        type="audio/mpeg">
-                                                                    Your browser does not support the audio element.
-                                                                </audio>
-                                                                <audio src="" autoplay></audio>
-                                                            </td>
-                                                            <td>{{ $sample->duration }}s</td>
-                                                            <td>{{ Auth::user()->ReaderData->Manager->username }}</td>
-                                                            <td>{{ $sample->status == 1 ? 'Approved' : 'In review' }}
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach --}}
+                                                            <tr class="">
+                                                                <td scope="row">{{ $sample->id }}</td>
+                                                                <td>{{ $sample->started_at }}</td>
+                                                                <td>{{ $sample->end_at }}</td>
+                                                                <td><audio controls>
+                                                                        <source
+                                                                            src="{{ url('/storage/samples') }}/{{ $sample->file }}"
+                                                                            type="audio/wav">
+                                                                        <source
+                                                                            src="{{ url('/storage/samples') }}/{{ $sample->file }}"
+                                                                            type="audio/mpeg">
+                                                                        Your browser does not support the audio element.
+                                                                    </audio>
+                                                                    <audio src="" autoplay></audio>
+                                                                </td>
+                                                                <td>{{ $sample->duration }}s</td>
+                                                                <td>{{ Auth::user()->ReaderData->Manager->username }}</td>
+                                                                <td>{{ $sample->status == 1 ? 'Approved' : 'In review' }}
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach --}}
 
                                                 </tbody>
-                                            {{-- </table> --}}
-                                            {{-- @else --}}
-                                            {{-- <div style="text-muted">No Samples Submitted Yet!</div> --}}
-                                            {{-- @endif  --}}
-{{--
+                                                {{-- </table> --}}
+                                                {{-- @else --}}
+                                                {{-- <div style="text-muted">No Samples Submitted Yet!</div> --}}
+                                                {{-- @endif  --}}
+                                                {{--
 
-                                            <span class="h3 text-muted">Quiz;</span> --}}
-                                            @if ($story->q1)
-                                                <p class="card-text"><b>Q1:</b> {{ $story->q1 }}</p>
-                                            @endif
-                                            @if ($story->q2)
-                                                <p class="card-text"><b>Q2:</b> {{ $story->q2 }}</p>
-                                            @endif
-                                            @if ($story->q3)
-                                                <p class="card-text"><b>Q3:</b> {{ $story->q3 }}</p>
-                                            @endif
-                                            @if ($story->q4)
-                                                <p class="card-text"><b>Q4:</b> {{ $story->q4 }}</p>
-                                            @endif
-                                            @if ($story->q5)
-                                                <p class="card-text"><b>Q5:</b> {{ $story->q5 }}</p>
-                                            @endif
+                                                <span class="h3 text-muted">Quiz;</span> --}}
+                                                @if ($story->q1)
+                                                    <p class="card-text"><b>Q1:</b> {{ $story->q1 }}</p>
+                                                    <textarea type="text" value="{{ old('q1') }}" rows="5" name="q1" id="q1"
+                                                        class="w-100 border border-gray-300 w-full my-2 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
+                                                        placeholder="Answer the above question..."></textarea>
+                                                @endif
+                                                @if ($story->q2)
+                                                    <p class="card-text"><b>Q2:</b> {{ $story->q2 }}</p>
+                                                    <textarea type="text" value="{{ old('q2') }}" rows="5" name="q2" id="q2"
+                                                        class="w-100 border border-gray-300 w-full my-2 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
+                                                        placeholder="Answer the above question..."></textarea>
+                                                @endif
+                                                @if ($story->q3)
+                                                    <p class="card-text"><b>Q3:</b> {{ $story->q3 }}</p>
+                                                    <textarea type="text" value="{{ old('q3') }}" rows="5" name="q3" id="q3"
+                                                        class="w-100 border border-gray-300 w-full my-2 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
+                                                        placeholder="Answer the above question..."></textarea>
+                                                @endif
+                                                @if ($story->q4)
+                                                    <p class="card-text"><b>Q4:</b> {{ $story->q4 }}</p>
+                                                    <textarea type="text" value="{{ old('q4') }}" rows="5" name="q4" id="q4"
+                                                        class="w-100 border border-gray-300 w-full my-2 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
+                                                        placeholder="Answer the above question..."></textarea>
+                                                @endif
+                                                @if ($story->q5)
+                                                    <p class="card-text"><b>Q5:</b> {{ $story->q5 }}</p>
+                                                    <textarea type="text" value="{{ old('q5') }}" rows="5" name="q5" id="q5"
+                                                        class="w-100 border border-gray-300 w-full my-2 px-2 py-1 rounded outline-offset-0 outline-none focus:outline-blue-400"
+                                                        placeholder="Answer the above question..."></textarea>
+                                                @endif
 
-
-
-
-
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </section>
+                                </section>
+
+
+
+
+                                <section class="d-flex flex-column">
+                                    <div style="margin-top: 20px;">
+                                        <a href="{{ route('reader.dashboard') }}">
+                                            <div class="btn btn-danger">
+                                                Exit
+                                            </div>
+                                        </a>
+                                        {{-- <a href="{{ route('reader.dashboard') }}">
+                                            <div class="btn btn-warning">
+                                                Read Other Stories
+                                            </div>
+                                        </a> --}}
+
+                                        <a onClick="window.location.reload();">
+                                            <div class="btn btn-info">
+                                                Clear
+                                            </div>
+                                        </a>
+                                        <button id="submitBtn" class="btn btn-info">Submit</button>
+
+                                    </div>
+                                </section>
+                            </form>
+                            <!-- User Audio -->
+
+                            {{-- <a href="{{ route('reader.read.story',['id'=>$story->id]) }}" class="btn btn-primary">Read more...</a> --}}
+                            <!-- Sliding Text & Controls -->
+
                             <hr>
-                            <section class="d-flex flex-column">
-                                <div style="margin-top: 20px;">
-                                    <a href="{{ route('reader.dashboard') }}">
-                                        <div class="btn btn-danger">
-                                            Exit
-                                        </div>
-                                    </a>
-                                    {{-- <a href="{{ route('reader.dashboard') }}">
-                                        <div class="btn btn-warning">
-                                            Read Other Stories
-                                        </div>
-                                    </a> --}}
 
-                                    <a onClick="window.location.reload();">
-                                        <div class="btn btn-info">
-                                            Clear
-                                        </div>
-                                    </a>
-
-                                </div>
-                            </section>
 
                         </div>
                     </div>
@@ -474,9 +495,34 @@
             $("#downloadContainer").removeClass("hidden");
             submitBtn.removeClass("hidden")
         }
-
         function submit(e) {
             e.preventDefault()
+            ;
+            if($('#q1').val())
+            {
+                formData.append('q1',$("#q1").val())
+
+            }
+            if($('#q2').val())
+            {
+                formData.append('q2',$("#q2").val())
+
+            }
+            if($('#q3').val())
+            {
+                formData.append('q3',$("#q3").val())
+
+            }
+            if($('#q4').val())
+            {
+                formData.append('q4',$("#q4").val())
+
+            }
+            if($('#q5').val())
+            {
+                formData.append('q5',$("#q5").val())
+
+            }
             console.log(formData);
             $.ajaxSetup({
                 headers: {

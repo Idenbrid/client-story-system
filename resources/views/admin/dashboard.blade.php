@@ -6,7 +6,7 @@
   </x-slot>
   <section>
     <!-- Page Heading -->
-    <div class="max-w-7xl rounded mx-auto py-2 my-3 px-4 sm:px-6 lg:px-4 bg-neutral-100">
+    <div class="max-w-7xl rounded mx-auto py-2 my-3 px-4 sm:px-6 lg:px-4 ">
       <div class="row">
 
         <!-- <div class="p-6 m-3 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -123,7 +123,7 @@
             <div class="card-body">
               <h2 class="card-title">Limited Power Users allocated to each Source</h2>
               <hr><br>
-              <h1 class="card-text h1">{{ $totalSAdmin }} Source Adminis</h1>
+              <h1 class="card-text h1">{{ $totalSAdmin }} Source Admin</h1>
               <hr><br>
               <a href="{{ route('admin.users.role',['role'=>'sadmin']) }}" class="btn btn-primary">See Source Admins</a>
             </div>

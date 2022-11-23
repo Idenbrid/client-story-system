@@ -18,3 +18,30 @@ a {
 a:hover{
     text-decoration: none;
 }
+.logo{
+    height: 50px;
+}
+.text-primary{
+    color: #0175A8 !important;
+}
+.btn-success{
+    background: #28a745;
+}
+.btn-primary{
+    background: #FEB81C !important;
+    border: none !important;
+    box-shadow: none !important
+}
+.btn-primary:hover{
+    background: #0175A8 !important;
+}
+.btn-primary:focus{
+    outline-style: none !important;
+}
+p.card-text {
+    padding: 10px 10px;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+

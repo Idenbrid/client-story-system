@@ -124,12 +124,13 @@ class SourceAdminController extends Controller
         $sadmin->first_name = $request->first_name;
         $sadmin->last_name = $request->last_name;
         $sadmin->email = $request->email;
-        if ($request->pass != '') {
+        if ($request->password != '') {
             $sadmin->password = Hash::make($request->password);
         }
         if ($sadmin->update()) {
             return redirect(route('admin.source.index'))->with(['status' => true, 'message' => "{$sadmin->name} was updated successfully!"]);
-        } else {
+        }
+        else {
             return redirect(route('admin.source.index'))->with(['status' => false, 'message' => 'Something went wrong!']);
         }
     }

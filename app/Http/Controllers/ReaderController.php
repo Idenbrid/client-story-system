@@ -17,11 +17,55 @@ use Illuminate\Support\Facades\Storage;
 
 class ReaderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function show_model_sample($id)
+    {
+        $html = "";
+        $sample= Sample::find($id);
+        if(!empty($sample)){
+            if(!empty($sample->story->q1)){
+                $html = $html."<p class='card-text mt-3'><b>Q1: ".$sample->story->q1."</b></p>";
+                if(!empty($sample->q1)){
+                    $html = $html."<p class='w-100 my-2 px-2 py-1 border border-gray-300'>$sample->q1</p>";
+                }else{
+                    $html = $html."<p class='w-100 my-2 px-2 py-1 border border-gray-300'>No answer yet</p>";
+                }
+            }
+            if(!empty($sample->story->q2)){
+                $html = $html."<p class='card-text mt-3'><b>Q2: ".$sample->story->q2."</b></p>";
+                if(!empty($sample->q2)){
+                    $html = $html."<p class='w-100 my-2 px-2 py-1 border border-gray-300'>$sample->q2</p>";
+                }else{
+                    $html = $html."<p class='w-100 my-2 px-2 py-1 border border-gray-300'>No answer yet</p>";
+                }
+            }
+            if(!empty($sample->story->q3)){
+                $html = $html."<p class='card-text mt-3'><b>Q3: ".$sample->story->q3."</b></p>";
+                if(!empty($sample->q3)){
+                    $html = $html."<p class='w-100 my-2 px-2 py-1 border border-gray-300'>$sample->q3</p>";
+                }else{
+                    $html = $html."<p class='w-100 my-2 px-2 py-1 border border-gray-300'>No answer yet</p>";
+                }
+            }
+            if(!empty($sample->story->q4)){
+                $html = $html."<p class='card-text mt-3'><b>Q4: ".$sample->story->q4."</b></p>";
+                if(!empty($sample->q4)){
+                    $html = $html."<p class='w-100 my-2 px-2 py-1 border border-gray-300'>$sample->q4</p>";
+                }else{
+                    $html = $html."<p class='w-100 my-2 px-2 py-1 border border-gray-300'>No answer yet</p>";
+                }
+            }
+            if(!empty($sample->story->q5)){
+                $html = $html."<p class='card-text mt-3'><b>Q2: ".$sample->story->q5."</b></p>";
+                if(!empty($sample->q5)){
+                    $html = $html."<p class='w-100 my-2 px-2 py-1 border border-gray-300'>$sample->q5</p>";
+                }else{
+                    $html = $html."<p class='w-100 my-2 px-2 py-1 border border-gray-300'>No answer yet</p>";
+                }
+            }
+         }
+         $response['html'] = $html;
+         return response()->json($response);
+    }
     public function index()
     {
         if(Auth::check())
@@ -88,6 +132,27 @@ class ReaderController extends Controller
         $sample->started_at = $started_at;
         $sample->end_at = $ended_at;
         $sample->last_submit = $sample->updated_at;
+        if(isset($request->q1))
+        {
+            $sample->q1=$request->q1;
+        }
+        if(isset($request->q2))
+        {
+            $sample->q2=$request->q2;
+        } if(isset($request->q2))
+        {
+            $sample->q3=$request->q3;
+        } if(isset($request->q3))
+        {
+            $sample->q4=$request->q4;
+        } if(isset($request->q4))
+        {
+            $sample->q4=$request->q4;
+        }
+        if(isset($request->q5))
+        {
+            $sample->q5=$request->q5;
+        }
         if($sample->save())
         {
             $reader = Reader::where('user_id', Auth::user()->id)->first();

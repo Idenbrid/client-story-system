@@ -8,7 +8,7 @@
       <!-- Page Heading -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
         <h2 class="bg-white text-sky-500 text-4xl">
-          {{ __('Add New Manager') }}
+          {{ __('Add New Reader') }}
         </h2>
       </div>
       <!-- Page Heading -->
@@ -197,7 +197,7 @@
         <!-- Submit Button -->
         <div class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-4 bg-neutral-100 ">
           <div class="max-w-lg flex mx-auto ">
-            <button type="submit" class="flex items-center bg-sky-400 py-2 px-5 text-white rounded mx-2">Save <div class="ml-1">
+            <button type="submit" class="flex items-center btn-primary py-2 px-5 text-white rounded mx-2">Save <div class="ml-1">
                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>

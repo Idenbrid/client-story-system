@@ -14,36 +14,6 @@
                 <button class="bg-sky-500 text-white py-1 px-3 rounded outline-none focus:outline-none">{{ __('Add New') }}</button>
             </a> --}}
         </div>
-
-
-{{-- Answers Model --}}
-
-<div class="modal fade" id="empModal" >
-    <div class="modal-dialog modal-lg">
-       <!-- Modal content-->
-       <div class="modal-content">
-          <div class="modal-header">
-             <h4 class="modal-title">Sample Questions</h4>
-             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-              <table class="w-100" id="tblempinfo">
-                 <tbody></tbody>
-              </table>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-          </div>
-       </div>
-    </div>
- </div>
-
-
-
-
-
-
-
         <!-- Page Heading -->
         <!-- Readers Table Data -->
         <section class="max-w-7xl rounded mx-auto py-3 my-3 px-4 sm:px-6 lg:px-0">
@@ -83,9 +53,6 @@
                     </th>
                     <th scope="col" class="py-3 px-6">
                         Submitted At
-                      </th>
-                      <th scope="col" class="py-3 px-6">
-                       Answers
                       </th>
                     {{-- <th scope="col" class="py-3 px-6">
                       Status
@@ -138,11 +105,6 @@
                     </td>
                     <td class="py-4 px-6">
                         {{ $sample->created_at }}
-                      </td>
-                      <td class="py-4 px-6">
-                        <button class='btn btn-info viewdetails' data-id='{{ $sample->id }}' >View Details</button>
-
-
                       </td>
                     {{-- <td class="py-4 px-6">
                       {{ $sample->status == 1 ? 'Active':'In review' }}

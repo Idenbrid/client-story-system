@@ -106,8 +106,9 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
+
     <div class="py-12 ">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-neutral-100">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
             <div class="overflow-hidden sm:rounded-lg">
                 <div class="p-6 row">
                     @if (count($available) > 0)
@@ -130,7 +131,7 @@
                                             @endif
                                         </div>
                                         <div class="dreamit-blog-text">
-                                            <p class="text-start">{{ Str::limit($get->story->content, 200) }}.</p>
+                                            <p class="text-break text-justify">{{ Str::limit($get->story->content, 200) }}.</p>
                                         </div>
                                         {{-- | --}}
                                         <div class="dreamit-blog-button">
@@ -141,10 +142,10 @@
 
                                             {{-- @if (!Session::has('key_' . $get->story->id)) --}}
                                             @if($get->is_read == 0)
-                                                <a href="{{ route('reader.read.story', ['id' => $get->story->id]) }}">read
+                                                <a class='btn-primary mt-4' href="{{ route('reader.read.story', ['id' => $get->story->id]) }}">read
                                                     more <i class="fas fa-chevron-right"></i></a>
                                             @else
-                                                <p>Already readden</p>
+                                                <button type="button" class="btn mt-4 btn-success">Already Read</button>
                                             @endif
 
                                         </div>

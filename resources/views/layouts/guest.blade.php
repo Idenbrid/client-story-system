@@ -5,13 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Luca') }}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
+        
+<link rel="stylesheet" href="https://story.bizblanca.com/build/assets/app.f77625da.css" />
+  <link rel="stylesheet" href="https://story.bizblanca.com/build/assets/app.a8fda0b7.css" />
+  <script type="module" src="https://story.bizblanca.com/build/assets/app.85fd2d41.js"></script>
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!--@vite(['resources/css/app.css', 'resources/js/app.js'])-->
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">

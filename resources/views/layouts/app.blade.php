@@ -3,9 +3,10 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="icon" type="image/x-icon" href="/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Luca') }}</title>
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
@@ -13,6 +14,11 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2">
   <script src="https://kit.fontawesome.com/0122c5c2ff.js" crossorigin="anonymous"></script>
+  <!-- CSS -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" >
+ <!-- Script -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" ></script>
   <style>
     #dataTable_wrapper {
       -ms-overflow-style: none;
@@ -38,12 +44,16 @@
       margin: 0;
       padding: 0;
     }
+    .page-item .page-link
+    {
+      color:black
+    }
 
     .page-item.active .page-link {
       z-index: 3;
       color: #fff;
-      background-color: #0ea5e9;
-      border-color: #0ea5e9;
+      background-color: #FEB81C;
+      border-color: #FEB81C;
     }
     div.dataTables_wrapper div.dataTables_length select{
       width:70px;
@@ -51,9 +61,11 @@
   </style>
   <!-- Scripts -->
   <!-- Scripts -->
-  <link rel="stylesheet" href="http://127.0.0.1:8000/build/assets/app.b5531dfd.css" /><link rel="stylesheet" href="http://127.0.0.1:8000/build/assets/app.79695696.css" /><script type="module" src="http://127.0.0.1:8000/build/assets/app.a65afb34.js"></script></head>
+<link rel="stylesheet" href="https://story.bizblanca.com/build/assets/app.f77625da.css" />
+  <link rel="stylesheet" href="https://story.bizblanca.com/build/assets/app.a8fda0b7.css" />
+  <script type="module" src="https://story.bizblanca.com/build/assets/app.85fd2d41.js"></script>
 
-  {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+   <!--@vite(['resources/css/app.css', 'resources/js/app.js'])-->
 </head>
 
 <body class="font-sans antialiased">
@@ -69,7 +81,7 @@
         <ol class="inline-flex items-center">
           <li class="inline-flex items-center">
             <a href ="{{ route('dashboard') }}">
-            <svg class="w-4 h-4 mr-2 fill-sky-500" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5 mr-2 fill-sky-500" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
             </svg>
             </a>
@@ -82,7 +94,7 @@
               <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
               </svg>
-              <a href="{{ $segments }}">{{$segment}}</a>
+              <a class='text-capitalize' href="{{ $segments }}">{{$segment}}</a>
             </div>
           </li>
           @endforeach
@@ -112,6 +124,32 @@
     $('#dataTable').DataTable();
 
   });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#dataTable').on('click','.viewdetails',function(){
+        var empid = $(this).attr('data-id');
+        if(empid > 0){
+           // AJAX request
+           var url = "{{ route('reader.read.modal_story',[':empid']) }}";
+           url = url.replace(':empid',empid);
+           // Empty modal data
+           $('#tblempinfo tbody').empty();
+           $.ajax({
+               url: url,
+               dataType: 'json',
+               success: function(response){
+                   // Add employee details
+                   $('#tblempinfo tbody').html(response.html);
+                   // Display Modal
+                   $('#empModal').modal('show');
+               }
+           });
+        }
+    });
+});
 </script>
 
 </html>

@@ -45,7 +45,9 @@ Route::get('/cache', function () {
 Route::get('/get-sources', function () {
     return Source::all();
 });
-
+Route::get('/storage', function () {
+    Artisan::call('storage:link');
+});
 // Route::get('/get-sources',[SourceAdminController::class,'getSources' ] );
 Route::middleware('auth')->get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
@@ -179,6 +181,8 @@ Route::group(['as'=>'reader.','prefix'=>'reader'], function (){
     Route::get('/read/story/{id}', [ReaderController::class, 'show'])->name('read.story');
     Route::get('/readers', [ReaderController::class, 'readers'])->name('readers');
     Route::post('/sample/{id}', [ReaderController::class, 'sample'])->name('sample');
+    Route::get('/read/modal_story/{id}', [ReaderController::class, 'show_model_sample'])->name('read.modal_story');
+
 });
 
 require __DIR__ . '/auth.php';
