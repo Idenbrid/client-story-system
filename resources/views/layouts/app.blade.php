@@ -61,6 +61,7 @@
   </style>
   <!-- Scripts -->
   <!-- Scripts -->
+
 <link rel="stylesheet" href="https://story.bizblanca.com/build/assets/app.f77625da.css" />
   <link rel="stylesheet" href="https://story.bizblanca.com/build/assets/app.a8fda0b7.css" />
   <script type="module" src="https://story.bizblanca.com/build/assets/app.85fd2d41.js"></script>

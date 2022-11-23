@@ -287,6 +287,7 @@
                                                         @endforeach --}}
 
                                                 </tbody>
+
                                                 {{-- </table> --}}
                                                 {{-- @else --}}
                                                 {{-- <div style="text-muted">No Samples Submitted Yet!</div> --}}
@@ -326,6 +327,7 @@
                                                 @endif
 
                                             </div>
+
                                         </div>
                                     </div>
                                 </section>
@@ -362,8 +364,6 @@
                             <!-- Sliding Text & Controls -->
 
                             <hr>
-
-
                         </div>
                     </div>
                 </div>

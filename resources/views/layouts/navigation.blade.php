@@ -15,14 +15,17 @@
                         <x-nav-link class="text-dark text-base" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
+
                         <x-nav-link class="text-dark text-base" href="{{ route('admin.source.index') }}"
                             :active="request()->routeIs('admin.source.index')">
                             {{ __('Source Admins') }}
                         </x-nav-link>
+
                         <x-nav-link class="text-dark text-base" href="{{ route('admin.sources.index') }}"
                             :active="request()->routeIs('admin.sources.index')">
                             {{ __('Sources') }}
                         </x-nav-link>
+
                         <x-nav-link class="text-dark text-base" href="{{ route('admin.manager.index') }}" :active="request()->routeIs('admin.manager.index')">
                             {{ __('Teachers') }}
                         </x-nav-link>
