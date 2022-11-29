@@ -42,6 +42,9 @@
                   <th scope="col" class="py-3 px-6">
                     Samples
                   </th>
+                  <th scope="col" class="py-3 px-6">
+                    Completed
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -77,6 +80,9 @@
                             <a href="{{ route('user.sample',['id'=>$sample->id]) }}">{{ $sample->id }}</a>,
                         @endforeach
                     </td>
+                    <td class="py-4 px-6">
+                    {{ ($assign->is_read) == 0 ? 'No':'yes' }}
+                  </td>
                 </tr>
 
                 @endforeach

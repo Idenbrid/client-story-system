@@ -74,7 +74,10 @@
                     </th>
                     <th scope="col" class="py-3 px-6">
                         Source
-                      </th>
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                       Answers
+                     </th>
                     <th scope="col" class="py-3 px-6">
                       Start At
                     </th>
@@ -83,9 +86,6 @@
                     </th>
                     <th scope="col" class="py-3 px-6">
                         Submitted At
-                      </th>
-                      <th scope="col" class="py-3 px-6">
-                       Answers
                       </th>
                     {{-- <th scope="col" class="py-3 px-6">
                       Status
@@ -130,6 +130,10 @@
                         @endphp
                         <a href="{{ route('admin.sources.edit',['id'=>$sample->Source->id]) }}">{{ $sample->Source->source_name}} <b>({{ $sample->Source->source_id}})</b></a>
                     </td>
+                    <td class="py-4 px-6 text-center">
+                        <button class='btn btn-primary viewdetails'  data-id='{{ $sample->id }}'>Details</button>
+                        <!--<i class="fa-solid fa-eye cursor-pointer viewdetails" data-id='{{ $sample->id }}'></i>-->
+                     </td>
                     <td class="py-4 px-6">
                       {{ $sample->started_at }}
                     </td>
@@ -138,12 +142,7 @@
                     </td>
                     <td class="py-4 px-6">
                         {{ $sample->created_at }}
-                      </td>
-                      <td class="py-4 px-6">
-                        <button class='btn btn-info viewdetails' data-id='{{ $sample->id }}' >View Details</button>
-
-
-                      </td>
+                    </td>
                     {{-- <td class="py-4 px-6">
                       {{ $sample->status == 1 ? 'Active':'In review' }}
                     </td> --}}

@@ -15,10 +15,6 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2">
   <script src="https://kit.fontawesome.com/0122c5c2ff.js" crossorigin="anonymous"></script>
   <!-- CSS -->
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" >
- <!-- Script -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" ></script>
   <style>
     #dataTable_wrapper {
       -ms-overflow-style: none;
@@ -63,8 +59,8 @@
   <!-- Scripts -->
 
 <link rel="stylesheet" href="https://story.bizblanca.com/build/assets/app.f77625da.css" />
-  <link rel="stylesheet" href="https://story.bizblanca.com/build/assets/app.a8fda0b7.css" />
-  <script type="module" src="https://story.bizblanca.com/build/assets/app.85fd2d41.js"></script>
+<link rel="stylesheet" href="https://story.bizblanca.com/build/assets/app.a8fda0b7.css" />
+<script type="module" src="https://story.bizblanca.com/build/assets/app.85fd2d41.js"></script>
 
    <!--@vite(['resources/css/app.css', 'resources/js/app.js'])-->
 </head>
@@ -126,8 +122,6 @@
 
   });
 </script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
     $('#dataTable').on('click','.viewdetails',function(){
